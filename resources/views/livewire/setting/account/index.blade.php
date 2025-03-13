@@ -33,6 +33,8 @@
             <x-alert />
 
             <form class="card" wire:submit.prevent="edit" autocomplete="off">
+                <div class="card-header">Sunting Data Akun</div>
+
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">

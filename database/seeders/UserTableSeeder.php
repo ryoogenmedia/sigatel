@@ -15,31 +15,23 @@ class UserTableSeeder extends Seeder
     {
         $users = [
             [
-                'username' => 'Bintang Admin',
+                'username' => 'muhammad bintang ramli',
                 'email' => 'muhbintang650@gmail.com',
                 'email_verified_at' => now(),
                 'password' => bcrypt('bintang123'),
                 'roles' => 'admin',
             ],
             [
-                'username' => 'Fery Admin',
+                'username' => 'fery fadul rahman',
                 'email' => 'feryfadulrahman@gmail.com',
                 'email_verified_at' => now(),
                 'password' => bcrypt('fery123'),
                 'roles' => 'admin',
             ],
-            [
-                'username' => 'Hamka',
-                'email' => 'hamkairsal2001@gmail.com',
-                'email_verified_at' => now(),
-                'password' => bcrypt('hamka123'),
-                'roles' => 'user',
-            ]
         ];
 
-        foreach($users as $user){
+        foreach ($users as $user) {
             User::create($user);
         }
     }
 }
-

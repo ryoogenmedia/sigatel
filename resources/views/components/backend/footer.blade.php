@@ -6,7 +6,7 @@
                     <li class="list-inline-item">
                         <a href="https://github.com/ryoogenmedia" target="_blank" class="link-secondary" rel="noopener">
                             @include('partials.svg.love')
-                            Powered By Ryoogen Media
+                            SMP Negeri 25 Makassar | Ryoogen Media
                         </a>
                     </li>
                 </ul>

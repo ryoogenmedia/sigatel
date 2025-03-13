@@ -8,7 +8,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-menu">
             <div id="elementTime" class="text-dark">
-                Memuat...
+                Memuat Tanggal Sekarang...
             </div>
         </div>
     </div>

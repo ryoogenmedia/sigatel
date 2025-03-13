@@ -17,23 +17,10 @@
 
     <!-- Custom Styles -->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
-
-    <style>
-        @import url('https://rsms.me/inter/inter.css');
-
-        :root {
-            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
-        }
-
-        body {
-            font-feature-settings: "cv03", "cv04", "cv11";
-        }
-    </style>
-
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
 
     <!-- Livewire Styles -->
     @livewireStyles
-
     <!-- Component Style -->
     @stack('styles')
 </head>
@@ -64,6 +51,7 @@
     </script>
 
     <script src="{{ asset('js/today.js') }}"></script>
+    <script src="{{ asset('js/password-toggle.js') }}"></script>
 
     @stack('scripts')
 </body>

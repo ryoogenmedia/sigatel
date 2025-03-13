@@ -1,32 +1,31 @@
-<div class="{{ $formGroupClass ?? 'mb-3' }}">
+<div wire:ignore class="{{ $formGroupClass ?? 'mb-3' }}">
     @isset($label)
         <label class="form-label {{ isset($required) ? 'required' : '' }}"
             for="{{ $name }}">{{ $label }}</label>
     @endisset
 
-    <div class="input-icon">
-        @isset($icon)
-            <span class="input-icon-addon">
-                <i class="las la-{{ $icon }}"></i>
-            </span>
-        @endisset
-
+    <div class="input-wrapper">
         <input class="form-control {{ $formControlClass ?? '' }} @error($name) is-invalid @enderror"
-            id="{{ $name }}" name="{{ $name }}" type="{{ $type }}"
-            style="padding-right : {{ $type == 'number' ? '1rem' : '2.5rem' }}" {{ $attributes }} />
+            id="{{ $name }}" name="{{ $name }}" type="{{ $type }}" {{ $attributes }} />
 
-        @if (!isset($nonmessage))
-            @error($name)
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
+        @if ($type === 'password')
+            <span style="cursor: pointer" class="toggle-password">
+                <i class="las la-eye fs-1 me-2 mt-1"></i>
+            </span>
         @endif
-
-        <small class="text-muted">
-            @isset($optional)
-                Kosongkan jika tidak ingin mengubah
-            @endisset
-        </small>
     </div>
+
+    @if (!isset($nonmessage))
+        @error($name)
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
+    @endif
+
+    <small class="text-muted">
+        @isset($optional)
+            Kosongkan jika tidak ingin mengubah
+        @endisset
+    </small>
 </div>
