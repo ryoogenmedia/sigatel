@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,4 +26,30 @@ class OnDuty extends Model
         'schedule_time',
         'finish_time',
     ];
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'student_id', 'id')->withDefault();
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class, 'teacher_id', 'id')->withDefault();
+    }
+
+    public function school_subject()
+    {
+        return $this->belongsTo(SchoolSubject::class, 'school_subject_id')->withDefault();
+    }
+
+    // GETTER ATTRIBUTE MODEL METHOD
+    public function getScheduleTimeAttribute()
+    {
+        return Carbon::parse($this->schedule_time)->format('d/m/Y - H:i:s');
+    }
+
+    public function getFinishTimeAttribute()
+    {
+        return Carbon::parse($this->finish_time)->format('d/m/Y - H:i:s');
+    }
 }

@@ -17,4 +17,14 @@ class SchoolSubject extends Model
         'code',
         'status',
     ];
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class, 'teacher_id', 'id')->withDefault();
+    }
+
+    public function on_duties()
+    {
+        return $this->hasMany(OnDuty::class, 'shool_subject_id', 'id');
+    }
 }

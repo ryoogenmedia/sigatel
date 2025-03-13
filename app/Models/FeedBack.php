@@ -15,4 +15,8 @@ class FeedBack extends Model
         'on_duty_id',
         'comment',
     ];
+
+    public function on_duty(){
+        return $this->belongsTo(OnDuty::class,'on_duty_id','id')->withDefault();
+    }
 }

@@ -19,4 +19,14 @@ class Teacher extends Model
         'sex',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id')->withDefault();
+    }
+
+    public function on_duties()
+    {
+        return $this->hasMany(OnDuty::class, 'teacher_id', 'id');
+    }
 }
