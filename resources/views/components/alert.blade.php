@@ -12,8 +12,6 @@
         </span>
     </div>
 
-
-
     @if (session('alert'))
         <div class="alert alert-{{ $type }} alert-dismissible bg-white" role="alert">
             <div class="d-flex">
