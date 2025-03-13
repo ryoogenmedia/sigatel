@@ -54,5 +54,16 @@
     <script src="{{ asset('dist/libs/jsvectormap/dist/maps/world.js') }}"></script>
     <script src="{{ asset('dist/libs/jsvectormap/dist/maps/world-merc.js') }}"></script>
 
+    <script>
+        console.log('DEVELOPED BY RYOOGEN MEDIA 👋');
+
+        var useServerTime = true;
+        var serverTime = {{ time() * 1000 }};
+        var clientTime = new Date().getTime();
+        var differenceTime = clientTime - serverTime;
+    </script>
+
+    <script src="{{ asset('js/today.js') }}"></script>
+
     @stack('scripts')
 </body>
