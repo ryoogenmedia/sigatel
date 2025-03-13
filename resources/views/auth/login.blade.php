@@ -1,8 +1,9 @@
 <x-layouts.auth title="Login">
     <div class="card card-md">
         <div class="card-body">
-            <div class="text-center">
-                <h2 class="h4 text-center mb-5 title-login">Masuk Ke Aplikasi</h2>
+            <div class="text-center mb-3s">
+                <h2 class="h4 text-center mb-5 title-login">Selamat Datang 👋</h2>
+                <p>Masukkan data anda untuk masuk ke aplikasi.</p>
             </div>
 
             <form class="mt-5" action="{{ route('login') }}" method="POST" autocomplete="off">

@@ -10,9 +10,9 @@
             <div class="row align-items-center g-4">
                 <div class="col-lg">
                     <div class="container-tight">
-                        <div class="text-center mb-4">
+                        <div class="text-center mb-3">
                             <a href="." class="navbar-brand navbar-brand-autodark">
-                                <img src="{{ asset('ryoogenmedia/logo-dark.png') }}" alt="">
+                                <img style="width: 350px" src="{{ asset('ryoogenmedia/logo-dark.png') }}" alt="">
                             </a>
                         </div>
 

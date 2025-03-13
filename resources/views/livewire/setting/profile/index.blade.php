@@ -24,8 +24,9 @@
                     </div>
                 </div>
 
-                <div class="btn-group" role="group" aria-label="Basic example">
+                <div class="btn-group p-3" role="group" aria-label="Basic example">
                     <a href="{{ route('setting.profile.index') }}" class="btn btn-card py-3 btn-square">Profil</a>
+
                     <a href="{{ route('setting.account.index') }}" class="btn btn-card py-3 btn-square">Akun</a>
                 </div>
             </div>

@@ -21,7 +21,8 @@
                             class="badge bg-green-lt">{{ ucwords(str_replace('-', ' ', auth()->user()->roles)) ?? '-' }}</span>
                     </div>
                 </div>
-                <div class="btn-group" role="group" aria-label="Basic example">
+
+                <div class="btn-group p-3" role="group" aria-label="Basic example">
                     <a href="{{ route('setting.profile.index') }}" class="btn btn-card py-3 btn-square">Profil</a>
 
                     <a href="{{ route('setting.account.index') }}" class="btn btn-card py-3 btn-square">Akun</a>
@@ -29,7 +30,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-xl-8">
+        <div class="col-md-6 col-xl-8 mt-lg-3 mt-5">
             <x-alert />
 
             <form class="card" wire:submit.prevent="edit" autocomplete="off">
@@ -45,7 +46,8 @@
                                 placeholder="contoh@email.com" type="email" />
 
                             <div class="row">
-                                <div class="col-2">
+                                <div
+                                    class="col-lg-2 align-self-center text-lg-start text-center mt-lg-0 mt-4 mb-lg-0 mb-2 mb-lg-3">
                                     @if ($avatar)
                                         <span class="avatar avatar-md"
                                             style="background-image: url({{ $avatar->temporaryUrl() }})"></span>
@@ -55,7 +57,7 @@
                                     @endif
                                 </div>
 
-                                <div class="col">
+                                <div class="col-lg-auto col-12 mt-3 mt-lg-0">
                                     <x-form.input wire:model.lazy="avatar" name="avatar" label="Avatar" type="file"
                                         optional />
                                 </div>
