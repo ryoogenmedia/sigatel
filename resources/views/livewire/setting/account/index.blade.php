@@ -59,15 +59,16 @@
 
                                 <div class="col-lg-auto col-12 mt-3 mt-lg-0">
                                     <x-form.input wire:model.lazy="avatar" name="avatar" label="Avatar" type="file"
-                                        optional />
+                                        optional="Abaikan jika tidak ingin mengubah." />
                                 </div>
                             </div>
 
-                            <x-form.input wire:model.lazy="kataSandi" name="kataSandi" label="Kata Sandi"
-                                placeholder="******" type="password" optional />
+                            <x-form.input wire:model.lazy="kataSandi" name="kataSandi" label="Kata Sandi (Password)"
+                                placeholder="******" type="password" optional="Kosongkan jika tidak ingin mengubah." />
 
                             <x-form.input wire:model.lazy="konfirmasiKataSandi" name="konfirmasiKataSandi"
-                                label="Konfirmasi Kata Sandi" placeholder="******" type="password" />
+                                label="Konfirmasi Kata Sandi (Password)" placeholder="******" type="password"
+                                optional="Kosongkan jika tidak ingin mengubah." />
                         </div>
                     </div>
                 </div>

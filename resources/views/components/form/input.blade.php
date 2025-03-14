@@ -1,4 +1,4 @@
-<div wire:ignore class="{{ $formGroupClass ?? 'mb-3' }}">
+<div wire:ignore.self class="{{ $formGroupClass ?? 'mb-3' }}">
     @isset($label)
         <label class="form-label {{ isset($required) ? 'required' : '' }}"
             for="{{ $name }}">{{ $label }}</label>
@@ -10,22 +10,24 @@
 
         @if ($type === 'password')
             <span style="cursor: pointer" class="toggle-password">
-                <i class="las la-eye fs-1 me-2 mt-1"></i>
+                <i class="las la-eye fs-1 me-4 mt-1"></i>
             </span>
         @endif
     </div>
 
     @if (!isset($nonmessage))
         @error($name)
-            <div class="invalid-feedback">
-                {{ $message }}
+            <div class="text-red">
+                <small>{{ $message }}</small>
             </div>
         @enderror
     @endif
 
-    <small class="text-muted">
+    @unless ($errors->has($name))
         @isset($optional)
-            Kosongkan jika tidak ingin mengubah
+            <small class="text-muted">
+                {{ $optional }}
+            </small>
         @endisset
-    </small>
+    @endunless
 </div>

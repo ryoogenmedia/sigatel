@@ -41,7 +41,7 @@
 
                 <div class="col-12 col-lg-6">
                     <x-form.input wire:model="username" name="username" label="Nama Pengguna (Username)"
-                        placeholder="masukkan username" type="text" />
+                        placeholder="masukkan username" type="text" required />
                 </div>
             </div>
         </div>
@@ -50,20 +50,23 @@
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <div class="w-100 me-2">
+                        <x-form.input wire:model="kataSandi" name="kataSandi" label="Kata Sandi (Password)"
+                            placeholder="**********" type="password" optional="Kosongkan jika tidak ingin mengubah." />
                         <x-form.input wire:model="email" name="email" label="Masukkan Email"
-                            placeholder="masukkan email" type="text" />
-                        <x-form.select form-group-class wire:model.lazy="roles" name="roles" label="Level">
-                            <option value="">- pilih pengguna -</option>
-                            @foreach (config('const.roles') as $role)
-                                <option value="{{ $role }}">{{ ucwords($role) }}</option>
-                            @endforeach
-                        </x-form.select>
+                            placeholder="masukkan email" type="text" required />
                     </div>
                 </div>
 
                 <div class="col-12 col-lg-6">
-                    <x-form.input wire:model="password" name="password" label="Password" placeholder="**********"
-                        type="password" />
+                    <x-form.input wire:model="konfirmasiKataSandi" name="konfirmasiKataSandi"
+                        label="Konfirmasi Kata Sandi (Password)" placeholder="**********" type="password"
+                        optional="Kosongkan jika tidak ingin mengubah." />
+                    <x-form.select form-group-class wire:model.lazy="roles" name="roles" label="Level" required>
+                        <option value="">- pilih pengguna -</option>
+                        @foreach (config('const.roles') as $role)
+                            <option value="{{ $role }}">{{ ucwords($role) }}</option>
+                        @endforeach
+                    </x-form.select>
                 </div>
             </div>
         </div>

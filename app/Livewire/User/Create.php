@@ -16,9 +16,10 @@ class Create extends Component
 
     public $username;
     public $email;
-    public $password;
+    public $kataSandi;
     public $avatar;
     public $roles;
+    public $konfirmasiKataSandi;
 
     public function validateData()
     {
@@ -26,7 +27,7 @@ class Create extends Component
             'username' => ['required', 'string', 'min:2', 'max:255'],
             'roles' => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.roles'))],
             'email' => ['required', 'string', 'min:2', 'unique:users,email'],
-            'password' => ['required', 'string', Password::default()],
+            'kataSandi' => ['required', 'string', 'same:konfirmasiKataSandi', Password::default()],
             'avatar' => ['nullable', 'image', 'max:2048'],
         ]);
     }
@@ -41,7 +42,7 @@ class Create extends Component
             $user = User::create([
                 'username' => $this->username,
                 'email' => strtolower($this->email),
-                'password' => bcrypt($this->password),
+                'password' => bcrypt($this->kataSandi),
                 'roles' => $this->roles,
                 'email_verified_at' => now(),
             ]);

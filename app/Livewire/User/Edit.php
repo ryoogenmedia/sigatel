@@ -17,7 +17,8 @@ class Edit extends Component
 
     public $username;
     public $email;
-    public $password;
+    public $kataSandi;
+    public $konfirmasiKataSandi;
     public $avatar;
     public $roles;
 
@@ -30,7 +31,7 @@ class Edit extends Component
             'username' => ['required', 'string', 'min:2', 'max:255'],
             'roles' => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.roles'))],
             'email' => ['nullable', 'string', 'min:2', 'unique:users,email,' . $this->userId],
-            'password' => ['nullable', 'string', Password::default()],
+            'kataSandi' => ['nullable', 'string', 'same:konfirmasiKataSandi', Password::default()],
             'avatar' => ['nullable', 'image', 'max:2048'],
         ];
     }
@@ -56,8 +57,8 @@ class Edit extends Component
                 ]);
             }
 
-            if ($this->password) {
-                $user->update(['password' => bcrypt($this->password)]);
+            if ($this->kataSandi) {
+                $user->update(['password' => bcrypt($this->kataSandi)]);
             }
 
             if ($this->avatar) {
