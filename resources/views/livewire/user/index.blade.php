@@ -131,13 +131,19 @@
                             <td>{{ $row->email ?? '-' }}</td>
 
                             <td>
-                                <span class="badge bg-{{ $row->roles == 'admin' ? 'teal' : 'blue' }}-lt">
+                                <span @class([
+                                    'badge',
+                                    'bg-cyan' => $row->roles == 'admin',
+                                    'bg-blue' => $row->roles == 'teacher',
+                                    'bg-orange' => $row->roles == 'student',
+                                    'bg-red' => $row->roles == 'parent',
+                                ])>
                                     {{ $row->roles }}
                                 </span>
                             </td>
 
                             <td>
-                                <span class="badge bg-{{ $row->email_verified_at ? 'lime' : 'red' }}-lt">
+                                <span class="badge bg-{{ $row->email_verified_at ? 'lime' : 'red' }}">
                                     {{ $row->email_verified_at ? 'aktif' : 'nonaktif' }}
                                 </span>
                             </td>
