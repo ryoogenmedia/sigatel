@@ -23,6 +23,7 @@ class CheckRoles
         }
 
         Auth::logout();
-        return abort(403);
+
+        return redirect()->back()->withErrors('Anda tidak memiliki izin untuk mengakses halaman ini, pastikan data pengguna dan level anda sesuai.');;
     }
 }

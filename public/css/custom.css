@@ -100,9 +100,6 @@ body {
 }
 
 /* TABLE */
-.table tbody tr {
-    border-bottom: none;
-}
 
 .table thead tr th {
     border-radius: 10px;
