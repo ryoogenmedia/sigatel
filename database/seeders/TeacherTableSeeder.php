@@ -2,8 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Faker\Factory as Faker;
+use Illuminate\Http\File;
 
 class TeacherTableSeeder extends Seeder
 {
@@ -12,6 +17,25 @@ class TeacherTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $faker = Faker::create('id_ID');
+
+        foreach (range(1, 10) as $i) {
+            $user = User::create([
+                'username'          => $faker->name,
+                'email'             => $faker->unique()->safeEmail,
+                'email_verified_at' => now(),
+                'password'          => Hash::make('teacher123'),
+                'roles'             => 'teacher',
+            ]);
+
+            Teacher::create([
+                'user_id'       => $user->id,
+                'name'          => $user->username,
+                'phone_number'  => $faker->phoneNumber,
+                'address'       => $faker->address,
+                'sex'           => $faker->randomElement(['laki-laki', 'perempuan']),
+                'status'        => $faker->randomElement(['aktif', 'non aktif']),
+            ]);
+        }
     }
 }

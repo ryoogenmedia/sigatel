@@ -20,6 +20,7 @@ class Index extends Component
 
     public $filters = [
         'search' => '',
+        'roles' => '',
     ];
 
     public function deleteSelected()
@@ -50,9 +51,12 @@ class Index extends Component
     {
         $query = User::query()
             ->when(!$this->sorts, fn($query) => $query->first())
+            ->when($this->filters['roles'], function ($query, $roles) {
+                $query->where('roles', $roles);
+            })
             ->when($this->filters['search'], function ($query, $search) {
                 $query->whereAny(['username', 'roles', 'email'], 'LIKE', "%$search%");
-            })->whereIn('roles', ['admin', 'superadmin'])->latest();
+            })->orderBy('roles')->latest();
 
         return $this->applyPagination($query);
     }

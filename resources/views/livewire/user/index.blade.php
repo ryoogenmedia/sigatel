@@ -14,13 +14,21 @@
     <x-modal.delete-confirmation />
 
     <div class="row mb-3 align-items-center justify-content-between">
-        <div class="col-12 col-lg-5 d-flex">
+        <div class="col-12 col-lg-8 d-flex align-self-center">
             <div>
                 <x-datatable.search placeholder="Cari nama pengguna..." />
             </div>
-        </div>
 
-        <div class="col-auto ms-auto d-flex">
+            <div class="ms-2">
+                <x-form.select wire:model.lazy="filters.roles" name="filters.roles" form-group-class>
+                    <option value="">- semua level -</option>
+                    @foreach (config('const.roles') as $role)
+                        <option wire:key='{{ $role }}' value="{{ $role }}">{{ $role }}</option>
+                    @endforeach
+                </x-form.select>
+            </div>
+        </div>
+        <div class="col-auto ms-auto d-flex mt-lg-0 mt-3">
             <x-datatable.items-per-page />
 
             <x-datatable.bulk.dropdown>
@@ -109,7 +117,7 @@
 
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <span class="avatar avatar-sm"
+                                    <span class="avatar avatar-sm px-3"
                                         style="background-image: url({{ $row->avatarUrl() }})"></span>
 
                                     <span class="ms-2">
@@ -133,10 +141,10 @@
                             <td>
                                 <span @class([
                                     'badge',
-                                    'bg-cyan' => $row->roles == 'admin',
+                                    'bg-green' => $row->roles == 'admin',
                                     'bg-blue' => $row->roles == 'teacher',
-                                    'bg-orange' => $row->roles == 'student',
-                                    'bg-red' => $row->roles == 'parent',
+                                    'bg-yellow' => $row->roles == 'student',
+                                    'bg-pink' => $row->roles == 'parent',
                                 ])>
                                     {{ $row->roles }}
                                 </span>

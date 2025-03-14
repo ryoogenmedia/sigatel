@@ -22,6 +22,12 @@ return [
         'pindah',
     ],
 
+    'violation_type' => [
+        'terlambat',
+        'bolos',
+        'membuat keributan',
+    ],
+
     'student_status' => [
         'aktif',
         'non aktif',
