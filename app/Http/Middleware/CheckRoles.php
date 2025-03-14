@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckRoles
@@ -16,11 +17,12 @@ class CheckRoles
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         foreach ($roles as $role) {
-            if ($role == auth()->user()->roles) {
+            if ($role == auth()->user()->roles && auth()->user()->roles == 'admin') {
                 return $next($request);
             }
         }
 
+        Auth::logout();
         return abort(403);
     }
 }
