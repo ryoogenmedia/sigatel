@@ -23,6 +23,17 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         ->middleware('roles:admin,user');
 
     /**
+     * user / pengguna
+     */
+
+    Route::prefix('pengguna')->name('user.')->middleware('roles:admin')->namespace('User')->group(function () {
+        Route::get('/', Index::class)->name('index');
+        Route::get('/tambah', Create::class)->name('create');
+        Route::get('/sunting/{id}', Edit::class)->name('edit');
+    });
+
+
+    /**
      * setting
      */
     Route::prefix('pengaturan')->name('setting.')->middleware('roles:admin,user')->namespace('Setting')->group(function () {

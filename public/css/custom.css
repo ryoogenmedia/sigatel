@@ -22,10 +22,18 @@ body {
 }
 
 /* BUTTON ELEMENT */
-
 .btn {
     border-radius: 10px;
     padding: 10px 15px;
+}
+
+.btn:hover {
+    border: 1px solid #c0c0c0;
+}
+
+.btn-sm {
+    border-radius: 5px !important;
+    padding: 3px 4px !important;
 }
 
 .btn-warning {
@@ -85,19 +93,41 @@ body {
     animation: fadeInUp 0.5s ease-out forwards;
 }
 
-/* FORM CONTROL / INPUT ELEMENT */
+.card .card-footer {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #f3f3f3;
+}
 
-.form-control {
+/* TABLE */
+.table tbody tr {
+    border-bottom: none;
+}
+
+.table thead tr th {
+    border-radius: 10px;
+}
+
+.table tbody tr td {
+    border-radius: 10px;
+}
+
+/* INPUT ELEMENT */
+
+.form-control,
+.form-select {
     border-radius: 8px;
     height: 40px;
 }
 
-.form-control:active {
+.form-control:active,
+.form-select:active {
     outline: var(--orange-clr-lt);
     border: var(--orange-clr);
 }
 
-.form-control {
+.form-control,
+.form-select {
     border: 1px solid #ccc;
     background-color: white;
     color: black;
@@ -107,13 +137,16 @@ body {
 }
 
 .form-control:focus,
-.form-control:active {
+.form-control:active,
+.form-select:focus,
+.form-select:active {
     outline: none;
     border: 2px solid rgba(255, 165, 0, 0.85);
     box-shadow: 0 0 5px rgba(255, 165, 0, 0.7);
 }
 
-.form-control:disabled {
+.form-control:disabled,
+.form-select:disabled {
     background-color: #f5f5f5;
     color: #a1a1a1;
     border-color: #dcdcdc;
@@ -126,7 +159,8 @@ body {
     align-items: center;
 }
 
-.form-control {
+.form-control,
+.form-select {
     padding-right: 40px;
 }
 

@@ -7,7 +7,16 @@ return [
         'route-name' => 'home',
         'is-active' => 'home',
         'description' => 'Untuk melihat ringkasan aplikasi.',
-        'roles' => ['admin', 'user'],
+        'roles' => ['admin'],
+    ],
+
+    [
+        'title' => 'Beranda',
+        'icon' => 'user',
+        'route-name' => 'user.index',
+        'is-active' => 'user*',
+        'description' => 'Untuk kelola akun pengguna.',
+        'roles' => ['admin'],
     ],
 
     [
@@ -16,7 +25,7 @@ return [
         'icon' => 'cog',
         'route-name' => 'setting.profile.index',
         'is-active' => 'setting*',
-        'roles' => ['admin', 'user'],
+        'roles' => ['admin'],
         'sub-menus' => [
             [
                 'title' => 'Profil',
