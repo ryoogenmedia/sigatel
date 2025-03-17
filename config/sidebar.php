@@ -47,6 +47,15 @@ return [
     ],
 
     [
+        'title' => 'Kelas',
+        'icon' => 'school',
+        'route-name' => 'grade.index',
+        'is-active' => 'grade*',
+        'description' => 'Untuk kelola data kelas.',
+        'roles' => ['admin'],
+    ],
+
+    [
         'title' => 'Pengaturan',
         'description' => 'Menampilkan pengaturan aplikasi.',
         'icon' => 'cog',

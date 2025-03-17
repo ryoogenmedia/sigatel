@@ -19,6 +19,13 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
     /**
      * student parent / orangtua siswa
      */
+    Route::prefix('kelas')->name('grade.')->middleware('roles:admin')->namespace('Grade')->group(function () {
+        Route::get('/', Index::class)->name('index');
+    });
+
+    /**
+     * student parent / orangtua siswa
+     */
     Route::prefix('orangtua-siswa')->name('guardian-parent.')->middleware('roles:admin')->namespace('StudentParent')->group(function () {
         Route::get('/', Index::class)->name('index');
         Route::get('/tambah', Create::class)->name('create');
