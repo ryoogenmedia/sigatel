@@ -1,26 +1,26 @@
 <div>
-    <x-slot name="title">Sunting Guru</x-slot>
+    <x-slot name="title">Sunting Siswa</x-slot>
 
-    <x-slot name="pagePretitle">Sunting Data Guru</x-slot>
+    <x-slot name="pagePretitle">Sunting Data Siswa</x-slot>
 
-    <x-slot name="pageTitle">Sunting Guru</x-slot>
+    <x-slot name="pageTitle">Sunting Siswa</x-slot>
 
     <x-slot name="button">
-        <x-datatable.button.back name="Kembali" :route="route('teacher.index')" />
+        <x-datatable.button.back name="Kembali" :route="route('student.index')" />
     </x-slot>
 
     <x-alert />
 
     <form class="card" wire:submit.prevent="edit" autocomplete="off">
         <div class="card-header">
-            Sunting data guru
+            Sunting data siswa
         </div>
 
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-lg-6">
-                    <x-form.input wire:model="namaGuru" name="namaGuru" label="Nama Guru" type="text"
-                        placeholder="Masukkan nama guru" required autofocus />
+                    <x-form.input wire:model="namaSiswa" name="namaSiswa" label="Nama Siswa" type="text"
+                        placeholder="Masukkan nama siswa" required autofocus />
 
                     <x-form.input wire:model="nomorPonsel" name="nomorPonsel" label="Nomor Ponsel" type="string"
                         placeholder="08xxxxxxx" required />

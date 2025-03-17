@@ -29,6 +29,15 @@ return [
     ],
 
     [
+        'title' => 'Siswa',
+        'icon' => 'graduation-cap',
+        'route-name' => 'student.index',
+        'is-active' => 'student*',
+        'description' => 'Untuk kelola data guru.',
+        'roles' => ['admin'],
+    ],
+
+    [
         'title' => 'Pengaturan',
         'description' => 'Menampilkan pengaturan aplikasi.',
         'icon' => 'cog',

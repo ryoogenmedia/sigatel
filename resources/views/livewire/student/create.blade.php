@@ -1,26 +1,26 @@
 <div>
-    <x-slot name="title">Tambah Guru</x-slot>
+    <x-slot name="title">Tambah Siswa</x-slot>
 
-    <x-slot name="pagePretitle">Menambah Data Guru</x-slot>
+    <x-slot name="pagePretitle">Menambah Data Siswa</x-slot>
 
-    <x-slot name="pageTitle">Tambah Guru</x-slot>
+    <x-slot name="pageTitle">Tambah Siswa</x-slot>
 
     <x-slot name="button">
-        <x-datatable.button.back name="Kembali" :route="route('teacher.index')" />
+        <x-datatable.button.back name="Kembali" :route="route('student.index')" />
     </x-slot>
 
     <x-alert />
 
     <form class="card" wire:submit.prevent="save" autocomplete="off">
         <div class="card-header">
-            Tambah data guru
+            Tambah data siswa
         </div>
 
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-lg-6">
-                    <x-form.input wire:model="namaGuru" name="namaGuru" label="Nama Guru" type="text"
-                        placeholder="Masukkan nama guru" required autofocus />
+                    <x-form.input wire:model="namaSiswa" name="namaSiswa" label="Nama Siswa" type="text"
+                        placeholder="Masukkan nama siswa" required autofocus />
 
                     <x-form.input wire:model="nomorPonsel" name="nomorPonsel" label="Nomor Ponsel" type="string"
                         placeholder="08xxxxxxx" required autofocus />
@@ -55,6 +55,15 @@
 
         <div class="card-body">
             <div class="row">
+                <div class="col-12 col-lg-6">
+                    <x-form.select wire:model="kelas" name="kelas" label="Kelas">
+                        <option value="">- pilih kelas -</option>
+                        @foreach ($this->grades as $grade)
+                            <option wire:key="{{ $grade->id }}" value="{{ $grade->id }}">{{ $grade->name }}
+                            </option>
+                        @endforeach
+                    </x-form.select>
+                </div>
                 <div class="col-12 col-lg-6">
                     <x-form.select wire:model.lazy="caraBuatAkun" name="caraBuatAkun" label="Cara Buat Akun">
                         <option value="">- pilih cara buat akun -</option>

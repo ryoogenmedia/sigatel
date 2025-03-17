@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\Teacher;
+namespace App\Livewire\Student;
 
 use App\Livewire\Traits\DataTable\WithBulkActions;
 use App\Livewire\Traits\DataTable\WithCachedRows;
 use App\Livewire\Traits\DataTable\WithPerPagePagination;
 use App\Livewire\Traits\DataTable\WithSorting;
-use App\Models\Teacher;
+use App\Models\Student;
 use Illuminate\Support\Facades\File;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -27,10 +27,10 @@ class Index extends Component
 
     public function deleteSelected()
     {
-        $teachers = Teacher::whereIn('id', $this->selected)->get();
-        $deleteCount = $teachers->count();
+        $student = Student::whereIn('id', $this->selected)->get();
+        $deleteCount = $student->count();
 
-        foreach ($teachers as $data) {
+        foreach ($student as $data) {
             if ($data->user->avatar) {
                 File::delete(public_path('storage/' . $data->user->avatar));
             }
@@ -43,7 +43,7 @@ class Index extends Component
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'Berhasil.',
-            'detail' => "$deleteCount data guru berhasil dihapus.",
+            'detail' => "$deleteCount data siswa berhasil dihapus.",
         ]);
 
         return redirect()->back();
@@ -52,7 +52,7 @@ class Index extends Component
     #[Computed()]
     public function rows()
     {
-        $query = Teacher::query()
+        $query = Student::query()
             ->when(!$this->sorts, fn($query) => $query->first())
             ->when($this->filters['nomorPonsel'], function ($query, $nomorPonsel) {
                 $query->where('phone_number', 'LIKE', "%$nomorPonsel%");
@@ -73,7 +73,7 @@ class Index extends Component
     #[Computed()]
     public function allData()
     {
-        return Teacher::all();
+        return Student::all();
     }
 
     public function updatedFilters()
@@ -88,6 +88,6 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.teacher.index');
+        return view('livewire.student.index');
     }
 }

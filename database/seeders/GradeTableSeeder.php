@@ -21,7 +21,7 @@ class GradeTableSeeder extends Seeder
         foreach (range(1, 10) as $i) {
             Grade::create([
                 'teacher_id' => $faker->randomElement($teacherIds),
-                'name'       => $faker->word,
+                'name'       => $faker->randomElement(['I', 'II', 'III', 'IV', 'V', 'VI']) . "-" . $faker->numberBetween(00, 99),
                 'floor'      => $faker->numberBetween(1, 5),
             ]);
         }

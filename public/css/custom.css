@@ -132,7 +132,7 @@ body {
     height: 40px;
 }
 textarea {
-    height: auto !important;
+    height: 210px !important;
 }
 
 .form-control:active,
