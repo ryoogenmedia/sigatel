@@ -43,7 +43,7 @@ class Index extends Component
         $this->dispatch('load-data-grade');
     }
 
-    public function addGrade()
+    public function save()
     {
         $this->validate([
             'namaKelas' => ['required', 'string', 'min:2', 'max:255'],

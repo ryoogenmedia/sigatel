@@ -32,7 +32,7 @@
 
     <div class="row">
         <div class="col-12 col-lg-4">
-            <form class="card" wire:submit.prevent="addGrade" autocomplete="off">
+            <form class="card" wire:submit.prevent="save" autocomplete="off">
                 <div class="card-header">
                     {{ $this->gradeId ? 'Sunting' : 'Tambah' }} Data Kelas
                 </div>
@@ -61,7 +61,7 @@
                         <button wire:click="resetData" type="reset" class="btn">Reset</button>
 
                         <x-datatable.button.save class="btn btn-{{ $this->gradeId ? 'warning' : 'success' }}"
-                            target="addGrade" name="{{ $this->gradeId ? 'Sunting' : 'Tambah' }} Kelas" />
+                            target="save" name="{{ $this->gradeId ? 'Sunting' : 'Tambah' }} Kelas" />
                     </div>
                 </div>
             </form>
@@ -131,10 +131,10 @@
 
                                     <td class="text-center">{{ $row->total_student ?? 0 }}</td>
 
-                                    <td>{{ $row->teacher->name ?? '-' }}
+                                    <td><span class="me-1">{{ $row->teacher->name ?? '-' }}</span>
                                         <span
                                             class="badge bg-{{ $row->teacher->status == 'aktif' ? 'lime' : 'red' }}-lt">
-                                            {{ $row->teacher->status }}
+                                            {{ $row->teacher->status == 'aktif' ? 'Aktif' : 'Non Aktif' }}
                                         </span>
                                     </td>
 
