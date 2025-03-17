@@ -21,6 +21,11 @@ class Student extends Model
         'status',
     ];
 
+    public function parent()
+    {
+        return $this->hasOne(StudentParent::class, 'student_id', 'id')->withDefault();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id')->withDefault();

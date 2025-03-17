@@ -17,6 +17,15 @@ Route::redirect('/', '/login');
 
 Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')->group(function () {
     /**
+     * student parent / orangtua siswa
+     */
+    Route::prefix('orangtua-siswa')->name('guardian-parent.')->middleware('roles:admin')->namespace('StudentParent')->group(function () {
+        Route::get('/', Index::class)->name('index');
+        Route::get('/tambah', Create::class)->name('create');
+        Route::get('/sunting/{id}', Edit::class)->name('edit');
+    });
+
+    /**
      * student / siswa
      */
     Route::prefix('siswa')->name('student.')->middleware('roles:admin')->namespace('Student')->group(function () {

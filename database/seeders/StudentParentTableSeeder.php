@@ -36,7 +36,7 @@ class StudentParentTableSeeder extends Seeder
                 'student_id'      => $faker->randomElement($studentIds),
                 'name'            => $user->username,
                 'phone_number'    => $faker->phoneNumber,
-                'guardian_status' => $faker->randomElement(['orangtua-kandung', 'orangtua-wali']),
+                'guardian_status' => $faker->randomElement(['anak angkat', 'anak kandung']),
             ]);
         }
     }

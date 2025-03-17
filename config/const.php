@@ -8,6 +8,11 @@ return [
         'teacher',
     ],
 
+    'guardian_status' => [
+        'anak angkat',
+        'anak kandung',
+    ],
+
     'sex' => [
         'laki-laki',
         'perempuan',

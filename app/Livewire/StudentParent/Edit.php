@@ -1,45 +1,52 @@
 <?php
 
-namespace App\Livewire\Student;
+namespace App\Livewire\StudentParent;
 
 use App\Models\Student;
+use App\Models\StudentParent;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
-use Livewire\WithFileUploads;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class Edit extends Component
 {
     use WithFileUploads;
 
-    public $namaSiswa;
+    public $namaOrangTuaSiswa;
     public $nomorPonsel;
-    public $jenisKelamin;
-    public $status;
-    public $alamat;
+    public $statusHubungan;
 
     public $email;
     public $kataSandi;
     public $avatar;
     public $konfirmasiKataSandi;
-    public $roles = 'student';
+    public $roles = 'parent';
 
     public $userId;
-    public $studentId;
-    public $kelas;
+    public $studentParentId;
+    public $siswa;
     public $avatarUrl;
+
+    #[Computed()]
+    public function students()
+    {
+        return Student::query()
+            ->whereDoesntHave('parent')
+            ->orWhere('id', $this->siswa)
+            ->get(['id', 'name']);
+    }
 
     public function rules()
     {
         return [
-            'namaSiswa' => ['required', 'string', 'min:2', 'max:255'],
+            'namaOrangTuaSiswa' => ['required', 'string', 'min:2', 'max:255'],
             'nomorPonsel' => ['required', 'string', 'min:2', 'max:255'],
-            'jenisKelamin' => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.sex'))],
-            'status' => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.teacher_status'))],
-            'alamat' => ['required', 'string'],
+            'statusHubungan' => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.guardian_status'))],
             'email' => ['required', 'string'],
             'kataSandi' => ['nullable', 'same:konfirmasiPassword', 'min:2', 'max:255', Password::default()],
             'avatar' => ['nullable', 'image', 'max:2048'],
@@ -54,10 +61,10 @@ class Edit extends Component
             DB::beginTransaction();
 
             $user = User::findOrFail($this->userId);
-            $student = Student::findOrFail($this->studentId);
+            $studentParent = StudentParent::findOrFail($this->studentParentId);
 
             $user->update([
-                'username' => $this->namaSiswa,
+                'username' => $this->namaOrangTuaSiswa,
                 'roles' => $this->roles,
                 'email' => $this->email,
                 'password' => bcrypt($this->kataSandi),
@@ -70,29 +77,27 @@ class Edit extends Component
                 ]);
             }
 
-            $student->update([
+            $studentParent->update([
                 'user_id' => $user->id,
-                'grade_id' => $this->kelas,
-                'name' => $this->namaSiswa,
+                'student_id' => $this->siswa,
+                'name' => $this->namaOrangTuaSiswa,
                 'phone_number' => $this->nomorPonsel,
-                'address' => $this->alamat,
-                'sex' => $this->jenisKelamin,
-                'status' => $this->status,
+                'guardian_status' => $this->statusHubungan,
             ]);
 
             DB::commit();
         } catch (Exception $e) {
             logger()->error(
-                '[sunting siswa] ' .
+                '[sunting orang tua siswa] ' .
                     auth()->user()->username .
-                    ' gagal menyunting siswa',
+                    ' gagal menyunting orang tua siswa',
                 [$e->getMessage()]
             );
 
             session()->flash('alert', [
                 'type' => 'danger',
                 'message' => 'Gagal.',
-                'detail' => "data siswa gagal disunting.",
+                'detail' => "data orang tua siswa gagal disunting.",
             ]);
 
             return redirect()->back();
@@ -101,24 +106,22 @@ class Edit extends Component
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'Berhasil.',
-            'detail' => "data siswa berhasil disunting.",
+            'detail' => "data orang tua siswa berhasil disunting.",
         ]);
 
-        return redirect()->route('student.index');
+        return redirect()->route('guardian-parent.index');
     }
 
     public function mount($id)
     {
-        $student = Student::findOrFail($id);
-        $user = User::findOrFail($student->user->id);
+        $studentParent = StudentParent::findOrFail($id);
+        $user = User::findOrFail($studentParent->user->id);
 
-        $this->studentId = $student->id;
-        $this->namaSiswa = $student->name;
-        $this->nomorPonsel = $student->phone_number;
-        $this->alamat = $student->address;
-        $this->jenisKelamin = $student->sex;
-        $this->status = $student->status;
-        $this->kelas = $student->grade_id;
+        $this->studentParentId = $studentParent->id;
+        $this->namaOrangTuaSiswa = $studentParent->name;
+        $this->nomorPonsel = $studentParent->phone_number;
+        $this->siswa = $studentParent->student->id;
+        $this->statusHubungan = $studentParent->guardian_status;
 
         $this->userId = $user->id;
         $this->email = $user->email;
@@ -127,6 +130,6 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.student.edit');
+        return view('livewire.student-parent.edit');
     }
 }

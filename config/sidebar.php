@@ -38,6 +38,15 @@ return [
     ],
 
     [
+        'title' => 'Orang Tua Siswa',
+        'icon' => 'users',
+        'route-name' => 'guardian-parent.index',
+        'is-active' => 'guardian-parent*',
+        'description' => 'Untuk kelola data guru.',
+        'roles' => ['admin'],
+    ],
+
+    [
         'title' => 'Pengaturan',
         'description' => 'Menampilkan pengaturan aplikasi.',
         'icon' => 'cog',
