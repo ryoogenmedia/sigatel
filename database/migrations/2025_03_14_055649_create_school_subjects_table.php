@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('teacher_id')->nullable();
             $table->string('name');
             $table->string('code')->nullable()->unique();
-            $table->string('status')->default('aktif')->nullable();
+            $table->boolean('status')->default(false)->nullable();
             $table->timestamps();
         });
     }

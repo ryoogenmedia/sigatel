@@ -34,8 +34,8 @@ class SchoolSubjectTableSeeder extends Seeder
             SchoolSubject::create([
                 'teacher_id' => $faker->randomElement($teacherIds),
                 'name'       => $subject,
-                'code'       => strtoupper(substr($subject, 0, 3)) . rand(100, 999), // Contoh kode: MAT123
-                'status'     => $faker->randomElement(['active', 'inactive']),
+                'code'       => strtoupper(substr($subject, 0, 3)) . rand(100, 999),
+                'status'     => $faker->randomElement([false, true]),
             ]);
         }
     }

@@ -56,6 +56,15 @@ return [
     ],
 
     [
+        'title' => 'Mata Pelajaran',
+        'icon' => 'newspaper',
+        'route-name' => 'school-subject.index',
+        'is-active' => 'school-subject*',
+        'description' => 'Untuk kelola data mata pelajaran.',
+        'roles' => ['admin'],
+    ],
+
+    [
         'title' => 'Pengaturan',
         'description' => 'Menampilkan pengaturan aplikasi.',
         'icon' => 'cog',
