@@ -15,6 +15,14 @@ body {
     font-feature-settings: "cv03", "cv04", "cv11";
 }
 
+/* BACGROUND */
+.bg-orange {
+    background-color: var(--orange-clr) !important;
+}
+
+.bg-orange-lt {
+    background-color: var(--orange-clr-lt) !important;
+}
 /* ALERT ELEMENT */
 
 .alert {
@@ -81,6 +89,12 @@ body {
     box-shadow: none;
 }
 
+/* CARD */
+
+.card-filter {
+    box-shadow: none !important;
+}
+
 .card {
     border-radius: 10px;
     border: none;
@@ -98,6 +112,10 @@ body {
 
 /* TABLE */
 
+.table tbody tr td {
+    vertical-align: middle;
+}
+
 .table thead tr th {
     border-radius: 10px;
 }
@@ -112,6 +130,9 @@ body {
 .form-select {
     border-radius: 8px;
     height: 40px;
+}
+textarea {
+    height: auto !important;
 }
 
 .form-control:active,

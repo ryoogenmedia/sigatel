@@ -8,6 +8,11 @@ return [
         'teacher',
     ],
 
+    'sex' => [
+        'laki-laki',
+        'perempuan',
+    ],
+
     'duty_status' => [
         'pending',
         'approved',

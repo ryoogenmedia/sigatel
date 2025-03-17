@@ -55,17 +55,26 @@ class Create extends Component
 
             DB::commit();
         } catch (Exception $e) {
+            logger()->error(
+                '[pengguna] ' .
+                    auth()->user()->username .
+                    ' gagal menambahkan pengguna',
+                [$e->getMessage()]
+            );
+
             session()->flash('alert', [
                 'type' => 'danger',
                 'message' => 'Gagal.',
-                'detail' => "data user gagal ditambah.",
+                'detail' => "data pengguna gagal ditambah.",
             ]);
+
+            return redirect()->back();
         }
 
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'Berhasil.',
-            'detail' => "data user berhasil ditambah.",
+            'detail' => "data pengguna berhasil ditambah.",
         ]);
 
         return redirect()->route('user.index');

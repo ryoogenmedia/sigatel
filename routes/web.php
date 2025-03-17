@@ -17,6 +17,15 @@ Route::redirect('/', '/login');
 
 Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')->group(function () {
     /**
+     * teacher / guru
+     */
+    Route::prefix('guru')->name('teacher.')->middleware('roles:admin')->namespace('Teacher')->group(function () {
+        Route::get('/', Index::class)->name('index');
+        Route::get('/tambah', Create::class)->name('create');
+        Route::get('/sunting/{id}', Edit::class)->name('edit');
+    });
+
+    /**
      * beranda / home
      */
     Route::get('beranda', Home\Index::class)->name('home')
@@ -25,13 +34,11 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
     /**
      * user / pengguna
      */
-
     Route::prefix('pengguna')->name('user.')->middleware('roles:admin')->namespace('User')->group(function () {
         Route::get('/', Index::class)->name('index');
         Route::get('/tambah', Create::class)->name('create');
         Route::get('/sunting/{id}', Edit::class)->name('edit');
     });
-
 
     /**
      * setting

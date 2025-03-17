@@ -19,7 +19,7 @@ class TeacherTableSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        foreach (range(1, 10) as $i) {
+        foreach (range(1, 20) as $i) {
             $user = User::create([
                 'username'          => $faker->name,
                 'email'             => $faker->unique()->safeEmail,
@@ -34,7 +34,7 @@ class TeacherTableSeeder extends Seeder
                 'phone_number'  => $faker->phoneNumber,
                 'address'       => $faker->address,
                 'sex'           => $faker->randomElement(['laki-laki', 'perempuan']),
-                'status'        => $faker->randomElement(['aktif', 'non aktif']),
+                'status'        => $faker->randomElement(config('const.teacher_status')),
             ]);
         }
     }

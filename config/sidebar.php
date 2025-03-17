@@ -11,11 +11,20 @@ return [
     ],
 
     [
-        'title' => 'Beranda',
+        'title' => 'Pengguna',
         'icon' => 'user',
         'route-name' => 'user.index',
         'is-active' => 'user*',
         'description' => 'Untuk kelola akun pengguna.',
+        'roles' => ['admin'],
+    ],
+
+    [
+        'title' => 'Guru',
+        'icon' => 'chalkboard-teacher',
+        'route-name' => 'teacher.index',
+        'is-active' => 'teacher*',
+        'description' => 'Untuk kelola data guru.',
         'roles' => ['admin'],
     ],
 

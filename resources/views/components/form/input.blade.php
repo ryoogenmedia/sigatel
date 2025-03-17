@@ -1,4 +1,4 @@
-<div wire:ignore.self class="{{ $formGroupClass ?? 'mb-3' }}">
+<div class="{{ $formGroupClass ?? 'mb-3' }}">
     @isset($label)
         <label class="form-label {{ isset($required) ? 'required' : '' }}"
             for="{{ $name }}">{{ $label }}</label>

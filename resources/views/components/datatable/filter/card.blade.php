@@ -1,4 +1,4 @@
-<div id="{{ $id }}" class="collapse bg-blue-lt mb-3 card px-2" wire:ignore>
+<div id="{{ $id }}" class="card-filter collapse bg-orange-lt mb-3 card px-2" wire:ignore>
     <div class="card-body">
         {{ $slot }}
 
