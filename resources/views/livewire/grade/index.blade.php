@@ -5,10 +5,6 @@
 
     <x-slot name="pagePretitle">Kelola Data Kelas</x-slot>
 
-    <x-slot name="button">
-        <x-datatable.button.add name="Tambah Kelas" :route="route('user.create')" />
-    </x-slot>
-
     <x-alert />
 
     <x-modal.delete-confirmation />
@@ -34,84 +30,141 @@
         </div>
     </div>
 
-    <div class="card" wire:loading.class.delay="card-loading" wire:offline.class="card-loading">
-        <div class="table-responsive mb-0">
-            <table class="table card-table table-bordered datatable">
-                <thead>
-                    <tr>
-                        <th class="w-1">
-                            <x-datatable.bulk.check wire:model.lazy="selectPage" />
-                        </th>
+    <div class="row">
+        <div class="col-12 col-lg-4">
+            <form class="card" wire:submit.prevent="addGrade" autocomplete="off">
+                <div class="card-header">
+                    {{ $this->gradeId ? 'Sunting' : 'Tambah' }} Data Kelas
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <x-form.input wire:model.lazy="namaKelas" name="namaKelas" label="Nama Kelas" type="text"
+                                placeholder="Nama Kelas" required autofocus />
 
-                        <th style="width: 10px">Nama Kelas</th>
+                            <x-form.input wire:model.lazy="nomorLantai" name="nomorLantai" label="Nomor Lanti"
+                                type="number" placeholder="Nomor Lantai" required />
 
-                        <th style="width:10px">Lantai Gedung</th>
+                            <x-form.select wire:model.lazy="waliKelas" name="waliKelas" label="Wali Kelas" required>
+                                <option value="">- pilih wali kelas -</option>
+                                @foreach ($this->teachers as $teacher)
+                                    <option wire:key="{{ $teacher->id }}" value="{{ $teacher->id }}">
+                                        {{ $teacher->name }}
+                                    </option>
+                                @endforeach
+                            </x-form.select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-list justify-content-end">
+                        <button wire:click="resetData" type="reset" class="btn">Reset</button>
 
-                        <th style="width:10px">Jumlah Murid</th>
-
-                        <th>Wali Kelas</th>
-
-                        <th style="width: 10px"></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @if ($selectPage)
-                        <tr>
-                            <td colspan="10" class="bg-green-lt">
-                                @if (!$selectAll)
-                                    <div class="text-green">
-                                        <span>Anda telah memilih <strong>{{ $this->rows->total() }}</strong> kelas,
-                                            apakah
-                                            Anda mau memilih semua <strong>{{ $this->rows->total() }}</strong>
-                                            kelas?</span>
-
-                                        <button wire:click="selectedAll" class="btn ms-2">Pilih Semua</button>
-                                    </div>
-                                @else
-                                    <span class="text-pink">Anda sekarang memilih semua
-                                        <strong>{{ count($this->selected) }}</strong> kelas.
-                                    </span>
-                                @endif
-                            </td>
-                        </tr>
-                    @endif
-
-                    @forelse ($this->rows as $row)
-                        <tr wire:key="row-{{ $row->id }}">
-                            <td>
-                                <x-datatable.bulk.check wire:model.lazy="selected" value="{{ $row->id }}" />
-                            </td>
-
-                            <td class="text-center"><b>{{ $row->name ?? '-' }}</b></td>
-
-                            <td class="text-center">{{ $row->floor ?? '-' }}</td>
-
-                            <td class="text-center">{{ $row->total_student ?? 0 }}</td>
-
-                            <td>{{ $row->teacher->name ?? '-' }}
-                                <span class="ms-2 badge bg-{{ $row->teacher->status == 'aktif' ? 'lime' : 'red' }}-lt">
-                                    {{ $row->teacher->status }}
-                                </span>
-                            </td>
-
-                            <td>
-                                <div class="d-flex">
-                                    <div class="ms-auto">
-                                        <a class="btn btn-sm" href="{{ route('user.edit', $row->id) }}">
-                                            Sunting
-                                        </a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    @empty
-                        <x-datatable.empty colspan="10" />
-                    @endforelse
-                </tbody>
-            </table>
+                        <x-datatable.button.save class="btn btn-{{ $this->gradeId ? 'warning' : 'success' }}"
+                            target="addGrade" name="{{ $this->gradeId ? 'Sunting' : 'Tambah' }} Kelas" />
+                    </div>
+                </div>
+            </form>
         </div>
 
-        {{ $this->rows->links() }}
+        <div class="col-12 col-lg-8">
+            <div class="card" wire:loading.class.delay="card-loading" wire:offline.class="card-loading">
+                <div class="table-responsive mb-0">
+                    <table class="table card-table table-bordered datatable">
+                        <thead>
+                            <tr>
+                                @unless ($this->gradeId)
+                                    <th class="w-1">
+                                        <x-datatable.bulk.check wire:model.lazy="selectPage" />
+                                    </th>
+                                @endunless
+
+                                <th style="width: 10px">Nama Kelas</th>
+
+                                <th style="width:10px">Lantai Gedung</th>
+
+                                <th style="width:10px">Jumlah Murid</th>
+
+                                <th>Wali Kelas</th>
+
+                                @unless ($this->gradeId)
+                                    <th style="width: 10px"></th>
+                                @endunless
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if ($selectPage)
+                                <tr>
+                                    <td colspan="10" class="bg-green-lt">
+                                        @if (!$selectAll)
+                                            <div class="text-green">
+                                                <span>Anda telah memilih <strong>{{ $this->rows->total() }}</strong>
+                                                    kelas,
+                                                    apakah
+                                                    Anda mau memilih semua <strong>{{ $this->rows->total() }}</strong>
+                                                    kelas?</span>
+
+                                                <button wire:click="selectedAll" class="btn ms-2">Pilih Semua</button>
+                                            </div>
+                                        @else
+                                            <span class="text-pink">Anda sekarang memilih semua
+                                                <strong>{{ count($this->selected) }}</strong> kelas.
+                                            </span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endif
+
+                            @forelse ($this->rows as $row)
+                                <tr wire:key="row-{{ $row->id }}">
+                                    @unless ($this->gradeId)
+                                        <td>
+                                            <x-datatable.bulk.check wire:model.lazy="selected"
+                                                value="{{ $row->id }}" />
+                                        </td>
+                                    @endunless
+
+                                    <td class="text-center"><b>{{ $row->name ?? '-' }}</b></td>
+
+                                    <td class="text-center">{{ $row->floor ?? '-' }}</td>
+
+                                    <td class="text-center">{{ $row->total_student ?? 0 }}</td>
+
+                                    <td>{{ $row->teacher->name ?? '-' }}
+                                        <span
+                                            class="badge bg-{{ $row->teacher->status == 'aktif' ? 'lime' : 'red' }}-lt">
+                                            {{ $row->teacher->status }}
+                                        </span>
+                                    </td>
+
+                                    @unless ($this->gradeId)
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="ms-auto">
+                                                    <button class="btn btn-sm" wire:click="getGrade({{ $row->id }})">
+                                                        Sunting
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    @endunless
+                                </tr>
+                            @empty
+                                <x-datatable.empty colspan="10" />
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+
+                @if ($this->gradeId)
+                    <div class="p-3">
+                        <button wire:click="resetData" class="btn w-100">Batal Edit Data</button>
+                    </div>
+                @endif
+
+                {{ $this->rows->links() }}
+            </div>
+        </div>
     </div>
 </div>

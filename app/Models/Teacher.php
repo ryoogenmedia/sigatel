@@ -25,6 +25,11 @@ class Teacher extends Model
         return $this->belongsTo(User::class, 'user_id', 'id')->withDefault();
     }
 
+    public function grade()
+    {
+        return $this->hasOne(Grade::class, 'teacher_id', 'id')->withDefault();
+    }
+
     public function on_duties()
     {
         return $this->hasMany(OnDuty::class, 'teacher_id', 'id');
