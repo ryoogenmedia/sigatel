@@ -99,7 +99,7 @@
                             <x-datatable.column-sort name="Status" wire:click="sortBy('status')" :direction="$sorts['status'] ?? null" />
                         </th>
 
-                        <th></th>
+                        <th style="width: 10px"></th>
                     </tr>
                 </thead>
 

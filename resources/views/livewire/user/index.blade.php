@@ -73,7 +73,7 @@
                                 :direction="$sorts['email_verified_at'] ?? null" />
                         </th>
 
-                        <th></th>
+                        <th style="width: 10px"></th>
                     </tr>
                 </thead>
 

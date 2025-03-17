@@ -99,7 +99,7 @@
                             <x-datatable.column-sort name="Status" wire:click="sortBy('status')" :direction="$sorts['status'] ?? null" />
                         </th>
 
-                        <th></th>
+                        <th style="width: 10px"></th>
                     </tr>
                 </thead>
 
@@ -109,16 +109,16 @@
                             <td colspan="10" class="bg-green-lt">
                                 @if (!$selectAll)
                                     <div class="text-green">
-                                        <span>Anda telah memilih <strong>{{ $this->rows->total() }}</strong> guru,
+                                        <span>Anda telah memilih <strong>{{ $this->rows->total() }}</strong> siswa,
                                             apakah
                                             Anda mau memilih semua <strong>{{ $this->rows->total() }}</strong>
-                                            guru?</span>
+                                            siswa?</span>
 
                                         <button wire:click="selectedAll" class="btn ms-2">Pilih Semua</button>
                                     </div>
                                 @else
                                     <span class="text-pink">Anda sekarang memilih semua
-                                        <strong>{{ count($this->selected) }}</strong> guru.
+                                        <strong>{{ count($this->selected) }}</strong> siswa.
                                     </span>
                                 @endif
                             </td>
