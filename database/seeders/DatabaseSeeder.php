@@ -16,9 +16,11 @@ class DatabaseSeeder extends Seeder
     {
         File::deleteDirectory(public_path('storage/avatar'));
         File::deleteDirectory(public_path('storage/avatars'));
+        File::deleteDirectory(public_path('storage/logo-school'));
 
         Storage::deleteDirectory('public/avatar');
         Storage::deleteDirectory('public/avatars');
+        Storage::deleteDirectory('public/logo-school');
 
         $this->call([
             UserTableSeeder::class,

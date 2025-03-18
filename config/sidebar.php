@@ -73,8 +73,8 @@ return [
         'roles' => ['admin'],
         'sub-menus' => [
             [
-                'title' => 'Profil',
-                'description' => 'Melihat pengaturan profil.',
+                'title' => 'Profil Sekolah',
+                'description' => 'Melihat pengaturan profil sekolah.',
                 'route-name' => 'setting.profile.index',
                 'is-active' => 'setting.profile*',
             ],

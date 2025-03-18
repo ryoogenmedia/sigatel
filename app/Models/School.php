@@ -18,6 +18,14 @@ class School extends Model
         'email',
         'telp',
         'phone',
+        'postal_code',
         'accreditation',
     ];
+
+    public function logoUrl()
+    {
+        return $this->logo
+            ? url('storage/' . $this->logo)
+            : asset('ryoogenmedia/no-image.png');
+    }
 }
