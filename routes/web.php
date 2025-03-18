@@ -30,6 +30,7 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         // Feedback / Masukan
         Route::prefix('masukan')->name('feedback.')->namespace('Feedback')->group(function () {
             Route::get('/', Index::class)->name('index');
+            Route::get('/pesan/{id}', Message::class)->name('message');
         });
     });
 
