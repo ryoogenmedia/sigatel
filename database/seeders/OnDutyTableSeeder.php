@@ -29,13 +29,11 @@ class OnDutyTableSeeder extends Seeder
                 'student_id'       => $faker->randomElement($studentIds),
                 'teacher_id'       => $schoolSubject->teacher_id,
                 'school_subject_id' => $schoolSubject->id,
-                'photo_student'    => $faker->imageUrl(300, 300, 'people'),
                 'longitude'        => $faker->randomFloat(6, 119.395, 119.548),
                 'latitude'         => $faker->randomFloat(6, -5.176, -5.065),
                 'description'      => $faker->sentence,
                 'status'           => $faker->randomElement(config('const.duty_status')),
                 'violation_type'   => $faker->randomElement(config('const.violation_type')),
-                'documentation_file' => $faker->imageUrl(400, 400, 'nature'),
                 'schedule_time'    => $faker->dateTimeBetween('-1 week', '+1 week'),
                 'finish_time'      => $faker->dateTimeBetween('now', '+1 week'),
             ]);

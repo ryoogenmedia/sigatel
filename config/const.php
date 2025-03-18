@@ -36,6 +36,8 @@ return [
         'terlambat',
         'bolos',
         'membuat keributan',
+        'tidur dalam kelas',
+        'tidak mengerjakan tugas'
     ],
 
     'student_status' => [

@@ -43,12 +43,27 @@ class OnDuty extends Model
     }
 
     // GETTER ATTRIBUTE MODEL METHOD
-    public function getScheduleTimeAttribute()
+
+    public function photoStudentUrl()
+    {
+        return $this->photo_student
+            ? url('storage/' . $this->photo_student)
+            : asset('ryoogenmedia/no-image.png');
+    }
+
+    public function documentationFileUrl()
+    {
+        return $this->documentation_file
+            ? url('storage/' . $this->documentation_file)
+            : asset('ryoogenmedia/no-image.png');
+    }
+
+    public function getJadwalPenugasanAttribute()
     {
         return Carbon::parse($this->schedule_time)->format('d/m/Y - H:i:s');
     }
 
-    public function getFinishTimeAttribute()
+    public function getJadwalSelesaiAttribute()
     {
         return Carbon::parse($this->finish_time)->format('d/m/Y - H:i:s');
     }

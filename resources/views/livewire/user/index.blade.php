@@ -120,19 +120,7 @@
                                     <span class="avatar avatar-sm px-3"
                                         style="background-image: url({{ $row->avatarUrl() }})"></span>
 
-                                    <span class="ms-2">
-                                        @isset($row->account_holder)
-                                            {{ $row->account_holder->name }}
-                                        @endisset
-
-                                        @isset($row->driver)
-                                            {{ $row->driver->name }}
-                                        @endisset
-
-                                        @if (!isset($row->driver) && !isset($row->account_holder))
-                                            {{ $row->username }}
-                                        @endif
-                                    </span>
+                                    <span class="ms-2">{{ $row->username }}</span>
                                 </div>
                             </td>
 

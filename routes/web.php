@@ -17,6 +17,23 @@ Route::redirect('/', '/login');
 
 Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')->group(function () {
     /**
+     * on duty / piket
+     */
+    Route::prefix('piket')->name('on-duty.')->middleware('roles:admin')->namespace('OnDuty')->group(function () {
+        // Assignment / Penugasan
+        Route::prefix('penugasan')->name('assignment.')->namespace('Assignment')->group(function () {
+            Route::get('/', Index::class)->name('index');
+            Route::get('/tambah', Create::class)->name('create');
+            Route::get('/sunting/{id}', Edit::class)->name('edit');
+        });
+
+        // Feedback / Masukan
+        Route::prefix('masukan')->name('feedback.')->namespace('Feedback')->group(function () {
+            Route::get('/', Index::class)->name('index');
+        });
+    });
+
+    /**
      * school subject / mata pelajaran
      */
     Route::prefix('mata-pelajaran')->name('school-subject.')->middleware('roles:admin')->namespace('SchoolSubject')->group(function () {

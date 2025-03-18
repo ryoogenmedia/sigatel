@@ -17,10 +17,14 @@ class DatabaseSeeder extends Seeder
         File::deleteDirectory(public_path('storage/avatar'));
         File::deleteDirectory(public_path('storage/avatars'));
         File::deleteDirectory(public_path('storage/logo-school'));
+        File::deleteDirectory(public_path('storage/documentation-student'));
+        File::deleteDirectory(public_path('storage/documentation-activity'));
 
         Storage::deleteDirectory('public/avatar');
         Storage::deleteDirectory('public/avatars');
         Storage::deleteDirectory('public/logo-school');
+        Storage::deleteDirectory('public/documentation-student');
+        Storage::deleteDirectory('public/documentation-activity');
 
         $this->call([
             UserTableSeeder::class,

@@ -65,6 +65,29 @@ return [
     ],
 
     [
+        'title' => 'Piket Siswa',
+        'description' => 'Untuk kelola data piket siswa.',
+        'icon' => 'calendar-plus',
+        'route-name' => 'on-duty.assignment.index',
+        'is-active' => 'on-duty*',
+        'roles' => ['admin'],
+        'sub-menus' => [
+            [
+                'title' => 'Penugasan',
+                'description' => 'Melihat data penugasan piket siswa.',
+                'route-name' => 'on-duty.assignment.index',
+                'is-active' => 'on-duty.assignment*',
+            ],
+            [
+                'title' => 'Masukan / Evaluasi',
+                'description' => 'Kelola data masukan ke siswa.',
+                'route-name' => 'on-duty.feedback.index',
+                'is-active' => 'on-duty.feedback*',
+            ],
+        ],
+    ],
+
+    [
         'title' => 'Pengaturan',
         'description' => 'Menampilkan pengaturan aplikasi.',
         'icon' => 'cog',

@@ -1,0 +1,159 @@
+<?php
+
+namespace App\Livewire\OnDuty\Assignment;
+
+use App\Models\OnDuty;
+use App\Models\SchoolSubject;
+use App\Models\Student;
+use App\Models\Teacher;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Validation\Rule;
+use Livewire\Attributes\Computed;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+
+class Edit extends Component
+{
+    use WithFileUploads;
+
+    public $siswa;
+    public $mataPelajaran;
+    public $guru;
+    public $deskripsi;
+    public $jadwalPelaksanaan;
+    public $jadwalSelesai;
+    public $jenisPelanggaran;
+    public $dokumentasiKegiatan;
+    public $dokumentasiSiswa;
+
+    public $dokumentasiKegiatanUrl;
+    public $photoStudentUrl;
+    public $onDutyId;
+
+    #[Computed()]
+    public function students()
+    {
+        return Student::all(['id', 'name']);
+    }
+
+    #[Computed()]
+    public function school_subjects()
+    {
+        return SchoolSubject::all(['id', 'name', 'code']);
+    }
+
+    #[Computed()]
+    public function teachers()
+    {
+        return Teacher::all(['id', 'name']);
+    }
+
+    public function updatedMataPelajaran()
+    {
+        if ($this->mataPelajaran) {
+            $schoolSubject = SchoolSubject::findOrFail($this->mataPelajaran);
+            $this->guru = $schoolSubject->teacher_id;
+        }
+    }
+
+    public function edit()
+    {
+        $this->validate([
+            'siswa' => ['required'],
+            'mataPelajaran' => ['required'],
+            'guru' => ['required'],
+            'deskripsi' => ['required', 'string'],
+            'jadwalPelaksanaan' => ['required', 'string'],
+            'jadwalSelesai' => ['required', 'string'],
+            'jenisPelanggaran' => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.violation_type'))],
+            'dokumentasiKegiatan' => ['nullable', 'image'],
+            'dokumentasiSiswa' => ['nullable', 'image'],
+        ]);
+
+        try {
+            DB::beginTransaction();
+            $onDuty = OnDuty::findOrFail($this->onDutyId);
+
+            $onDuty->update([
+                'student_id' => $this->siswa,
+                'teacher_id' => $this->guru,
+                'school_subject_id' => $this->mataPelajaran,
+                'description' => $this->deskripsi,
+                'violation_type' => $this->jenisPelanggaran,
+                'schedule_time' => $this->jadwalPelaksanaan,
+                'finish_time' => $this->jadwalSelesai,
+            ]);
+
+            if ($this->dokumentasiSiswa) {
+                if ($onDuty->photo_student) {
+                    File::delete(public_path('storage/' . $onDuty->photo_student));
+                }
+
+                $onDuty->update([
+                    'photo_student' => $this->dokumentasiSiswa->store('documentation-student', 'public'),
+                ]);
+            }
+
+            if ($this->dokumentasiKegiatan) {
+                if ($onDuty->documentation_file) {
+                    File::delete(public_path('storage/' . $onDuty->documentation_file));
+                }
+
+                $onDuty->update([
+                    'documentation_file' => $this->dokumentasiKegiatan->store('documentation-activity', 'public'),
+                ]);
+            }
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            logger()->error(
+                '[penugasan piket] ' .
+                    auth()->user()->username .
+                    ' gagal menyunting penugasan piket',
+                [$e->getMessage()]
+            );
+
+            session()->flash('alert', [
+                'type' => 'danger',
+                'message' => 'Gagal.',
+                'detail' => "data penugasan piket gagal disunting.",
+            ]);
+
+            return redirect()->back();
+        }
+
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'Berhasil.',
+            'detail' => "data penugasan piket berhasil disunting.",
+        ]);
+
+        return redirect()->route('on-duty.assignment.index');
+    }
+
+    public function mount($id)
+    {
+        $onDuty = OnDuty::findOrFail($id);
+
+        $this->onDutyId = $onDuty->id;
+        $this->siswa = $onDuty->student_id;
+        $this->mataPelajaran = $onDuty->school_subject_id;
+        $this->guru = $onDuty->teacher_id;
+        $this->deskripsi = $onDuty->description;
+        $this->jadwalPelaksanaan = $onDuty->schedule_time;
+        $this->jadwalSelesai = $onDuty->finish_time;
+        $this->jenisPelanggaran = $onDuty->violation_type;
+
+        $this->dokumentasiKegiatanUrl = $onDuty->documentationFileUrl();
+        $this->photoStudentUrl = $onDuty->photoStudentUrl();
+    }
+
+    public function render()
+    {
+        return view('livewire.on-duty.assignment.edit');
+    }
+}
