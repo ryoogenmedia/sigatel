@@ -5,11 +5,9 @@ namespace Database\Seeders;
 use App\Models\Student;
 use App\Models\StudentParent;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class StudentParentTableSeeder extends Seeder
 {
@@ -21,8 +19,12 @@ class StudentParentTableSeeder extends Seeder
         $faker = \Faker\Factory::create('id_ID');
 
         $studentIds = Student::pluck('id')->toArray();
+        $startDate = Carbon::now()->subYears(5)->startOfYear();
+        $endDate = Carbon::now();
 
-        foreach (range(1, 10) as $i) {
+        $currentDate = $startDate->copy();
+
+        while ($currentDate <= $endDate) {
             $user = User::create([
                 'username'          => $faker->name,
                 'email'             => $faker->unique()->safeEmail,
@@ -37,7 +39,11 @@ class StudentParentTableSeeder extends Seeder
                 'name'            => $user->username,
                 'phone_number'    => $faker->phoneNumber,
                 'guardian_status' => $faker->randomElement(['anak angkat', 'anak kandung']),
+                'created_at'      => $currentDate,
+                'updated_at'      => $currentDate,
             ]);
+
+            $currentDate->addMonth();
         }
     }
 }

@@ -7,6 +7,7 @@ use App\Models\SchoolSubject;
 use App\Models\Student;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Carbon\Carbon;
 
 class OnDutyTableSeeder extends Seeder
 {
@@ -21,22 +22,30 @@ class OnDutyTableSeeder extends Seeder
         $studentIds = Student::pluck('id')->toArray();
         $schoolSubjects = SchoolSubject::with('teacher')->get();
 
-        foreach (range(1, 20) as $i) {
-            // Ambil satu mata pelajaran secara acak
-            $schoolSubject = $faker->randomElement($schoolSubjects);
+        $startDate = Carbon::now()->subYears(5)->startOfYear();
+        $endDate = Carbon::now();
+        $currentDate = $startDate->copy();
 
-            OnDuty::create([
-                'student_id'       => $faker->randomElement($studentIds),
-                'teacher_id'       => $schoolSubject->teacher_id,
-                'school_subject_id' => $schoolSubject->id,
-                'longitude'        => $faker->randomFloat(6, 119.395, 119.548),
-                'latitude'         => $faker->randomFloat(6, -5.176, -5.065),
-                'description'      => $faker->sentence,
-                'status'           => $faker->randomElement(config('const.duty_status')),
-                'violation_type'   => $faker->randomElement(config('const.violation_type')),
-                'schedule_time'    => $faker->dateTimeBetween('-1 week', '+1 week'),
-                'finish_time'      => $faker->dateTimeBetween('now', '+1 week'),
-            ]);
+        while ($currentDate <= $endDate) {
+            for ($i = 0; $i < rand(1, 100); $i++) {
+                $schoolSubject = $faker->randomElement($schoolSubjects);
+
+                OnDuty::create([
+                    'student_id'       => $faker->randomElement($studentIds),
+                    'teacher_id'       => $schoolSubject->teacher_id,
+                    'school_subject_id' => $schoolSubject->id,
+                    'longitude'        => $faker->randomFloat(6, 119.395, 119.548),
+                    'latitude'         => $faker->randomFloat(6, -5.176, -5.065),
+                    'description'      => $faker->sentence,
+                    'status'           => $faker->randomElement(config('const.duty_status')),
+                    'violation_type'   => $faker->randomElement(config('const.violation_type')),
+                    'schedule_time'    => $faker->dateTimeBetween('-1 week', '+1 week'),
+                    'finish_time'      => $faker->dateTimeBetween('now', '+1 week'),
+                    'created_at'       => $currentDate,
+                    'updated_at'       => now(),
+                ]);
+            }
+            $currentDate->addMonth();
         }
     }
 }

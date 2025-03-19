@@ -134,7 +134,7 @@
 
                 function renderChart(approved, pending, reject, date) {
                     if (!item) {
-                        console.error("ELEMENT ID #chart-mentions TIDAK DI TEMUKAN!");
+                        console.error("ELEMENT ID #chart-mentions TIDAK DITEMUKAN!");
                         return;
                     }
 
@@ -144,8 +144,8 @@
 
                     chart = new ApexCharts(item, {
                         chart: {
-                            type: "area",
-                            fontFamily: 'inherit',
+                            type: "bar",
+                            stacked: true,
                             height: 340,
                             parentHeightOffset: 0,
                             toolbar: {
@@ -156,15 +156,22 @@
                             }
                         },
                         stroke: {
-                            curve: "smooth"
+                            show: true,
+                            width: 1,
+                            colors: ['#fff']
                         },
-                        fill: {
-                            type: "gradient",
-                            gradient: {
-                                shadeIntensity: 1,
-                                opacityFrom: 0.4,
-                                opacityTo: 0,
-                                stops: [0, 90, 100]
+                        plotOptions: {
+                            bar: {
+                                horizontal: false,
+                                dataLabels: {
+                                    total: {
+                                        enabled: true,
+                                        style: {
+                                            fontSize: '13px',
+                                            fontWeight: 900
+                                        }
+                                    }
+                                }
                             }
                         },
                         dataLabels: {
@@ -183,39 +190,19 @@
                                 data: reject
                             }
                         ],
-                        grid: {
-                            padding: {
-                                top: -20,
-                                right: 0,
-                                left: -4,
-                                bottom: -4
-                            },
-                            strokeDashArray: 4,
-                            xaxis: {
-                                lines: {
-                                    show: true
-                                }
-                            },
-                        },
                         xaxis: {
+                            categories: date,
                             labels: {
-                                padding: 0
-                            },
-                            tooltip: {
-                                enabled: false
-                            },
-                            axisBorder: {
-                                show: false
-                            },
-                            type: 'datetime',
-                            categories: date.map(date => {
-                                let parsedDate = Date.parse(date);
-                                return isNaN(parsedDate) ? new Date().getTime() : parsedDate;
-                            })
+                                style: {
+                                    fontSize: '12px'
+                                }
+                            }
                         },
                         yaxis: {
                             labels: {
-                                padding: 4
+                                style: {
+                                    fontSize: '12px'
+                                }
                             }
                         },
                         colors: ["#4ade80", "#fc9f13", "#f11a1a"],

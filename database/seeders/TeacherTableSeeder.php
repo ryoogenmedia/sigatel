@@ -6,9 +6,8 @@ use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Faker\Factory as Faker;
-use Illuminate\Http\File;
+use Carbon\Carbon;
 
 class TeacherTableSeeder extends Seeder
 {
@@ -19,7 +18,11 @@ class TeacherTableSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        foreach (range(1, 20) as $i) {
+        $startDate = Carbon::now()->subYears(5)->startOfYear();
+        $endDate = Carbon::now();
+        $currentDate = $startDate->copy();
+
+        while ($currentDate <= $endDate) {
             $user = User::create([
                 'username'          => $faker->name,
                 'email'             => $faker->unique()->safeEmail,
@@ -35,7 +38,11 @@ class TeacherTableSeeder extends Seeder
                 'address'       => $faker->address,
                 'sex'           => $faker->randomElement(['laki-laki', 'perempuan']),
                 'status'        => $faker->randomElement(config('const.teacher_status')),
+                'created_at'    => $currentDate,
+                'updated_at'    => now(),
             ]);
+
+            $currentDate->addMonth();
         }
     }
 }
