@@ -9,6 +9,7 @@ use App\Livewire\Traits\DataTable\WithSorting;
 use App\Models\FeedBack;
 use App\Models\OnDuty;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Message extends Component
@@ -57,6 +58,7 @@ class Message extends Component
     {
         $feedBack = FeedBack::findOrFail($id);
         $this->feedBackId = $feedBack->id;
+        $this->pesan = $feedBack->comment;
     }
 
     public function resetData()
@@ -82,6 +84,7 @@ class Message extends Component
         return redirect()->back();
     }
 
+    #[On('muat-ulang')]
     #[Computed()]
     public function rows()
     {
@@ -114,6 +117,12 @@ class Message extends Component
     {
         $onDuty = OnDuty::findOrFail($id);
         $this->onDutyId = $onDuty->id;
+    }
+
+    public function muatUlang()
+    {
+        $this->dispatch('muat-ulang');
+        $this->resetExcept(['onDutyId']);
     }
 
     public function render()
