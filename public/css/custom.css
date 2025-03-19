@@ -91,6 +91,10 @@ body {
 
 /* CARD */
 
+/* .card-count-data {
+    box-shadow: none !important;
+} */
+
 .card-filter {
     box-shadow: none !important;
 }
