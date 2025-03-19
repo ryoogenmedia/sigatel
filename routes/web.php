@@ -17,6 +17,18 @@ Route::redirect('/', '/login');
 
 Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')->group(function () {
     /**
+     * Report / Laporan
+     */
+    Route::prefix('laporan')->name('report.')->middleware('roles:admin')->namespace('Report')->group(function () {
+        Route::get('/siswa', Student::class)->name('student');
+        Route::get('/guru', Teacher::class)->name('teacher');
+        Route::get('/kelas', Grand::class)->name('grand');
+        Route::get('/mata-pelajaran', SchoolSubject::class)->name('school-subject');
+        Route::get('/orangtua-siswa', ParentStudent::class)->name('parent-student');
+        Route::get('/piket-siswa', OnDuty::class)->name('on-duty');
+    });
+
+    /**
      * on duty / piket
      */
     Route::prefix('piket')->name('on-duty.')->middleware('roles:admin')->namespace('OnDuty')->group(function () {

@@ -88,6 +88,53 @@ return [
     ],
 
     [
+        'title' => 'Laporan',
+        'description' => 'Untuk cetak laporan data admin.',
+        'icon' => 'print',
+        'route-name' => 'report.student',
+        'is-active' => 'report*',
+        'roles' => ['admin'],
+        'sub-menus' => [
+            [
+                'title' => 'Siswa',
+                'description' => 'Untuk cetak laporan siswa.',
+                'route-name' => 'report.student',
+                'is-active' => 'report.student',
+            ],
+            [
+                'title' => 'Orang Tua Siswa',
+                'description' => 'Untuk cetak laporan orang tua siswa.',
+                'route-name' => 'report.parent-student',
+                'is-active' => 'report.parent-student',
+            ],
+            [
+                'title' => 'Guru',
+                'description' => 'Untuk cetak laporan guru.',
+                'route-name' => 'report.teacher',
+                'is-active' => 'report.teacher',
+            ],
+            [
+                'title' => 'Kelas',
+                'description' => 'Untuk cetak laporan kelas.',
+                'route-name' => 'report.grand',
+                'is-active' => 'report.grand',
+            ],
+            [
+                'title' => 'Mata Pelajaran',
+                'description' => 'Untuk cetak laporan mata pelajaran.',
+                'route-name' => 'report.school-subject',
+                'is-active' => 'report.school-subject',
+            ],
+            [
+                'title' => 'Piket',
+                'description' => 'Untuk cetak laporan piket siswa.',
+                'route-name' => 'report.on-duty',
+                'is-active' => 'report.on-duty',
+            ],
+        ],
+    ],
+
+    [
         'title' => 'Pengaturan',
         'description' => 'Menampilkan pengaturan aplikasi.',
         'icon' => 'cog',

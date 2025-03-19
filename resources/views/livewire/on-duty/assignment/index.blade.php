@@ -170,7 +170,7 @@
                         </th>
 
                         <th>
-                            <x-datatable.column-sort name="Kategori Penugasan" wire:click="sortBy('violation_type')"
+                            <x-datatable.column-sort name="Jenis Pelanggaran" wire:click="sortBy('violation_type')"
                                 :direction="$sorts['violation_type'] ?? null" />
                         </th>
 
