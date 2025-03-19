@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -163,6 +164,7 @@ class Index extends Component
         return redirect()->back();
     }
 
+    #[On('muat-ulang')]
     #[Computed()]
     public function rows()
     {
@@ -203,6 +205,11 @@ class Index extends Component
     public function resetFilters()
     {
         $this->reset('filters');
+    }
+
+    public function muatUlang()
+    {
+        $this->dispatch('muat-ulang');
     }
 
     public function render()

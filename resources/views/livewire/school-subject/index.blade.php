@@ -31,6 +31,9 @@
                     </button>
                 </div>
             </x-datatable.bulk.dropdown>
+
+            <button wire:click="muatUlang" class="btn btn-dark py-1 ms-2"><span
+                    class="las la-redo-alt fs-1"></span></button>
         </div>
     </div>
 

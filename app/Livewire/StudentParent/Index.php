@@ -9,6 +9,7 @@ use App\Livewire\Traits\DataTable\WithSorting;
 use App\Models\StudentParent;
 use Illuminate\Support\Facades\File;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Index extends Component
@@ -48,6 +49,7 @@ class Index extends Component
         return redirect()->back();
     }
 
+    #[On('muat-ulang')]
     #[Computed()]
     public function rows()
     {
@@ -80,6 +82,11 @@ class Index extends Component
     public function resetFilters()
     {
         $this->reset('filters');
+    }
+
+    public function muatUlang()
+    {
+        $this->dispatch('muat-ulang');
     }
 
     public function render()

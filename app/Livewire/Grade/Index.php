@@ -139,6 +139,7 @@ class Index extends Component
     }
 
     #[On('load-data-grade')]
+    #[On('muat-ulang')]
     #[Computed()]
     public function rows()
     {
@@ -180,6 +181,11 @@ class Index extends Component
             'waliKelas',
             'gradeId',
         ]);
+    }
+
+    public function muatUlang()
+    {
+        $this->dispatch('muat-ulang');
     }
 
     public function render()
