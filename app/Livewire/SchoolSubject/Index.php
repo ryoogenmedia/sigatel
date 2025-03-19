@@ -91,6 +91,7 @@ class Index extends Component
     public function muatUlang()
     {
         $this->dispatch('muat-ulang');
+        $this->reset();
     }
 
     public function render()
