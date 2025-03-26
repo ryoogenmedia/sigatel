@@ -37,6 +37,7 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
             Route::get('/', Index::class)->name('index');
             Route::get('/tambah', Create::class)->name('create');
             Route::get('/sunting/{id}', Edit::class)->name('edit');
+            Route::get('/lokasi/{id}', Map::class)->name('map');
         });
 
         // Feedback / Masukan

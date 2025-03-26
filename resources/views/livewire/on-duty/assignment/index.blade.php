@@ -247,9 +247,10 @@
                                         <i class="las la-camera fs-1"></i>
                                     </button>
 
-                                    <button class="btn btn-sm btn-red">
+                                    <a href="{{ route('on-duty.assignment.map', $row->id) }}"
+                                        class="btn btn-sm btn-{{ $row->longitude && $row->latitude ? 'success' : 'red' }}">
                                         <i class="las la-map-marker fs-1"></i>
-                                    </button>
+                                    </a>
                                 </div>
                             </td>
 
