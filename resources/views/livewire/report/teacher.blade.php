@@ -13,7 +13,9 @@
 
         <div class="col-auto ms-auto d-print-none">
             <div class="btn-list">
-                <button class="btn btn-danger"><span class="las la-print fs-1 me-2"></span>Cetak Guru</button>
+                <a href="{{ route('print-report.teacher', ['date_start' => $this->filters['date_start'] ?? '', 'date_end' => $this->filters['date_end'] ?? '']) }}"
+                    target="_blank" class="btn btn-danger" class="btn btn-danger"><span
+                        class="las la-print fs-1 me-2"></span>Cetak Guru</a>
             </div>
         </div>
     </div>

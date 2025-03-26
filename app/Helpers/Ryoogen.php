@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\School;
 use Illuminate\Support\Facades\Cache;
 
 /**
@@ -93,5 +94,17 @@ if (!function_exists('is_online')) {
     function is_online($id)
     {
         return Cache::has('user-is-online-' . $id) ? true : false;
+    }
+}
+
+if (!function_exists('logo_url')) {
+    function logo_url()
+    {
+        $school = School::first();
+
+        $logo = $school ? $school->logo : null;
+
+        return $logo ? public_path('storage/' . $logo) :
+            asset('ryoogenmedia/logo-dark.png');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PrintReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/login');
 
 Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')->group(function () {
+    /**
+     * Print Report / Cetak Laporan
+     */
+    Route::prefix('cetak-laporan')->middleware('roles:admin')->name('print-report.')->group(function () {
+        Route::get('/siswa', [PrintReportController::class, 'student'])->name('student');
+        Route::get('/orangtua-siswa', [PrintReportController::class, 'student_parent'])->name('student-parent');
+        Route::get('/guru', [PrintReportController::class, 'teacher'])->name('teacher');
+        Route::get('/kelas', [PrintReportController::class, 'grand'])->name('grand');
+        Route::get('/mata-pelajaran', [PrintReportController::class, 'school_subject'])->name('school-subject');
+        Route::get('/piket', [PrintReportController::class, 'on_duty'])->name('on-duty');
+    });
+
     /**
      * Report / Laporan
      */
