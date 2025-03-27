@@ -10,6 +10,8 @@
     </x-slot>
 
     <x-alert />
+    
+    <x-modal.delete-confirmation />
 
     @if (!session('alert'))
         <div class="alert alert-info alert-dismissible bg-white" role="alert">

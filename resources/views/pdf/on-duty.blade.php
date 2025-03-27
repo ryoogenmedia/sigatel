@@ -49,7 +49,7 @@
 
 <body>
     <div class="logo-container">
-        <img class="logo" src="{{ logo_url() }}" alt="logo">
+        <img class="logo" src="{{ asset('ryoogenmedia/logo-dark.png') }}" alt="logo">
     </div>
 
     <h4>DATA LAPORAN PIKET</h4>
