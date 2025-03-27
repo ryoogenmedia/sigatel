@@ -104,7 +104,7 @@ if (!function_exists('logo_url')) {
 
         $logo = $school ? $school->logo : null;
 
-        return $logo ? public_path('storage/' . $logo) :
+        return $logo ? asset('storage/' . $logo) :
             asset('ryoogenmedia/logo-dark.png');
     }
 }
