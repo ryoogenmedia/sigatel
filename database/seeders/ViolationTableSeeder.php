@@ -1,0 +1,35 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\Violation;
+use Faker\Factory;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class ViolationTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $faker    = Factory::create("id_ID");
+        $studentIds = Student::pluck('id')->toArray();
+        $teacherIds = Teacher::query()
+            ->where('status', '!=', 'nonaktif')
+            ->where('duty_status', true)
+            ->pluck('id')->toArray();
+
+        foreach(range(1,50) as $i){
+            Violation::create([
+                'student_id'     => $faker->randomElement($studentIds),
+                'teacher_id'     => $faker->randomElement($teacherIds),
+                'violation_type' => $faker->randomElement(['Terlambat', 'Tidak Masuk', 'Terlambat Masuk Kelas']),
+                'description'    => $faker->sentence(),
+            ]);
+        }
+    }
+}
