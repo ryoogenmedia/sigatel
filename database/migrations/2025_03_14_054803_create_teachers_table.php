@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone_number');
             $table->text('address');
+            $table->boolean('duty_status')->default(false)->nullable();
             $table->string('sex');
             $table->string('status')->default('aktif')->nullable();
             $table->timestamps();

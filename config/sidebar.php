@@ -65,25 +65,31 @@ return [
     ],
 
     [
-        'title' => 'Piket Siswa',
-        'description' => 'Untuk kelola data piket siswa.',
+        'title' => 'Piket',
+        'description' => 'Untuk kelola data piket.',
         'icon' => 'calendar-plus',
         'route-name' => 'on-duty.assignment.index',
         'is-active' => 'on-duty*',
         'roles' => ['admin'],
         'sub-menus' => [
             [
-                'title' => 'Penugasan',
-                'description' => 'Melihat data penugasan piket siswa.',
+                'title' => 'Status Guru Piket',
+                'description' => 'Melihat status guru piket.',
+                'route-name' => 'on-duty.teacher-duty-status.index',
+                'is-active' => 'on-duty.teacher-duty-status*',
+            ],
+            [
+                'title' => 'Penugasan Siswa',
+                'description' => 'Melihat data penugasan siswa.',
                 'route-name' => 'on-duty.assignment.index',
                 'is-active' => 'on-duty.assignment*',
             ],
-            [
-                'title' => 'Masukan / Evaluasi',
-                'description' => 'Kelola data masukan ke siswa.',
-                'route-name' => 'on-duty.feedback.index',
-                'is-active' => 'on-duty.feedback*',
-            ],
+            // [
+            //     'title' => 'Masukan / Evaluasi',
+            //     'description' => 'Kelola data masukan ke siswa.',
+            //     'route-name' => 'on-duty.feedback.index',
+            //     'is-active' => 'on-duty.feedback*',
+            // ],
         ],
     ],
 

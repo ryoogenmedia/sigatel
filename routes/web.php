@@ -45,6 +45,11 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
      * on duty / piket
      */
     Route::prefix('piket')->name('on-duty.')->middleware('roles:admin')->namespace('OnDuty')->group(function () {
+        // Petugas Guru Piket
+        Route::prefix('petugas-guru-piket')->name('teacher-duty-status.')->namespace('TeacherDutyStatus')->group(function () {
+            Route::get('/',Index::class)->name('index');
+        });
+
         // Assignment / Penugasan
         Route::prefix('penugasan')->name('assignment.')->namespace('Assignment')->group(function () {
             Route::get('/', Index::class)->name('index');
