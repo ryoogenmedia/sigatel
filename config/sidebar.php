@@ -79,8 +79,8 @@ return [
                 'is-active' => 'on-duty.teacher-duty-status*',
             ],
             [
-                'title' => 'Penugasan Siswa',
-                'description' => 'Melihat data penugasan siswa.',
+                'title' => 'Penugasan Kelas',
+                'description' => 'Melihat data penugasan kelas.',
                 'route-name' => 'on-duty.assignment.index',
                 'is-active' => 'on-duty.assignment*',
             ],
