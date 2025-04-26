@@ -79,6 +79,12 @@ return [
                 'is-active' => 'on-duty.teacher-duty-status*',
             ],
             [
+                'title' => 'Jenis Pelanggaran',
+                'description' => 'Melihat data jenis pelanggaran.',
+                'route-name' => 'on-duty.violation-type.index',
+                'is-active' => 'on-duty.violation-type*',
+            ],
+            [
                 'title' => 'Penugasan Kelas',
                 'description' => 'Melihat data penugasan kelas.',
                 'route-name' => 'on-duty.assignment.index',

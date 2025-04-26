@@ -50,6 +50,12 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
             Route::get('/',Index::class)->name('index');
         });
 
+        // Jenis Pelanggaran
+        Route::prefix('jenis-pelanggaran')->name('violation-type.')->namespace('ViolationType')->group(function () {
+            Route::get('/', Index::class)->name('index');
+        });
+
+
         // Assignment / Penugasan
         Route::prefix('penugasan')->name('assignment.')->namespace('Assignment')->group(function () {
             Route::get('/', Index::class)->name('index');
