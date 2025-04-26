@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -34,6 +35,7 @@ class DatabaseSeeder extends Seeder
             StudentTableSeeder::class,
             StudentParentTableSeeder::class,
             OnDutyTableSeeder::class,
+            ViolationTypeTableSeeder::class,
             ViolationTableSeeder::class,
         ]);
     }
