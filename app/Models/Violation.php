@@ -17,4 +17,14 @@ class Violation extends Model
         'violation_type',
         'description',
     ];
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'student_id', 'id')->withDefault();
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class, 'teacher_id', 'id')->withDefault();
+    }
 }

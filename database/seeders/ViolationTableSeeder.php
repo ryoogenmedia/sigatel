@@ -20,7 +20,7 @@ class ViolationTableSeeder extends Seeder
         $faker      = Factory::create("id_ID");
         $studentIds = Student::pluck('id')->toArray();
         $teacherIds = Teacher::query()
-            ->where('status', '!=', 'nonaktif')
+            ->where('status', 'aktif')
             ->where('duty_status', true)
             ->pluck('id')->toArray();
 

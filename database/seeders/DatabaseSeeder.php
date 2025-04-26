@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             StudentParentTableSeeder::class,
             OnDutyTableSeeder::class,
             ViolationTypeTableSeeder::class,
+            TeacherDutyActiveTableSeeder::class,
             ViolationTableSeeder::class,
         ]);
     }

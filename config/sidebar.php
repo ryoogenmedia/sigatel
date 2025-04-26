@@ -85,6 +85,12 @@ return [
                 'is-active' => 'on-duty.violation-type*',
             ],
             [
+                'title' => 'Pelanggaran Siswa',
+                'description' => 'Melihat data pelanggaran siswa.',
+                'route-name' => 'on-duty.student-violation.index',
+                'is-active' => 'on-duty.student-violation*',
+            ],
+            [
                 'title' => 'Penugasan Kelas',
                 'description' => 'Melihat data penugasan kelas.',
                 'route-name' => 'on-duty.assignment.index',

@@ -50,11 +50,17 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
             Route::get('/',Index::class)->name('index');
         });
 
-        // Jenis Pelanggaran
+        // Violation Type / Jenis Pelanggaran
         Route::prefix('jenis-pelanggaran')->name('violation-type.')->namespace('ViolationType')->group(function () {
             Route::get('/', Index::class)->name('index');
         });
 
+        // Student Violation / Pelanggaran Siswa
+        Route::prefix('pelanggaran-siswa')->name('student-violation.')->namespace('Violation')->group(function () {
+            Route::get('/', Index::class)->name('index');
+            Route::get('/tambah', Create::class)->name('create');
+            Route::get('/sunting/{id}', Edit::class)->name('edit');
+        });
 
         // Assignment / Penugasan
         Route::prefix('penugasan')->name('assignment.')->namespace('Assignment')->group(function () {
