@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Faker\Factory;
 
 class StudentParentTableSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class StudentParentTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = \Faker\Factory::create('id_ID');
+        $faker = Factory::create('id_ID');
 
         $studentIds = Student::pluck('id')->toArray();
         $startDate = Carbon::now()->subYears(5)->startOfYear();

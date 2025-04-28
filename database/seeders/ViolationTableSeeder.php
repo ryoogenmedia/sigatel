@@ -7,7 +7,6 @@ use App\Models\Teacher;
 use App\Models\Violation;
 use App\Models\ViolationType;
 use Faker\Factory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ViolationTableSeeder extends Seeder

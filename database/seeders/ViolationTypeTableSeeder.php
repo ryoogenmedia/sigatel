@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\ViolationType;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ViolationTypeTableSeeder extends Seeder
@@ -37,7 +36,7 @@ class ViolationTypeTableSeeder extends Seeder
         ];
 
         foreach($types as $type) {
-           ViolationType::create($type);
+            ViolationType::create($type);
         }
     }
 }
