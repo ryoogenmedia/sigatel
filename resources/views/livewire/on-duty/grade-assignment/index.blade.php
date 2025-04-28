@@ -34,7 +34,7 @@
     <x-modal :show="$showDocumentationModal" size="md">
         <form wire:submit.prevent="saveUploadImage" autocomplete="off">
             <div class="modal-header">
-                <h5 class="modal-title">Upload File Gambar</h5>
+                <h5 class="modal-title">Detail Tugas</h5>
                 <button wire:click='closeModalDocumentation' type="button" class="btn-close" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
