@@ -31,7 +31,7 @@ class Index extends Component
         $changeCount = $teachers->count();
 
         foreach ($teachers as $data) {
-            $data->duty_status = !$data->duty_status;
+            $data->duty_status = true;
             $data->save();
         }
 
