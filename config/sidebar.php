@@ -93,9 +93,15 @@ return [
             [
                 'title' => 'Penugasan Kelas',
                 'description' => 'Melihat data penugasan kelas.',
-                'route-name' => 'on-duty.assignment.index',
-                'is-active' => 'on-duty.assignment*',
+                'route-name' => 'on-duty.grade-assignment.index',
+                'is-active' => 'on-duty.grade-assignment*',
             ],
+            // [
+            //     'title' => 'Penugasan Kelas',
+            //     'description' => 'Melihat data penugasan kelas.',
+            //     'route-name' => 'on-duty.assignment.index',
+            //     'is-active' => 'on-duty.assignment*',
+            // ],
             // [
             //     'title' => 'Masukan / Evaluasi',
             //     'description' => 'Kelola data masukan ke siswa.',

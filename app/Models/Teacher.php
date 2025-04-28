@@ -36,4 +36,9 @@ class Teacher extends Model
     {
         return $this->hasMany(OnDuty::class, 'teacher_id', 'id');
     }
+
+    public function school_subject()
+    {
+        return $this->hasOne(SchoolSubject::class, 'teacher_id', 'id');
+    }
 }

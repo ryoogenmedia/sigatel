@@ -51,10 +51,9 @@
 
                 <div class="card-body py-2">
                     <div wire:ignore>
-                        <div pending="{{ json_encode($this->onDutyPending['data']) }}"
-                            approved="{{ json_encode($this->onDutyApproved['data']) }}"
-                            reject="{{ json_encode($this->onDutyReject['data']) }}"
-                            date="{{ json_encode($this->onDutyApproved['date']) }}" id="chart-mentions"
+                        <div pending="{{ json_encode($this->gradeAssignmentApprove['data']) }}"
+                            approved="{{ json_encode($this->gradeAssignmentNotApprove['data']) }}"
+                            date="{{ json_encode($this->gradeAssignmentApprove['date']) }}" id="chart-mentions"
                             class="chart-lg">
                         </div>
                     </div>
@@ -132,7 +131,7 @@
                 let chart;
                 const item = document.getElementById('chart-mentions');
 
-                function renderChart(approved, pending, reject, date) {
+                function renderChart(approved, pending, date) {
                     if (!item) {
                         console.error("ELEMENT ID #chart-mentions TIDAK DITEMUKAN!");
                         return;
@@ -178,17 +177,13 @@
                             enabled: false
                         },
                         series: [{
-                                name: "Piket Selesai",
+                                name: "Tugas Kelas Di Berikan.",
                                 data: approved
                             },
                             {
-                                name: "Piket Pending",
+                                name: "Tugas Kelas Di Selesaikan",
                                 data: pending
                             },
-                            {
-                                name: "Piket Batal",
-                                data: reject
-                            }
                         ],
                         xaxis: {
                             categories: date,
@@ -205,7 +200,7 @@
                                 }
                             }
                         },
-                        colors: ["#4ade80", "#fc9f13", "#f11a1a"],
+                        colors: ["#4ade80", "#fc9f13"],
                         legend: {
                             show: true
                         }
@@ -217,16 +212,14 @@
                 Livewire.on('updateChart', (data) => {
                     let approved = data[0].approved;
                     let pending = data[0].pending;
-                    let reject = data[0].reject;
                     let date = data[0].date;
 
-                    renderChart(approved, pending, reject, date);
+                    renderChart(approved, pending, date);
                 });
 
                 renderChart(
                     JSON.parse(item.getAttribute('approved')),
                     JSON.parse(item.getAttribute('pending')),
-                    JSON.parse(item.getAttribute('reject')),
                     JSON.parse(item.getAttribute('date'))
                 );
             });

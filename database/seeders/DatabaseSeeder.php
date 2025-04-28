@@ -20,12 +20,15 @@ class DatabaseSeeder extends Seeder
         File::deleteDirectory(public_path('storage/logo-school'));
         File::deleteDirectory(public_path('storage/documentation-student'));
         File::deleteDirectory(public_path('storage/documentation-activity'));
+        File::deleteDirectory(public_path('storage/dokumentasi-tugas-kelas'));
+        File::deleteDirectory(public_path('storage/documentation-kegiatan'));
 
         Storage::deleteDirectory('public/avatar');
         Storage::deleteDirectory('public/avatars');
         Storage::deleteDirectory('public/logo-school');
         Storage::deleteDirectory('public/documentation-student');
-        Storage::deleteDirectory('public/documentation-activity');
+        Storage::deleteDirectory('public/dokumentasi-tugas-kelas');
+        Storage::deleteDirectory('public/documentation-kegiatan');
 
         $this->call([
             UserTableSeeder::class,
@@ -38,6 +41,7 @@ class DatabaseSeeder extends Seeder
             ViolationTypeTableSeeder::class,
             TeacherDutyActiveTableSeeder::class,
             ViolationTableSeeder::class,
+            GradeAssignmentTableSeeder::class,
         ]);
     }
 }

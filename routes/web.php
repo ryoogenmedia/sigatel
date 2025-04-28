@@ -63,7 +63,15 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         });
 
         // Assignment / Penugasan
-        Route::prefix('penugasan')->name('assignment.')->namespace('Assignment')->group(function () {
+        // Route::prefix('penugasan')->name('assignment.')->namespace('Assignment')->group(function () {
+        //     Route::get('/', Index::class)->name('index');
+        //     Route::get('/tambah', Create::class)->name('create');
+        //     Route::get('/sunting/{id}', Edit::class)->name('edit');
+        //     Route::get('/lokasi/{id}', Map::class)->name('map');
+        // });
+
+        // Grade Assignment / Penugasan Kelas
+        Route::prefix('penugasan-kelas')->name('grade-assignment.')->namespace('GradeAssignment')->group(function () {
             Route::get('/', Index::class)->name('index');
             Route::get('/tambah', Create::class)->name('create');
             Route::get('/sunting/{id}', Edit::class)->name('edit');
@@ -71,10 +79,10 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         });
 
         // Feedback / Masukan
-        Route::prefix('masukan')->name('feedback.')->namespace('Feedback')->group(function () {
-            Route::get('/', Index::class)->name('index');
-            Route::get('/pesan/{id}', Message::class)->name('message');
-        });
+        // Route::prefix('masukan')->name('feedback.')->namespace('Feedback')->group(function () {
+        //     Route::get('/', Index::class)->name('index');
+        //     Route::get('/pesan/{id}', Message::class)->name('message');
+        // });
     });
 
     /**

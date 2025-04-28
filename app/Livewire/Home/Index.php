@@ -3,6 +3,7 @@
 namespace App\Livewire\Home;
 
 use App\Helpers\HomeChart;
+use App\Models\GradeAssignment;
 use App\Models\OnDuty;
 use App\Models\Student;
 use App\Models\StudentParent;
@@ -17,9 +18,8 @@ class Index extends Component
     public $totalStudentParent = 0;
     public $totalTeacher = 0;
 
-    public $onDutyApproved = [];
-    public $onDutyPending = [];
-    public $onDutyReject = [];
+    public $gradeAssignmentApprove = [];
+    public $gradeAssignmentNotApprove = [];
 
     public function getDataChart()
     {
@@ -27,12 +27,10 @@ class Index extends Component
         $this->totalStudentParent = HomeChart::TOTAL_DATA(StudentParent::query(), $this->period);
         $this->totalTeacher = HomeChart::TOTAL_DATA(Teacher::query(), $this->period);
 
-        $this->onDutyApproved = HomeChart::CHART_DATA(OnDuty::query()
-            ->where('status', 'approved'), $this->period);
-        $this->onDutyPending = HomeChart::CHART_DATA(OnDuty::query()
-            ->where('status', 'pending'), $this->period);
-        $this->onDutyReject = HomeChart::CHART_DATA(OnDuty::query()
-            ->where('status', 'reject'), $this->period);
+        $this->gradeAssignmentApprove = HomeChart::CHART_DATA(GradeAssignment::query()
+            ->where('status', true), $this->period);
+        $this->gradeAssignmentNotApprove = HomeChart::CHART_DATA(GradeAssignment::query()
+            ->where('status', false), $this->period);
     }
 
     public function getLoginHistories()
@@ -45,15 +43,13 @@ class Index extends Component
     {
         $this->getDataChart();
 
-        $date = $this->onDutyApproved['date'];
-        $pending = $this->onDutyPending['data'];
-        $reject = $this->onDutyReject['data'];
-        $approved = $this->onDutyApproved['data'];
+        $date = $this->gradeAssignmentApprove['date'];
+        $pending = $this->gradeAssignmentNotApprove['data'];
+        $approved = $this->gradeAssignmentApprove['data'];
 
         $this->dispatch('updateChart', [
             'approved' => $approved,
             'pending' => $pending,
-            'reject' => $reject,
             'date' => $date,
         ]);
     }
