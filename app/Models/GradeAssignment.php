@@ -46,4 +46,10 @@ class GradeAssignment extends Model
     public function getFinishAttribute(){
         return $this->finish_time ? Carbon::parse($this->finish_time)->format('d/m/Y H:i:s') : null;
     }
+
+    public function photoDocumentationUrl(){
+        return $this->documentation_image
+            ? asset('storage/'.$this->documentation_image)
+            : asset('ryoogenmedia/no-image.png');
+    }
 }

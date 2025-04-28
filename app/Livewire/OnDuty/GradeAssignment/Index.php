@@ -10,13 +10,18 @@ use App\Models\Grade;
 use App\Models\GradeAssignment;
 use App\Models\SchoolSubject;
 use App\Models\Teacher;
+use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class Index extends Component
 {
+    use WithFileUploads;
     use WithBulkActions;
     use WithPerPagePagination;
     use WithCachedRows;
@@ -25,11 +30,86 @@ class Index extends Component
     public $filters = [
         'search'         => '',
         'status'         => '',
-        'teacher'         => '',
+        'teacher'        => '',
         'grade'          => '',
         'school_subject' => '',
-        'time'           => '',
+        'time'           => 'today',
     ];
+
+    public $dokumentasiSiswa;
+    public $showDocumentationModal = false;
+    public $photoDocumentation;
+    public $gradeAssignmentId;
+    public $keteranganTugas;
+    public $alasanGuru;
+
+    public function openModalDocumentation($id){
+        $gradeAssignment = GradeAssignment::find($id);
+        $this->showDocumentationModal = true;
+        $this->gradeAssignmentId = $gradeAssignment->id;
+        $this->photoDocumentation = $gradeAssignment->photoDocumentationUrl();
+        $this->keteranganTugas = $gradeAssignment->description;
+        $this->alasanGuru = $gradeAssignment->reason_teacher;
+    }
+
+    public function closeModalDocumentation(){
+        $this->reset([
+            'dokumentasiSiswa',
+            'showDocumentationModal',
+            'photoDocumentation',
+            'gradeAssignmentId',
+        ]);
+    }
+
+    public function resetForm(){
+        $this->reset([
+            'dokumentasiSiswa',
+        ]);
+    }
+
+    public function saveUploadImage(){
+        $gradeAssignment = GradeAssignment::find($this->gradeAssignmentId);
+
+        $this->validate([
+            'dokumentasiSiswa' => ['required', 'image', 'mimes:jpg,jpeg,png'],
+        ]);
+
+        try{
+            DB::beginTransaction();
+
+            $gradeAssignment->update([
+                'documentation_image' => $this->dokumentasiSiswa->store('grade-assignment', 'public'),
+            ]);
+
+            DB::commit();
+        }catch(Exception $e){
+            DB::rollBack();
+            logger()->error(
+                '[upload documentation penugasan kelas] ' .
+                    auth()->user()->username .
+                    ' gagal mengunggah gambar dokumentasi penugasan kelas',
+                [$e->getMessage()]
+            );
+
+            session()->flash('alert', [
+                'type' => 'error',
+                'message' => 'Gagal.',
+                'detail' => "Gagal mengunggah gambar dokumentasi penugasan kelas.",
+            ]);
+
+            $this->reset();
+            return redirect()->back();
+        }
+
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'Berhasil.',
+            'detail' => "Berhasil mengunggah gambar dokumentasi penugasan kelas.",
+        ]);
+
+        $this->reset();
+        return redirect()->back();
+    }
 
     #[Computed()]
     public function teachers(){
