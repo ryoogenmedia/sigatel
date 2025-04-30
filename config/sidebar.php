@@ -160,7 +160,13 @@ return [
                 'description' => 'Untuk cetak laporan penugasan kelas.',
                 'route-name' => 'report.grade-assignment',
                 'is-active' => 'report.grade-assignment',
-            ]
+            ],
+            [
+                'title' => 'Pelanggaran Siswa',
+                'description' => 'Untuk cetak laporan penugasan kelas.',
+                'route-name' => 'report.violation-student',
+                'is-active' => 'report.violation-student',
+            ],
         ],
     ],
 

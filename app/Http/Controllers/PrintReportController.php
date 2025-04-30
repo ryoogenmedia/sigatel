@@ -79,4 +79,9 @@ class PrintReportController extends Controller
     {
         return $this->generateReport($request, \App\Models\GradeAssignment::class, 'pdf.grade-assignment', 'penugasan-kelas');
     }
+
+    public function violation_student(Request $request)
+    {
+        return $this->generateReport($request, \App\Models\Violation::class, 'pdf.violation-student', 'pelanggaran-siswa');
+    }
 }
