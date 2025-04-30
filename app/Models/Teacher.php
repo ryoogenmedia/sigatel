@@ -15,7 +15,6 @@ class Teacher extends Model
         'user_id',
         'name',
         'phone_number',
-        'status_piket',
         'address',
         'duty_status',
         'sex',
