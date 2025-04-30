@@ -16,7 +16,7 @@
     <div class="row mb-3 align-items-center justify-content-between">
         <div class="col-12 col-lg-5 d-flex">
             <div class="w-100">
-                <x-datatable.search placeholder="Cari nama siswa..." />
+                <x-datatable.search placeholder="Cari nama siswa / nis..." />
             </div>
 
             <div class="w-50 ms-2">

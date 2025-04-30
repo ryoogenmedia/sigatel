@@ -37,7 +37,8 @@ class Student extends Component
                 $query->whereDate('created_at', '<=', $dateEnd);
             })
             ->when($this->filters['search'], function ($query, $search) {
-                $query->where('name', 'LIKE', "%$search%");
+                $query->where('name', 'LIKE', "%$search%")
+                    ->orWhere('nis', 'LIKE', "%$search%");
             })->latest();
 
         return $this->applyPagination($query);

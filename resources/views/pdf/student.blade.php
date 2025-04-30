@@ -71,6 +71,7 @@
             <tr>
                 <th>NO</th>
                 <th>NAMA</th>
+                <th>NIS</th>
                 <th>NO PONSEL</th>
                 <th>ALAMAT</th>
                 <th>JENIS KELAMIN</th>
@@ -82,6 +83,7 @@
                 <tr>
                     <td style="text-align: center">{{ $loop->iteration }}</td>
                     <td>{{ $student->name ?? '-' }}</td>
+                    <td>{{ $student->nis ?? '-' }}</td>
                     <td>{{ $student->phone_number ?? '-' }}</td>
                     <td>{{ $student->address ?? '-' }}</td>
                     <td>{{ ucwords($student->sex ?? '-') }}</td>
