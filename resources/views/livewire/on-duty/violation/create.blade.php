@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <x-form.input wire:model.live="filters.search" name="filters.search" type="text"
-                                    label="Nama Siswa" placeholder="Cari nama..." />
+                                    label="Nama Siswa / NIS" placeholder="Cari nama / nis..." />
                             </div>
 
                             <div class="col-12 col-lg-6">
@@ -81,7 +81,9 @@
                         <tbody>
                             @forelse ($this->students as $row)
                                 <tr wire:key="row-{{ $row->id }}">
-                                    <td>{{ $row->name ?? '-' }}</td>
+                                    <td>{{ $row->name ?? '-' }}
+                                        <p class="py-0 mb-0 mt-1"><b>NIS : {{ $row->nis }}</b></p>
+                                    </td>
 
                                     <td>{{ $row->grade->name ?? '-' }}</td>
 

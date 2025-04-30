@@ -77,7 +77,8 @@ class Create extends Component
         $query = Student::query()
             ->when(!$this->sorts, fn($query) => $query->first())
             ->when($this->filters['search'], function ($query, $search) {
-                $query->where('name', 'LIKE', "%$search%");
+                $query->where('name', 'LIKE', "%$search%")
+                    ->orWhere('nis', 'LIKE', "%$search%");
             })
             ->when($this->filters['kelas'], function ($query, $kelas) {
                 $query->where('grade_id', $kelas);
