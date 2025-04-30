@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="col-12 col-lg-6">
-                            <x-form.select wire:model="status" name="status" label="Status Guru">
+                            <x-form.select wire:model="status" name="status" label="Status Siswa">
                                 <option value="">- pilih status -</option>
                                 @foreach (config('const.teacher_status') as $status)
                                     <option value="{{ $status }}">{{ ucwords($status) }}</option>
