@@ -48,14 +48,14 @@ class Edit extends Component
 
     public function rules(){
         return [
-            'kelas' => ['required'],
-            'guru' => ['required'],
-            'mataPelajaran' => ['required'],
-            'alasanGuru' => ['required'],
-            'tanggalMulai' => ['required', 'date'],
-            'tanggalSelesai' => ['required', 'date'],
-            'fileTugas' => ['nullable', 'file', 'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png'],
-            'keteranganTugas' => ['nullable', 'string'],
+            'kelas'             => ['required'],
+            'guru'              => ['required'],
+            'mataPelajaran'     => ['required'],
+            'alasanGuru'        => ['required'],
+            'tanggalMulai'      => ['required', 'date'],
+            'tanggalSelesai'    => ['required', 'date'],
+            'fileTugas'         => ['nullable', 'file', 'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png'],
+            'keteranganTugas'   => ['nullable', 'string'],
         ];
     }
 
@@ -69,13 +69,13 @@ class Edit extends Component
             $gradeAssignment = GradeAssignment::findOrFail($this->gradeAssignmentId);
 
             $gradeAssignment->update([
-                'grade_id' => $this->kelas,
-                'teacher_id' => $this->guru,
+                'grade_id'          => $this->kelas,
+                'teacher_id'        => $this->guru,
                 'school_subject_id' => $this->mataPelajaran,
-                'reason_teacher' => $this->alasanGuru,
-                'schedule_time' => $this->tanggalMulai,
-                'finish_time' => $this->tanggalSelesai,
-                'description' => $this->keteranganTugas,
+                'reason_teacher'    => $this->alasanGuru,
+                'schedule_time'     => $this->tanggalMulai,
+                'finish_time'       => $this->tanggalSelesai,
+                'description'       => $this->keteranganTugas,
             ]);
 
             if ($this->fileTugas) {
@@ -120,13 +120,13 @@ class Edit extends Component
     public function mount($id){
         $gradeAssignment = GradeAssignment::findOrFail($id);
 
-        $this->kelas = $gradeAssignment->grade_id;
-        $this->guru = $gradeAssignment->teacher_id;
-        $this->mataPelajaran = $gradeAssignment->school_subject_id;
-        $this->alasanGuru = $gradeAssignment->reason_teacher;
-        $this->tanggalMulai = $gradeAssignment->schedule_time;
-        $this->tanggalSelesai = $gradeAssignment->finish_time;
-        $this->keteranganTugas = $gradeAssignment->description;
+        $this->kelas            = $gradeAssignment->grade_id;
+        $this->guru             = $gradeAssignment->teacher_id;
+        $this->mataPelajaran    = $gradeAssignment->school_subject_id;
+        $this->alasanGuru       = $gradeAssignment->reason_teacher;
+        $this->tanggalMulai     = $gradeAssignment->schedule_time;
+        $this->tanggalSelesai   = $gradeAssignment->finish_time;
+        $this->keteranganTugas  = $gradeAssignment->description;
 
         $this->gradeAssignmentId = $id;
         $this->dispatch('changeKeteranganTugas', $this->keteranganTugas);

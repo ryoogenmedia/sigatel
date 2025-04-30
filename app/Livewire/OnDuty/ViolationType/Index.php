@@ -31,12 +31,12 @@ class Index extends Component
     public $violationTypeId;
 
     public function openModal($id){
-        $this->violationType = ViolationType::find($id);
-        $this->violationTypeId = $id;
+        $this->violationType    = ViolationType::find($id);
+        $this->violationTypeId  = $id;
 
-        $this->name = $this->violationType->name;
-        $this->description = $this->violationType->description;
-        $this->status = $this->violationType->status == 1 ? true : false;
+        $this->name         = $this->violationType->name;
+        $this->description  = $this->violationType->description;
+        $this->status       = $this->violationType->status == 1 ? true : false;
     }
 
     public function closeModal(){
@@ -54,9 +54,9 @@ class Index extends Component
 
     public function saveViolationType(){
         $this->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
-            'status' => ['required', 'boolean'],
+            'name'          => ['required', 'string', 'max:255'],
+            'description'   => ['required', 'string'],
+            'status'        => ['required', 'boolean'],
         ]);
 
         try{

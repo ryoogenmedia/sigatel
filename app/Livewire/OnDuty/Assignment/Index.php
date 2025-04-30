@@ -25,11 +25,11 @@ class Index extends Component
     use WithSorting;
 
     public $filters = [
-        'search' => '',
-        'status' => '',
-        'scheduleTime' => '',
-        'finishTime' => '',
-        'category' => '',
+        'search'        => '',
+        'status'        => '',
+        'scheduleTime'  => '',
+        'finishTime'    => '',
+        'category'      => '',
     ];
 
     public $modalImageDoc = false;
@@ -43,10 +43,10 @@ class Index extends Component
     public function showImageDoc($id)
     {
         $onDuty = OnDuty::findOrFail($id);
-        $this->onDutyId = $onDuty->id;
-        $this->modalImageDoc = !$this->modalImageDoc;
-        $this->photoStudentUrl = $onDuty->photoStudentUrl();
-        $this->dokumentasiKegiatanUrl = $onDuty->documentationFileUrl();
+        $this->onDutyId                 = $onDuty->id;
+        $this->modalImageDoc            = !$this->modalImageDoc;
+        $this->photoStudentUrl          = $onDuty->photoStudentUrl();
+        $this->dokumentasiKegiatanUrl   = $onDuty->documentationFileUrl();
     }
 
     public function closeModal()
@@ -72,14 +72,14 @@ class Index extends Component
         ]);
 
         $this->dokumentasiKegiatanUrl = asset('ryoogenmedia/no-image.png');
-        $this->photoStudentUrl = asset('ryoogenmedia/no-image.png');
+        $this->photoStudentUrl        = asset('ryoogenmedia/no-image.png');
     }
 
     public function saveUploadImage()
     {
         $this->validate([
-            'dokumentasiSiswa' => ['nullable', 'image'],
-            'dokumentasiKegiatan' => ['nullable', 'image'],
+            'dokumentasiSiswa'      => ['nullable', 'image'],
+            'dokumentasiKegiatan'   => ['nullable', 'image'],
         ]);
 
         try {

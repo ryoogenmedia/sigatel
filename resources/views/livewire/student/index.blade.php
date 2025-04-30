@@ -85,6 +85,10 @@
                         </th>
 
                         <th>
+                            <x-datatable.column-sort name="NIS" wire:click="sortBy('nis')" :direction="$sorts['nis'] ?? null" />
+                        </th>
+
+                        <th>
                             <x-datatable.column-sort name="Nomor Ponsel" wire:click="sortBy('phone_number')"
                                 :direction="$sorts['phone_number'] ?? null" />
                         </th>
@@ -142,6 +146,8 @@
                                     <span class="ms-2">{{ $row->name }}</span>
                                 </div>
                             </td>
+
+                            <td>{{ $row->nis ?? '-' }}</td>
 
                             <td>{{ $row->phone_number ?? '-' }}</td>
 

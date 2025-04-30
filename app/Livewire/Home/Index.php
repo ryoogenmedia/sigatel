@@ -13,22 +13,23 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    public $period = "daily";
-    public $totalStudent = 0;
-    public $totalStudentParent = 0;
-    public $totalTeacher = 0;
+    public $period              = "daily";
+    public $totalStudent        = 0;
+    public $totalStudentParent  = 0;
+    public $totalTeacher        = 0;
 
-    public $gradeAssignmentApprove = [];
-    public $gradeAssignmentNotApprove = [];
+    public $gradeAssignmentApprove      = [];
+    public $gradeAssignmentNotApprove   = [];
 
     public function getDataChart()
     {
-        $this->totalStudent = HomeChart::TOTAL_DATA(Student::query(), $this->period);
+        $this->totalStudent       = HomeChart::TOTAL_DATA(Student::query(), $this->period);
         $this->totalStudentParent = HomeChart::TOTAL_DATA(StudentParent::query(), $this->period);
-        $this->totalTeacher = HomeChart::TOTAL_DATA(Teacher::query(), $this->period);
+        $this->totalTeacher       = HomeChart::TOTAL_DATA(Teacher::query(), $this->period);
 
         $this->gradeAssignmentApprove = HomeChart::CHART_DATA(GradeAssignment::query()
             ->where('status', true), $this->period);
+
         $this->gradeAssignmentNotApprove = HomeChart::CHART_DATA(GradeAssignment::query()
             ->where('status', false), $this->period);
     }
@@ -43,14 +44,14 @@ class Index extends Component
     {
         $this->getDataChart();
 
-        $date = $this->gradeAssignmentApprove['date'];
-        $pending = $this->gradeAssignmentNotApprove['data'];
-        $approved = $this->gradeAssignmentApprove['data'];
+        $date       = $this->gradeAssignmentApprove['date'];
+        $pending    = $this->gradeAssignmentNotApprove['data'];
+        $approved   = $this->gradeAssignmentApprove['data'];
 
         $this->dispatch('updateChart', [
-            'approved' => $approved,
-            'pending' => $pending,
-            'date' => $date,
+            'approved'  => $approved,
+            'pending'   => $pending,
+            'date'      => $date,
         ]);
     }
 

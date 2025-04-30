@@ -51,35 +51,35 @@ class Create extends Component
     public function updatedMataPelajaran()
     {
         if ($this->mataPelajaran) {
-            $schoolSubject = SchoolSubject::findOrFail($this->mataPelajaran);
-            $this->guru = $schoolSubject->teacher_id;
+            $schoolSubject  = SchoolSubject::findOrFail($this->mataPelajaran);
+            $this->guru     = $schoolSubject->teacher_id;
         }
     }
 
     public function save()
     {
         $this->validate([
-            'siswa' => ['required'],
-            'mataPelajaran' => ['required'],
-            'guru' => ['required'],
-            'deskripsi' => ['required', 'string'],
-            'jadwalPelaksanaan' => ['required', 'string'],
-            'jadwalSelesai' => ['required', 'string'],
-            'jenisPelanggaran' => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.violation_type'))],
-            'dokumentasiKegiatan' => ['nullable', 'image'],
-            'dokumentasiSiswa' => ['nullable', 'image'],
+            'siswa'                 => ['required'],
+            'mataPelajaran'         => ['required'],
+            'guru'                  => ['required'],
+            'deskripsi'             => ['required', 'string'],
+            'jadwalPelaksanaan'     => ['required', 'string'],
+            'jadwalSelesai'         => ['required', 'string'],
+            'jenisPelanggaran'      => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.violation_type'))],
+            'dokumentasiKegiatan'   => ['nullable', 'image'],
+            'dokumentasiSiswa'      => ['nullable', 'image'],
         ]);
 
         try {
             DB::beginTransaction();
             $onDuty = OnDuty::create([
-                'student_id' => $this->siswa,
-                'teacher_id' => $this->guru,
+                'student_id'        => $this->siswa,
+                'teacher_id'        => $this->guru,
                 'school_subject_id' => $this->mataPelajaran,
-                'description' => $this->deskripsi,
-                'violation_type' => $this->jenisPelanggaran,
-                'schedule_time' => $this->jadwalPelaksanaan,
-                'finish_time' => $this->jadwalSelesai,
+                'description'       => $this->deskripsi,
+                'violation_type'    => $this->jenisPelanggaran,
+                'schedule_time'     => $this->jadwalPelaksanaan,
+                'finish_time'       => $this->jadwalSelesai,
             ]);
 
             if ($this->dokumentasiSiswa) {
@@ -126,7 +126,7 @@ class Create extends Component
     public function mount()
     {
         $this->dokumentasiKegiatanUrl = asset('ryoogenmedia/no-image.png');
-        $this->photoStudentUrl = asset('ryoogenmedia/no-image.png');
+        $this->photoStudentUrl        = asset('ryoogenmedia/no-image.png');
     }
 
     public function render()

@@ -45,14 +45,14 @@ class Create extends Component
 
     public function rules(){
         return [
-            'kelas' => ['required'],
-            'guru' => ['required'],
-            'mataPelajaran' => ['required'],
-            'alasanGuru' => ['required'],
-            'tanggalMulai' => ['required', 'date'],
-            'tanggalSelesai' => ['required', 'date'],
-            'fileTugas' => ['nullable', 'file', 'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png'],
-            'keteranganTugas' => ['nullable', 'string'],
+            'kelas'             => ['required'],
+            'guru'              => ['required'],
+            'mataPelajaran'     => ['required'],
+            'alasanGuru'        => ['required'],
+            'tanggalMulai'      => ['required', 'date'],
+            'tanggalSelesai'    => ['required', 'date'],
+            'fileTugas'         => ['nullable', 'file', 'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png'],
+            'keteranganTugas'   => ['nullable', 'string'],
         ];
     }
 
@@ -64,13 +64,13 @@ class Create extends Component
             DB::beginTransaction();
 
             $gradeAssignment = GradeAssignment::create([
-                'grade_id' => $this->kelas,
-                'teacher_id' => $this->guru,
+                'grade_id'          => $this->kelas,
+                'teacher_id'        => $this->guru,
                 'school_subject_id' => $this->mataPelajaran,
-                'reason_teacher' => $this->alasanGuru,
-                'schedule_time' => $this->tanggalMulai,
-                'finish_time' => $this->tanggalSelesai,
-                'description' => $this->keteranganTugas,
+                'reason_teacher'    => $this->alasanGuru,
+                'schedule_time'     => $this->tanggalMulai,
+                'finish_time'       => $this->tanggalSelesai,
+                'description'       => $this->keteranganTugas,
             ]);
 
             if ($this->fileTugas) {

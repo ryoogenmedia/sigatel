@@ -43,6 +43,7 @@ class StudentTableSeeder extends Seeder
                 'address'      => $faker->address,
                 'status'       => $faker->randomElement(['aktif', 'non aktif']),
                 'created_at'   => $currentDate,
+                'nis'          => $faker->unique()->numberBetween(100000, 999999),
                 'updated_at'   => now(),
             ]);
 

@@ -17,7 +17,6 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class Index extends Component
 {
@@ -44,12 +43,12 @@ class Index extends Component
     public $alasanGuru;
 
     public function openModalDocumentation($id){
-        $gradeAssignment = GradeAssignment::find($id);
-        $this->showDocumentationModal = true;
-        $this->gradeAssignmentId = $gradeAssignment->id;
-        $this->photoDocumentation = $gradeAssignment->photoDocumentationUrl();
-        $this->keteranganTugas = $gradeAssignment->description;
-        $this->alasanGuru = $gradeAssignment->reason_teacher;
+        $gradeAssignment                = GradeAssignment::find($id);
+        $this->showDocumentationModal   = true;
+        $this->gradeAssignmentId        = $gradeAssignment->id;
+        $this->photoDocumentation       = $gradeAssignment->photoDocumentationUrl();
+        $this->keteranganTugas          = $gradeAssignment->description;
+        $this->alasanGuru               = $gradeAssignment->reason_teacher;
     }
 
     public function closeModalDocumentation(){

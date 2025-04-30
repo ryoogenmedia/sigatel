@@ -78,13 +78,13 @@ class Map extends Component
 
     public function mount($id)
     {
-        $gradeAssignment = GradeAssignment::findOrFail($id);
-        $this->gradeAssignmentLocation = $gradeAssignment->only(['id', 'latitude', 'longitude']);
-        $this->mapMarker = asset('ryoogenmedia/map-marker.png');
+        $gradeAssignment                = GradeAssignment::findOrFail($id);
+        $this->gradeAssignmentLocation  = $gradeAssignment->only(['id', 'latitude', 'longitude']);
+        $this->mapMarker                = asset('ryoogenmedia/map-marker.png');
 
-        $this->gradeAssignmentId = $gradeAssignment->id;
-        $this->longitude = $gradeAssignment->longitude;
-        $this->latitude = $gradeAssignment->latitude;
+        $this->gradeAssignmentId    = $gradeAssignment->id;
+        $this->longitude            = $gradeAssignment->longitude;
+        $this->latitude             = $gradeAssignment->latitude;
     }
 
     public function render()

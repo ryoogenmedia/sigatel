@@ -53,23 +53,23 @@ class Edit extends Component
     public function updatedMataPelajaran()
     {
         if ($this->mataPelajaran) {
-            $schoolSubject = SchoolSubject::findOrFail($this->mataPelajaran);
-            $this->guru = $schoolSubject->teacher_id;
+            $schoolSubject  = SchoolSubject::findOrFail($this->mataPelajaran);
+            $this->guru     = $schoolSubject->teacher_id;
         }
     }
 
     public function edit()
     {
         $this->validate([
-            'siswa' => ['required'],
-            'mataPelajaran' => ['required'],
-            'guru' => ['required'],
-            'deskripsi' => ['required', 'string'],
-            'jadwalPelaksanaan' => ['required', 'string'],
-            'jadwalSelesai' => ['required', 'string'],
-            'jenisPelanggaran' => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.violation_type'))],
-            'dokumentasiKegiatan' => ['nullable', 'image'],
-            'dokumentasiSiswa' => ['nullable', 'image'],
+            'siswa'                 => ['required'],
+            'mataPelajaran'         => ['required'],
+            'guru'                  => ['required'],
+            'deskripsi'             => ['required', 'string'],
+            'jadwalPelaksanaan'     => ['required', 'string'],
+            'jadwalSelesai'         => ['required', 'string'],
+            'jenisPelanggaran'      => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.violation_type'))],
+            'dokumentasiKegiatan'   => ['nullable', 'image'],
+            'dokumentasiSiswa'      => ['nullable', 'image'],
         ]);
 
         try {
@@ -77,13 +77,13 @@ class Edit extends Component
             $onDuty = OnDuty::findOrFail($this->onDutyId);
 
             $onDuty->update([
-                'student_id' => $this->siswa,
-                'teacher_id' => $this->guru,
+                'student_id'        => $this->siswa,
+                'teacher_id'        => $this->guru,
                 'school_subject_id' => $this->mataPelajaran,
-                'description' => $this->deskripsi,
-                'violation_type' => $this->jenisPelanggaran,
-                'schedule_time' => $this->jadwalPelaksanaan,
-                'finish_time' => $this->jadwalSelesai,
+                'description'       => $this->deskripsi,
+                'violation_type'    => $this->jenisPelanggaran,
+                'schedule_time'     => $this->jadwalPelaksanaan,
+                'finish_time'       => $this->jadwalSelesai,
             ]);
 
             if ($this->dokumentasiSiswa) {
@@ -139,17 +139,17 @@ class Edit extends Component
     {
         $onDuty = OnDuty::findOrFail($id);
 
-        $this->onDutyId = $onDuty->id;
-        $this->siswa = $onDuty->student_id;
-        $this->mataPelajaran = $onDuty->school_subject_id;
-        $this->guru = $onDuty->teacher_id;
-        $this->deskripsi = $onDuty->description;
-        $this->jadwalPelaksanaan = $onDuty->schedule_time;
-        $this->jadwalSelesai = $onDuty->finish_time;
-        $this->jenisPelanggaran = $onDuty->violation_type;
+        $this->onDutyId             = $onDuty->id;
+        $this->siswa                = $onDuty->student_id;
+        $this->mataPelajaran        = $onDuty->school_subject_id;
+        $this->guru                 = $onDuty->teacher_id;
+        $this->deskripsi            = $onDuty->description;
+        $this->jadwalPelaksanaan    = $onDuty->schedule_time;
+        $this->jadwalSelesai        = $onDuty->finish_time;
+        $this->jenisPelanggaran     = $onDuty->violation_type;
 
         $this->dokumentasiKegiatanUrl = $onDuty->documentationFileUrl();
-        $this->photoStudentUrl = $onDuty->photoStudentUrl();
+        $this->photoStudentUrl        = $onDuty->photoStudentUrl();
     }
 
     public function render()

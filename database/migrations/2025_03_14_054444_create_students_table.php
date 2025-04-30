@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('sex');
             $table->text('address')->nullable();
             $table->string('status')->default('aktif')->nullable();
+            $table->string('nis')->nullable();
             $table->timestamps();
         });
     }

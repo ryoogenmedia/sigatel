@@ -66,7 +66,8 @@ class Index extends Component
                 $query->where('sex', $jenisKelamin);
             })
             ->when($this->filters['search'], function ($query, $search) {
-                $query->where('name', 'LIKE', "%$search%");
+                $query->where('name', 'LIKE', "%$search%")
+                    ->orWhere('nis', 'LIKE', "%$search%");
             })->latest();
 
         return $this->applyPagination($query);

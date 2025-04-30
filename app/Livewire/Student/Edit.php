@@ -24,6 +24,7 @@ class Edit extends Component
     public $email;
     public $kataSandi;
     public $avatar;
+    public $nis;
     public $konfirmasiKataSandi;
     public $roles = 'student';
 
@@ -35,14 +36,15 @@ class Edit extends Component
     public function rules()
     {
         return [
-            'namaSiswa' => ['required', 'string', 'min:2', 'max:255'],
-            'nomorPonsel' => ['required', 'string', 'min:2', 'max:255'],
-            'jenisKelamin' => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.sex'))],
-            'status' => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.teacher_status'))],
-            'alamat' => ['required', 'string'],
-            'email' => ['required', 'string'],
-            'kataSandi' => ['nullable', 'same:konfirmasiPassword', 'min:2', 'max:255', Password::default()],
-            'avatar' => ['nullable', 'image', 'max:2048'],
+            'namaSiswa'     => ['required', 'string', 'min:2', 'max:255'],
+            'nomorPonsel'   => ['required', 'string', 'min:2', 'max:255'],
+            'jenisKelamin'  => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.sex'))],
+            'status'        => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.teacher_status'))],
+            'alamat'        => ['required', 'string'],
+            'nis'           => ['required', 'string', 'min:2', 'max:8'],
+            'email'         => ['required', 'string'],
+            'kataSandi'     => ['nullable', 'same:konfirmasiPassword', 'min:2', 'max:255', Password::default()],
+            'avatar'        => ['nullable', 'image', 'max:2048'],
         ];
     }
 
@@ -57,10 +59,10 @@ class Edit extends Component
             $student = Student::findOrFail($this->studentId);
 
             $user->update([
-                'username' => $this->namaSiswa,
-                'roles' => $this->roles,
-                'email' => $this->email,
-                'password' => bcrypt($this->kataSandi),
+                'username'          => $this->namaSiswa,
+                'roles'             => $this->roles,
+                'email'             => $this->email,
+                'password'          => bcrypt($this->kataSandi),
                 'email_verified_at' => now(),
             ]);
 
@@ -71,13 +73,14 @@ class Edit extends Component
             }
 
             $student->update([
-                'user_id' => $user->id,
-                'grade_id' => $this->kelas,
-                'name' => $this->namaSiswa,
-                'phone_number' => $this->nomorPonsel,
-                'address' => $this->alamat,
-                'sex' => $this->jenisKelamin,
-                'status' => $this->status,
+                'user_id'       => $user->id,
+                'grade_id'      => $this->kelas,
+                'name'          => $this->namaSiswa,
+                'nis'           => $this->nis,
+                'phone_number'  => $this->nomorPonsel,
+                'address'       => $this->alamat,
+                'sex'           => $this->jenisKelamin,
+                'status'        => $this->status,
             ]);
 
             DB::commit();
@@ -112,17 +115,18 @@ class Edit extends Component
         $student = Student::findOrFail($id);
         $user = User::findOrFail($student->user->id);
 
-        $this->studentId = $student->id;
-        $this->namaSiswa = $student->name;
-        $this->nomorPonsel = $student->phone_number;
-        $this->alamat = $student->address;
+        $this->studentId    = $student->id;
+        $this->namaSiswa    = $student->name;
+        $this->nomorPonsel  = $student->phone_number;
+        $this->alamat       = $student->address;
+        $this->nis          = $student->nis;
         $this->jenisKelamin = $student->sex;
-        $this->status = $student->status;
-        $this->kelas = $student->grade_id;
+        $this->status       = $student->status;
+        $this->kelas        = $student->grade_id;
 
-        $this->userId = $user->id;
-        $this->email = $user->email;
-        $this->avatarUrl = $user->avatarUrl();
+        $this->userId       = $user->id;
+        $this->email        = $user->email;
+        $this->avatarUrl    = $user->avatarUrl();
     }
 
     public function render()

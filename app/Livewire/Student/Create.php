@@ -28,6 +28,7 @@ class Create extends Component
     public $email;
     public $kataSandi;
     public $avatar;
+    public $nis;
     public $roles = 'teacher';
     public $konfirmasiKataSandi;
 
@@ -52,11 +53,12 @@ class Create extends Component
     public function rules()
     {
         $rules = [
-            'namaSiswa' => ['required', 'string', 'min:2', 'max:255'],
-            'nomorPonsel' => ['required', 'string', 'min:2', 'max:255'],
-            'jenisKelamin' => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.sex'))],
-            'status' => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.teacher_status'))],
-            'alamat' => ['required', 'string'],
+            'namaSiswa'     => ['required', 'string', 'min:2', 'max:255'],
+            'nomorPonsel'   => ['required', 'string', 'min:2', 'max:255'],
+            'nis'           => ['required', 'string', 'min:2', 'max:8'],
+            'jenisKelamin'  => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.sex'))],
+            'status'        => ['required', 'string', 'min:2', 'max:255', Rule::in(config('const.teacher_status'))],
+            'alamat'        => ['required', 'string'],
         ];
 
         if ($this->caraBuatAkun == 'buat akun') {
@@ -77,10 +79,10 @@ class Create extends Component
 
             if ($this->caraBuatAkun == 'buat akun') {
                 $this->user = User::create([
-                    'username' => $this->namaSiswa,
-                    'roles' => $this->roles,
-                    'email' => $this->email,
-                    'password' => bcrypt($this->kataSandi),
+                    'username'          => $this->namaSiswa,
+                    'roles'             => $this->roles,
+                    'email'             => $this->email,
+                    'password'          => bcrypt($this->kataSandi),
                     'email_verified_at' => now(),
                 ]);
 
@@ -96,13 +98,14 @@ class Create extends Component
             }
 
             Student::create([
-                'user_id' => $this->user->id,
-                'grade_id' => $this->kelas,
-                'name' => $this->namaSiswa,
-                'phone_number' => $this->nomorPonsel,
-                'address' => $this->alamat,
-                'sex' => $this->jenisKelamin,
-                'status' => $this->status,
+                'user_id'       => $this->user->id,
+                'grade_id'      => $this->kelas,
+                'name'          => $this->namaSiswa,
+                'nis'           => $this->nis,
+                'phone_number'  => $this->nomorPonsel,
+                'address'       => $this->alamat,
+                'sex'           => $this->jenisKelamin,
+                'status'        => $this->status,
             ]);
 
             DB::commit();

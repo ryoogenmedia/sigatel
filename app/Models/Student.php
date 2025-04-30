@@ -18,6 +18,7 @@ class Student extends Model
         'phone_number',
         'sex',
         'address',
+        'nis',
         'status',
     ];
 

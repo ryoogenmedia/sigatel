@@ -22,8 +22,17 @@
                     <x-form.input wire:model="namaSiswa" name="namaSiswa" label="Nama Siswa" type="text"
                         placeholder="Masukkan nama siswa" required autofocus />
 
-                    <x-form.input wire:model="nomorPonsel" name="nomorPonsel" label="Nomor Ponsel" type="string"
-                        placeholder="08xxxxxxx" required />
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <x-form.input wire:model="nomorPonsel" name="nomorPonsel" label="Nomor Ponsel"
+                                type="text" placeholder="08xxxxxxx" required />
+                        </div>
+
+                        <div class="col-12 col-lg-6">
+                            <x-form.input wire:model="nis" name="nis" label="NIS" type="text"
+                                placeholder="Masukkan Nomor Induk Siswa (NIS)" required />
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-12 col-lg-6">

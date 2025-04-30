@@ -35,10 +35,10 @@ class Index extends Component
     {
         $grade = Grade::findOrFail($id);
 
-        $this->gradeId = $grade->id;
-        $this->namaKelas = $grade->name;
-        $this->nomorLantai = $grade->floor;
-        $this->waliKelas = $grade->teacher->id;
+        $this->gradeId      = $grade->id;
+        $this->namaKelas    = $grade->name;
+        $this->nomorLantai  = $grade->floor;
+        $this->waliKelas    = $grade->teacher->id;
 
         $this->dispatch('load-data-grade');
     }
@@ -46,9 +46,9 @@ class Index extends Component
     public function save()
     {
         $this->validate([
-            'namaKelas' => ['required', 'string', 'min:2', 'max:255'],
-            'nomorLantai' => ['required'],
-            'waliKelas' => ['required']
+            'namaKelas'     => ['required', 'string', 'min:2', 'max:255'],
+            'nomorLantai'   => ['required'],
+            'waliKelas'     => ['required']
         ]);
 
         try {
@@ -58,15 +58,15 @@ class Index extends Component
                 $grade = Grade::findOrFail($this->gradeId);
 
                 $grade->update([
-                    'teacher_id' => $this->waliKelas,
-                    'name' => $this->namaKelas,
-                    'floor' => $this->nomorLantai,
+                    'teacher_id'    => $this->waliKelas,
+                    'name'          => $this->namaKelas,
+                    'floor'         => $this->nomorLantai,
                 ]);
             } else {
                 Grade::create([
-                    'teacher_id' => $this->waliKelas,
-                    'name' => $this->namaKelas,
-                    'floor' => $this->nomorLantai,
+                    'teacher_id'    => $this->waliKelas,
+                    'name'          => $this->namaKelas,
+                    'floor'         => $this->nomorLantai,
                 ]);
             }
 

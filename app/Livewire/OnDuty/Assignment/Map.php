@@ -27,7 +27,7 @@ class Map extends Component
     public function changeLocation($longitude, $latitude)
     {
         $this->longitude = $longitude;
-        $this->latitude = $latitude;
+        $this->latitude  = $latitude;
     }
 
     public function save()
@@ -37,14 +37,14 @@ class Map extends Component
 
             $this->validate([
                 'longitude' => ['required'],
-                'latitude' => ['required'],
+                'latitude'  => ['required'],
             ]);
 
             $onDuty = OnDuty::findOrFail($this->onDutyId);
 
             $onDuty->update([
                 'longitude' => $this->longitude,
-                'latitude' => $this->latitude,
+                'latitude'  => $this->latitude,
             ]);
 
             DB::commit();
@@ -78,13 +78,13 @@ class Map extends Component
 
     public function mount($id)
     {
-        $onDuty = OnDuty::findOrFail($id);
-        $this->onDutyLocation = $onDuty->only(['id', 'latitude', 'longitude']);
-        $this->mapMarker = asset('ryoogenmedia/map-marker.png');
+        $onDuty                 = OnDuty::findOrFail($id);
+        $this->onDutyLocation   = $onDuty->only(['id', 'latitude', 'longitude']);
+        $this->mapMarker        = asset('ryoogenmedia/map-marker.png');
 
-        $this->onDutyId = $onDuty->id;
-        $this->longitude = $onDuty->longitude;
-        $this->latitude = $onDuty->latitude;
+        $this->onDutyId     = $onDuty->id;
+        $this->longitude    = $onDuty->longitude;
+        $this->latitude     = $onDuty->latitude;
     }
 
     public function render()

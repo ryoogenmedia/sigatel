@@ -26,7 +26,7 @@ class Index extends Component
 
     public function changeStatusMapel($id)
     {
-        $schoolSubjects = SchoolSubject::findOrFail($id);
+        $schoolSubjects         = SchoolSubject::findOrFail($id);
         $schoolSubjects->status = !$schoolSubjects->status;
         $schoolSubjects->save();
 
