@@ -149,12 +149,18 @@ return [
                 'route-name' => 'report.school-subject',
                 'is-active' => 'report.school-subject',
             ],
+            // [
+            //     'title' => 'Piket',
+            //     'description' => 'Untuk cetak laporan piket siswa.',
+            //     'route-name' => 'report.on-duty',
+            //     'is-active' => 'report.on-duty',
+            // ],
             [
-                'title' => 'Piket',
-                'description' => 'Untuk cetak laporan piket siswa.',
-                'route-name' => 'report.on-duty',
-                'is-active' => 'report.on-duty',
-            ],
+                'title' => 'Penugasan Kelas',
+                'description' => 'Untuk cetak laporan penugasan kelas.',
+                'route-name' => 'report.grade-assignment',
+                'is-active' => 'report.grade-assignment',
+            ]
         ],
     ],
 

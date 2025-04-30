@@ -74,4 +74,9 @@ class PrintReportController extends Controller
     {
         return $this->generateReport($request, \App\Models\OnDuty::class, 'pdf.on-duty', 'piket');
     }
+
+    public function grade_assignment(Request $request)
+    {
+        return $this->generateReport($request, \App\Models\GradeAssignment::class, 'pdf.grade-assignment', 'penugasan-kelas');
+    }
 }

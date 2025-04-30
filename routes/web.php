@@ -27,6 +27,7 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         Route::get('/kelas', [PrintReportController::class, 'grand'])->name('grand');
         Route::get('/mata-pelajaran', [PrintReportController::class, 'school_subject'])->name('school-subject');
         Route::get('/piket', [PrintReportController::class, 'on_duty'])->name('on-duty');
+        Route::get('/tugas-kelas', [PrintReportController::class, 'grade_assignment'])->name('grade-assignment');
     });
 
     /**
@@ -39,6 +40,7 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         Route::get('/mata-pelajaran', SchoolSubject::class)->name('school-subject');
         Route::get('/orangtua-siswa', ParentStudent::class)->name('parent-student');
         Route::get('/piket-siswa', OnDuty::class)->name('on-duty');
+        Route::get('/tugas-kelas', GradeAssignment::class)->name('grade-assignment');
     });
 
     /**
