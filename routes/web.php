@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthMobileController;
 use App\Http\Controllers\PrintReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', '/login');
+// MOBILE HANDLER AUTHENTICATION APPLICATION WEB VIEW
+Route::get('/login-mobile', [AuthMobileController::class,'login'])->name('mobile.login');
+Route::post('/logout-mobile', [AuthMobileController::class,'logout'])->name('mobile.logout');
 
 Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')->group(function () {
     /**

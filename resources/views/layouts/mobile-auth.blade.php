@@ -12,8 +12,8 @@
         name="keywords">
     <meta content="la-themes" name="author">
 
-    <link href="{{ asset('mobile/assets/images/logo/favicon.png') }}" rel="icon" type="image/x-icon">
-    <link href="{{ asset('mobile/assets/images/logo/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
+    <link href="{{ asset('favicon.ico') }}" rel="icon" type="image/x-icon">
+    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
     <link href="{{ asset('mobile/assets/vendor/fontawesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('mobile/assets/vendor/ionio-icon/css/iconoir.css') }}" rel="stylesheet">
     <link href="{{ asset('mobile/assets/vendor/tabler-icons/tabler-icons.css') }}" rel="stylesheet" type="text/css">
@@ -32,6 +32,12 @@
     <!-- Component Style -->
     @yield('styles')
 
+    <style>
+        .login-form.container{
+            margin: 0px 50px !important;
+        }
+    </style>
+
     <title>Smart Piket SMPN 25 Makassar | @yield('title')</title>
 </head>
 
@@ -39,59 +45,31 @@
     <div class="app-wrapper d-block">
         <div class="">
             <main class="w-100 p-0">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <div class="col-12 p-0">
                             <div class="login-form-container">
                                 <div class="mb-4">
                                     <a class="logo d-inline-block" href="index.html">
-                                        <img alt="#" src="../assets/images/logo/1.png" width="250">
+                                        <img alt="logo-smart-piket" src="{{ asset('ryoogenmedia/logo-dark.png') }}"
+                                            width="250">
                                     </a>
                                 </div>
+
                                 <div class="form_container">
-                                    <form class="app-form rounded-control">
-                                        <div class="mb-3 text-center">
-                                            <h3 class="text-primary-dark">Login to your Account</h3>
-                                            <p class="f-s-12 text-secondary">Get started with our app, just create an
-                                                account and enjoy the experience.</p>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Email address</label>
-                                            <input class="form-control" type="email">
-                                            <div class="form-text text">We'll never share your email with anyone else.
+                                    @if ($errors->any())
+                                        <div class="mx-3 mb-1 mt-4">
+                                            <div class="alert alert-border-warning" role="alert">
+                                                <h6>Ada Yang Salah</h6>
+
+                                                @foreach ($errors->all() as $error)
+                                                    <p class="mb-1">- {{ $error }}.</p>
+                                                @endforeach
                                             </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Password</label>
-                                            <input class="form-control" type="password">
-                                        </div>
-                                        <div class="mb-3 form-check">
-                                            <input class="form-check-input" id="formCheck1" type="checkbox">
-                                            <label class="form-check-label" for="formCheck1">remember me</label>
-                                        </div>
-                                        <div>
-                                            <a class="btn btn-light-primary w-100" href="index.html"
-                                                role="button">Submit</a>
-                                        </div>
-                                        <div class="app-divider-v justify-content-center">
-                                            <p>OR</p>
-                                        </div>
-                                        <div class="mb-3">
-                                            <div class="text-center">
-                                                <button class="btn btn-light-primary icon-btn b-r-5 m-1"
-                                                    type="button"><i class="ti ti-brand-facebook "></i></button>
-                                                <button class="btn btn-light-danger icon-btn b-r-5 m-1"
-                                                    type="button"><i class="ti ti-brand-google "></i></button>
-                                                <button class="btn btn-light-dark icon-btn b-r-5 m-1" type="button"><i
-                                                        class="ti ti-brand-github "></i></button>
-                                            </div>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="text-secondary text-decoration-underline"
-                                                href="terms_condition.html">Terms of use &amp;
-                                                Conditions</a>
-                                        </div>
-                                    </form>
+                                    @endif
+
+                                    {{ $slot }}
                                 </div>
                             </div>
                         </div>
