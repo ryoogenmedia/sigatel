@@ -15,8 +15,8 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@$ICONS_VERSION/dist/tabler-icons.min.css">
 
-    <link href="{{ asset('mobile/assets/images/logo/favicon.png') }}" rel="icon" type="image/x-icon">
-    <link href="{{ asset('mobile/assets/images/logo/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
+    <link href="{{ asset('favicon.ico') }}" rel="icon" type="image/x-icon">
+    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
     <link href="{{ asset('mobile/assets/vendor/fontawesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('mobile/assets/vendor/ionio-icon/css/iconoir.css') }}" rel="stylesheet">
     <link href="{{ asset('mobile/assets/vendor/animation/animate.min.css') }}" rel="stylesheet">
