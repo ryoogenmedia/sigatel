@@ -56,15 +56,18 @@
                                 <ul class="avatar-group">
                                     <li
                                         class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-light-primary b-2-primary">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/4.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/4.png') }}" />
                                     </li>
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-light-success b-2-success"
                                         data-bs-title="Lennon Briggs" data-bs-toggle="tooltip">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/5.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/5.png') }}" />
                                     </li>
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-light-info b-2-info"
                                         data-bs-title="Maya Horton" data-bs-toggle="tooltip">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/6.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/6.png') }}" />
                                     </li>
                                 </ul>
                                 <span class="badge bg-white-300 text-info-dark ms-2">🔥 1H left</span>
@@ -96,11 +99,13 @@
                                 <ul class="avatar-group">
                                     <li
                                         class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-light-primary b-2-primary">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/4.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/4.png') }}" />
                                     </li>
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-light-danger b-2-danger"
                                         data-bs-title="Maya Horton" data-bs-toggle="tooltip">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/6.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/6.png') }}" />
                                     </li>
                                 </ul>
                                 <span class="badge bg-white-300 text-success-dark ms-2">✨ 2D left</span>
@@ -125,15 +130,18 @@
                                 <ul class="avatar-group justify-content-start">
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden text-bg-primary b-2-light"
                                         data-bs-title="Sabrina Torres" data-bs-toggle="tooltip">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/4.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/4.png') }}" />
                                     </li>
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden text-bg-success b-2-light"
                                         data-bs-title="Eva Bailey" data-bs-toggle="tooltip">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/5.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/5.png') }}" />
                                     </li>
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden text-bg-danger b-2-light"
                                         data-bs-title="Michael Hughes" data-bs-toggle="tooltip">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/6.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/6.png') }}" />
                                     </li>
                                     <li class="text-bg-secondary h-35 w-35 d-flex-center b-r-50"
                                         data-bs-title="10 More" data-bs-toggle="tooltip">
@@ -183,14 +191,14 @@
                     <div class="connect-chat-box">
                         <div class="avatar-connect-box">
                             <img alt="logo" class="avatar-connect-logo"
-                                src="../assets/images/dashboard/project/avatar.png" />
+                                src="{{ asset('mobile/assets/images/dashboard/project/avatar.png') }}" />
                             <img alt="logo" class="dribbble-connect-logo"
-                                src="../assets/images/dashboard/project/dribbble.png" />
+                                src="{{ asset('mobile/assets/images/dashboard/project/dribbble.png') }}" />
                         </div>
-                        <img alt="img" src="../assets/images/dashboard/project/chat.png" />
+                        <img alt="img" src="{{ asset('mobile/assets/images/dashboard/project/chat.png') }}" />
                         <img alt="logo"
                             class="slack-logo animate__shakeY animate__animated animate__infinite animate__slower"
-                            src="../assets/images/dashboard/project/slack.png" />
+                            src="{{ asset('mobile/assets/images/dashboard/project/slack.png') }}" />
                     </div>
                 </div>
             </div>
@@ -313,7 +321,7 @@
                                         <a class="h-30 w-30 d-flex-center b-r-50 overflow-hidden text-bg-secondary m-auto"
                                             data-bs-title="Athena Stewart" data-bs-toggle="tooltip">
                                             <img alt="avtar" class="img-fluid"
-                                                src="../assets/images/avtar/2.png" />
+                                                src="{{ asset('mobile/assets/images/avtar/2.png') }}" />
                                         </a>
                                     </td>
                                     <td class="text-success-dark f-w-600">High</td>
@@ -336,7 +344,7 @@
                                         <a class="h-30 w-30 d-flex-center b-r-50 overflow-hidden text-bg-secondary m-auto"
                                             data-bs-title="Jane Smith" data-bs-toggle="tooltip">
                                             <img alt="avtar" class="img-fluid"
-                                                src="../assets/images/avtar/3.png" />
+                                                src="{{ asset('mobile/assets/images/avtar/3.png') }}" />
                                         </a>
                                     </td>
                                     <td class="text-secondary-dark f-w-600">
@@ -361,7 +369,7 @@
                                         <a class="h-30 w-30 d-flex-center b-r-50 overflow-hidden text-bg-secondary m-auto"
                                             data-bs-title="Mark Lee" data-bs-toggle="tooltip">
                                             <img alt="avtar" class="img-fluid"
-                                                src="../assets/images/avtar/4.png" />
+                                                src="{{ asset('mobile/assets/images/avtar/4.png') }}" />
                                         </a>
                                     </td>
                                     <td class="text-danger-dark f-w-600">Low</td>
@@ -384,7 +392,7 @@
                                         <a class="h-30 w-30 d-flex-center b-r-50 overflow-hidden text-bg-secondary m-auto"
                                             data-bs-title="Alice Johnson" data-bs-toggle="tooltip">
                                             <img alt="avtar" class="img-fluid"
-                                                src="../assets/images/avtar/5.png" />
+                                                src="{{ asset('mobile/assets/images/avtar/5.png') }}" />
                                         </a>
                                     </td>
                                     <td class="text-success-dark f-w-600">High</td>
@@ -408,7 +416,7 @@
                                         <a class="h-30 w-30 d-flex-center b-r-50 overflow-hidden text-bg-secondary m-auto"
                                             data-bs-title="Sophia Green" data-bs-toggle="tooltip">
                                             <img alt="avtar" class="img-fluid"
-                                                src="../assets/images/avtar/4.png" />
+                                                src="{{ asset('mobile/assets/images/avtar/4.png') }}" />
                                         </a>
                                     </td>
                                     <td class="text-danger-dark f-w-600">Low</td>
@@ -432,7 +440,7 @@
                                         <a class="h-30 w-30 d-flex-center b-r-50 overflow-hidden text-bg-secondary m-auto"
                                             data-bs-title="Liam Carter" data-bs-toggle="tooltip">
                                             <img alt="avtar" class="img-fluid"
-                                                src="../assets/images/avtar/5.png" />
+                                                src="{{ asset('mobile/assets/images/avtar/5.png') }}" />
                                         </a>
                                     </td>
                                     <td class="text-success-dark f-w-600">Medium</td>
@@ -456,7 +464,7 @@
                                         <a class="h-30 w-30 d-flex-center b-r-50 overflow-hidden text-bg-secondary m-auto"
                                             data-bs-title="Olivia Brown" data-bs-toggle="tooltip">
                                             <img alt="avtar" class="img-fluid"
-                                                src="../assets/images/avtar/6.png" />
+                                                src="{{ asset('mobile/assets/images/avtar/6.png') }}" />
                                         </a>
                                     </td>
                                     <td class="text-danger-dark f-w-600">Low</td>
@@ -511,15 +519,18 @@
 
                                 <ul class="avatar-group justify-content-start my-3">
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-primary">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/4.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/4.png') }}" />
                                     </li>
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-success"
                                         data-bs-title="Lennon Briggs" data-bs-toggle="tooltip">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/5.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/5.png') }}" />
                                     </li>
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-danger"
                                         data-bs-title="Maya Horton" data-bs-toggle="tooltip">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/6.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/6.png') }}" />
                                     </li>
                                 </ul>
 
@@ -558,15 +569,18 @@
                                 </h6>
                                 <ul class="avatar-group justify-content-start my-3">
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-primary">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/3.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/3.png') }}" />
                                     </li>
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-info"
                                         data-bs-title="Sophia Turner" data-bs-toggle="tooltip">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/7.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/7.png') }}" />
                                     </li>
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-warning"
                                         data-bs-title="Lucas Green" data-bs-toggle="tooltip">
-                                        <img alt="avtar" class="img-fluid" src="../assets/images/avtar/8.png" />
+                                        <img alt="avtar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/8.png') }}" />
                                     </li>
                                 </ul>
 
@@ -623,15 +637,18 @@
                                 </h6>
                                 <ul class="avatar-group justify-content-start my-3">
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-info">
-                                        <img alt="avatar" class="img-fluid" src="../assets/images/avtar/4.png" />
+                                        <img alt="avatar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/4.png') }}" />
                                     </li>
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-info"
                                         data-bs-title="Michael Johnson" data-bs-toggle="tooltip">
-                                        <img alt="avatar" class="img-fluid" src="../assets/images/avtar/6.png" />
+                                        <img alt="avatar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/6.png') }}" />
                                     </li>
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-warning"
                                         data-bs-title="Emily Brown" data-bs-toggle="tooltip">
-                                        <img alt="avatar" class="img-fluid" src="../assets/images/avtar/5.png" />
+                                        <img alt="avatar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/5.png') }}" />
                                     </li>
                                 </ul>
 
@@ -653,15 +670,18 @@
                                 </h6>
                                 <ul class="avatar-group justify-content-start my-3">
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-primary">
-                                        <img alt="avatar" class="img-fluid" src="../assets/images/avtar/9.png" />
+                                        <img alt="avatar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/9.png') }}" />
                                     </li>
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-info"
                                         data-bs-title="Alice Smith" data-bs-toggle="tooltip">
-                                        <img alt="avatar" class="img-fluid" src="../assets/images/avtar/10.png" />
+                                        <img alt="avatar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/10.png') }}" />
                                     </li>
                                     <li class="h-35 w-35 d-flex-center b-r-50 overflow-hidden bg-success"
                                         data-bs-title="John Doe" data-bs-toggle="tooltip">
-                                        <img alt="avatar" class="img-fluid" src="../assets/images/avtar/11.png" />
+                                        <img alt="avatar" class="img-fluid"
+                                            src="{{ asset('mobile/assets/images/avtar/11.png') }}" />
                                     </li>
                                 </ul>
 

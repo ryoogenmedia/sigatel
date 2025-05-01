@@ -29,7 +29,8 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         /**
          * beranda / home
          */
-        Route::get('beranda', Home\Index::class)->name('home');
+        Route::get('beranda', Home\Index::class)->name('home')
+            ->middleware('roles:teacher,parent');
     });
 
 

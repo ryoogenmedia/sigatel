@@ -12,12 +12,15 @@
         name="keywords">
     <meta content="la-themes" name="author">
 
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@$ICONS_VERSION/dist/tabler-icons.min.css">
+
     <link href="{{ asset('mobile/assets/images/logo/favicon.png') }}" rel="icon" type="image/x-icon">
     <link href="{{ asset('mobile/assets/images/logo/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
     <link href="{{ asset('mobile/assets/vendor/fontawesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('mobile/assets/vendor/ionio-icon/css/iconoir.css') }}" rel="stylesheet">
     <link href="{{ asset('mobile/assets/vendor/animation/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('mobile/assets/vendor/tabler-icons/tabler-icons.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('mobile/tabler-icons-3.31.0/webfont/tabler-icons.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('mobile/assets/vendor/flag-icons-master/flag-icon.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('mobile/assets/vendor/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('mobile/assets/vendor/apexcharts/apexcharts.css') }}" rel="stylesheet" type="text/css">
@@ -40,35 +43,35 @@
     <!-- Component Style -->
     @yield('styles')
 
-    <title>Smart Piket | @yield('title')</title>
+    <title>Smart Piket | {{ $title }}</title>
 
 
 </head>
 
 <body>
-    <x-mobile.loader />
+    <div class="app-wrapper">
+        <x-mobile.loader />
 
-    <x-mobile.backend.sidebar />
+        <x-mobile.backend.sidebar />
 
-    <div class="app-content ">
-        <div class="">
+        <div class="app-content">
+            <div class="">
 
-            <x-mobile.backend.header />
+                <x-mobile.backend.header />
 
-            <main>
-                {{ $slot }}
-            </main>
+                <main>
+                    {{ $slot }}
+                </main>
 
+            </div>
         </div>
+
+        <x-mobile.backend.goto-top />
+
+        <x-mobile.backend.footer />
     </div>
 
-    <x-mobile.backend.goto-top />
-
-    <x-mobile.backend.footer />
-
     @livewireScripts
-
-    <div id="customizer"></div>
 
     <!-- latest jquery-->
     <script src="{{ asset('mobile/assets/js/jquery-3.6.3.min.js') }}"></script>
