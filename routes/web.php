@@ -22,6 +22,22 @@ Route::post('/logout-mobile', [AuthMobileController::class,'logout'])->name('mob
 
 Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')->group(function () {
     /**
+     *  MOBILE / FORNTEND UNTUK MOBILE
+     */
+
+    Route::namespace('Mobile')->prefix('mobile-app')->name('mobile.')->group(function(){
+        /**
+         * beranda / home
+         */
+        Route::get('beranda', Home\Index::class)->name('home')
+            ->middleware('roles:teacher,parent');
+    });
+
+
+
+
+
+    /**
      * Print Report / Cetak Laporan
      */
     Route::prefix('cetak-laporan')->middleware('roles:admin')->name('print-report.')->group(function () {
@@ -140,7 +156,7 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
      * beranda / home
      */
     Route::get('beranda', Home\Index::class)->name('home')
-        ->middleware('roles:admin,user');
+        ->middleware('roles:admin');
 
     /**
      * user / pengguna

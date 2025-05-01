@@ -22,6 +22,40 @@ class TeacherTableSeeder extends Seeder
         $endDate = Carbon::now();
         $currentDate = $startDate->copy();
 
+        $teachers = [
+            [
+                'username'          => 'Bintang Sensei',
+                'email'             => 'bintangsensei@gmail.com',
+                'email_verified_at' => now(),
+                'password'          => Hash::make('teacher123'),
+                'roles'             => 'teacher',
+                'name'              => 'Bintang Sensei',
+                'phone_number'      => '08234238498283',
+                'address'           => 'BTN BPS BLK F8 NO 13, Sudiang, Biringkanayya, Makassar, Sulawesi Selatan',
+                'sex'               => 'laki-laki',
+                'status'            => 'aktif',
+            ],
+        ];
+
+        foreach($teachers as $teacher) {
+            $user = User::create([
+                'username'          => $teacher['username'],
+                'email'             => $teacher['email'],
+                'email_verified_at' => $teacher['email_verified_at'],
+                'password'          => $teacher['password'],
+                'roles'             => $teacher['roles'],
+            ]);
+
+            Teacher::create([
+                'user_id'       => $user->id,
+                'name'          => $teacher['name'],
+                'phone_number'  => $teacher['phone_number'],
+                'address'       => $teacher['address'],
+                'sex'           => $teacher['sex'],
+                'status'        => $teacher['status'],
+            ]);
+        }
+
         while ($currentDate <= $endDate) {
             $user = User::create([
                 'username'          => $faker->name,

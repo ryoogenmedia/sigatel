@@ -1,7 +1,7 @@
 <nav>
     <div class="app-logo">
         <a class="logo d-inline-block" href="index.html">
-            <img alt="#" src="../assets/images/logo/1.png">
+            <img alt="logo-smart-piket" src="{{ asset('ryoogenmedia/logo-dark.png') }}">
         </a>
 
         <span class="bg-light-primary toggle-semi-nav">

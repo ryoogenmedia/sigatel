@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -37,6 +38,17 @@ class FortifyServiceProvider extends ServiceProvider
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
 
             return Limit::perMinute(5)->by($throttleKey);
+        });
+
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
+            public function toResponse($request)
+            {
+                if(auth()->user()->roles == 'parent' || auth()->user()->roles == 'teacher'){
+                    return redirect()->route('mobile.home');
+                }else if(auth()->user()->roles == 'admin' || auth()->user()->roles == 'superadmin'){
+                    return redirect()->route('home');
+                }
+            }
         });
 
         RateLimiter::for('two-factor', function (Request $request) {

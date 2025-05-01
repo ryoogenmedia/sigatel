@@ -33,7 +33,7 @@
     @yield('styles')
 
     <style>
-        .login-form.container{
+        .login-form.container {
             margin: 0px 50px !important;
         }
     </style>
@@ -50,7 +50,7 @@
                         <div class="col-12 p-0">
                             <div class="login-form-container">
                                 <div class="mb-4">
-                                    <a class="logo d-inline-block" href="index.html">
+                                    <a class="logo d-inline-block" href="{{ route('mobile.login') }}">
                                         <img alt="logo-smart-piket" src="{{ asset('ryoogenmedia/logo-dark.png') }}"
                                             width="250">
                                     </a>
