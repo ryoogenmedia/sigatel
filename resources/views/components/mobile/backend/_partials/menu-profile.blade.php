@@ -31,12 +31,6 @@
             </li>
 
             <li>
-                <a class="f-w-500" href="setting.html" target="_blank">
-                    <i class="iconoir-graduation-cap pe-1 f-s-20"></i> Siswa
-                </a>
-            </li>
-
-            <li>
                 <p style="font-size: 14px" class="text-primary-dark">Status Piket</p>
                 <div>
                     <span class="badge bg-light-primary text-primary">
