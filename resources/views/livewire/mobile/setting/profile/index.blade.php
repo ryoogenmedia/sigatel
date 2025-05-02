@@ -1,3 +1,5 @@
-<div>
-    {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
+<div class="container-fluid">
+    <x-mobile.title-page title="Profil" subtitle="Kelola data profil anda." />
+
+
 </div>
