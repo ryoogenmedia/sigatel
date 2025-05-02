@@ -33,6 +33,24 @@ if (!function_exists('money_format_idr')) {
     }
 }
 
+/**
+ * Get the status duty of teacher
+ *
+ * @return boolean
+ */
+if(!function_exists('check_duty_status')){
+    function check_duty_status()
+    {
+        $teacher = auth()->user()->teacher;
+
+        if($teacher->duty_status == 'aktif'){
+            return true;
+        }
+
+        return false;
+    }
+}
+
 if (!function_exists('terbilang')) {
     function terbilang($angka)
     {

@@ -4,8 +4,8 @@
             <img style="margin-left: 30px" alt="logo-smart-piket" src="{{ asset('ryoogenmedia/logo-dark.png') }}">
         </a>
 
-        <span class="bg-light-primary toggle-semi-nav">
-            <i style="font-weight: bold; font-size:13px" class="ti ti-chevrons-right pt-3 px-3 me-2"></i>
+        <span class="bg-light-primary toggle-semi-nav mt-3">
+            <i style="font-weight: bold; font-size:13px" class="ti ti-chevrons-right py-4 px-3 me-2"></i>
         </span>
     </div>
     <div class="app-nav" id="app-simple-bar">
