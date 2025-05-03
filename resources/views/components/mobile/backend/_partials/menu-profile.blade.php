@@ -25,13 +25,13 @@
             </li>
 
             <li>
-                <a class="f-w-500" href="profile.html" target="_blank">
+                <a class="f-w-500" href="{{ route('mobile.setting.profile.index') }}" target="_blank">
                     <i class="iconoir-user-love pe-1 f-s-20"></i> Profil
                 </a>
             </li>
 
             <li>
-                <a class="f-w-500" href="setting.html" target="_blank">
+                <a class="f-w-500" href="{{ route('mobile.setting.account.index') }}" target="_blank">
                     <i class="iconoir-lock pe-1 f-s-20"></i> Akun
                 </a>
             </li>
@@ -46,10 +46,17 @@
             </li>
 
             <li>
-                <a class="mb-0 btn btn-light-danger btn-sm justify-content-center" href="sign_in.html" role="button">
+                <a class="mb-0 btn btn-light-danger btn-sm justify-content-center"href="{{ route('mobile.logout') }}"
+                    onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();"
+                    role="button">
                     <i class="ph-duotone  ph-sign-out pe-1 f-s-20"></i> Log Out
                 </a>
             </li>
         </ul>
     </div>
+
+    <form id="logout-form" action="{{ route('mobile.logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
 </div>
