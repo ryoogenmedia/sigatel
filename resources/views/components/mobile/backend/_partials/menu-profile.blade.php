@@ -5,7 +5,13 @@
             <li class="d-flex gap-3 mb-3">
                 <div class="d-flex-center">
                     <span class="h-45 w-45 d-flex-center b-r-10 position-relative">
-                        <img alt="" class="img-fluid b-r-10" src="{{ auth()->user()->avatarUrl() }}">
+                        <a aria-controls="profilecanvasRight" class="d-block head-icon"
+                            data-bs-target="#profilecanvasRight" data-bs-toggle="offcanvas" href="#"
+                            role="button">
+                            <img alt="avtar" class="b-r-50 h-35 w-35 bg-dark"
+                                src="{{ auth()->user()->avatarUrl() }}">
+                        </a>
+
                     </span>
                 </div>
                 <div class="text-center mt-2">
