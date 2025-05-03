@@ -10,6 +10,14 @@ return [
         'roles' => ['teacher','parent'],
     ],
     [
+        'title' => 'Daftar Siswa Kelas',
+        'icon' => 'weight',
+        'route-name' => 'mobile.grade.index',
+        'is-active' => 'mobile.grade*',
+        'description' => 'Untuk melihat dadftar siswa kelas.',
+        'roles' => ['teacher'],
+    ],
+    [
         'title' => 'Setting',
         'icon' => 'settings',
         'route-name' => 'mobile.setting.account.index',

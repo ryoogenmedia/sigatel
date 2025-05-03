@@ -33,6 +33,13 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
             ->middleware('roles:teacher,parent');
 
         /**
+        * grade / kelas
+        */
+        Route::prefix('kelas')->name('grade.')->middleware('roles:teacher')->namespace('Grade')->group(function () {
+            Route::get('/', Index::class)->name('index');
+        });
+
+        /**
          * setting / pengaturan
          */
         Route::prefix('pengaturan')->name('setting.')->namespace('Setting')->group(function () {

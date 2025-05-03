@@ -5,7 +5,7 @@
                 <ul class="footer-text">
                     <li>
                         <p class="mb-0">
-                            Copyright © 2025 SMPN 25 Makassar Powered By Ryoogen Media. All rights reserved 💖
+                            Copyright © 2025 SMPN 25 Makassar. All rights reserved 💖
                         </p>
                     </li>
                     <li><a href="#"> V1.0.0 </a></li>

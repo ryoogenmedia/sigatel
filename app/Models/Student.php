@@ -22,6 +22,16 @@ class Student extends Model
         'status',
     ];
 
+    public function violation()
+    {
+        return $this->hasOne(Violation::class, 'student_id', 'id');
+    }
+
+    public function violations()
+    {
+        return $this->hasMany(Violation::class, 'student_id', 'id');
+    }
+
     public function parent()
     {
         return $this->hasOne(StudentParent::class, 'student_id', 'id')->withDefault();
