@@ -5,7 +5,7 @@
 
     <form wire:submit="edit" class="card">
         <div class="card-body">
-            <div class="row mx-2 mt-3 mb-5">
+            <div class="row">
                 <div class="col-12">
                     <div class="row">
                         <div
