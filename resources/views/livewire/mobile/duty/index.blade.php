@@ -6,6 +6,17 @@
     <x-mobile.alert />
 
     <div class="card">
+        <div class="p-2">
+            <div class="alert alert-border-info mt-3 rounded-2" role="alert">
+                <h6>
+                    <i class="ti ti-info-circle f-s-18 me-2 text-info"></i>
+                    Anda Bertugas Sebagai Piket.
+                </h6>
+                <p>Sekarang anda berperan sebagai guru piket, anda dapat menambahkan pelanggaran kepada siswa.
+                </p>
+            </div>
+        </div>
+
         <div class="card-header mb-2">
             <div class="d-flex gap-2 justify-content-between flex-sm-row flex-column">
                 <h5>Daftar Siswa Melanggar</h5>
