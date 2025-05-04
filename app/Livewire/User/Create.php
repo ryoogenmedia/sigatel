@@ -55,6 +55,8 @@ class Create extends Component
 
             DB::commit();
         } catch (Exception $e) {
+            DB::rollBack();
+
             logger()->error(
                 '[pengguna] ' .
                     auth()->user()->username .

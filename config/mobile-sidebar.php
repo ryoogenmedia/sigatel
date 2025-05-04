@@ -29,7 +29,7 @@ return [
         'title' => 'Tugas Piket Anda',
         'icon' => 'calendar',
         'route-name' => 'mobile.duty.index',
-        'is-active' => 'mobile.duty.index',
+        'is-active' => 'mobile.duty*',
         'description' => 'Untuk melihat piket anda.',
         'roles' => ['teacher'],
     ],
