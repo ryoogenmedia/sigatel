@@ -20,7 +20,7 @@
         <div class="card-header mb-2">
             <div class="d-flex gap-2 justify-content-between flex-sm-row flex-column">
                 <h5>Daftar Siswa Melanggar</h5>
-                <a class="btn btn-light-primary b-r-22" type="button" href="{{ route('mobile.duty.create') }}">Tambah
+                <a class="btn btn-primary-dark b-r-22" type="button" href="{{ route('mobile.duty.create') }}">Tambah
                     Siswa Melanggar
                 </a>
             </div>

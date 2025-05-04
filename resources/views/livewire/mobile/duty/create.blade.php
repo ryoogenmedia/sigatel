@@ -13,22 +13,28 @@
                             Pilih Siswa Terlebih Dahulu
                         </h6>
                         <p>
-                            Pilih siswa yang melanggar
+                            Pastikan anda memilih siswa yang melanggar terlebih dahulu, anda dapat mencari berdasarkan
+                            nama, nim atau kelas.
                         </p>
-
-                        <div class="d-flex gap-2 justify-content-between flex-sm-row flex-column">
-                            <a href="{{ route('mobile.duty.index') }}" class="btn btn-light-primary b-r-22">Kembali</a>
-                        </div>
                     </div>
 
                     @unless ($this->studentId)
                         <div class="card border">
                             <div class="card-header">
-                                <h4>Pilih Siswa</h4>
+                                <div class="d-flex gap-2 justify-content-between flex-sm-row flex-column">
+                                    <h5>Pilih Siswa</h5>
+                                    <a href="{{ route('mobile.duty.index') }}" class="btn btn-light-primary b-r-22">Kembali
+                                        Ke
+                                        Halaman Utama</a>
+                                </div>
+
+                                <div class="my-3">
+                                    <x-form.input wire:model.live="filters.search" name="filters.search"
+                                        placeholder="cari kelas / nama / nis..." type="text" />
+                                </div>
                             </div>
+
                             <div class="card-body">
-                                <x-form.input wire:model.live="filters.search" name="filters.search"
-                                    placeholder="cari kelas / nama / nis..." type="text" />
                                 <div class="table-responsive app-scroll app-datatable-default my-3">
                                     <table class="w-100 display ticket-app-table" id="ticketdatatable">
                                         <thead>
@@ -77,9 +83,10 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div>
-                                        <p>Anda Telah Memilih Siswa : </p>
-                                        <h3 class="mb-0 pb-1">{{ $this->studentName }}</h3>
-                                        <h3>{{ $this->studentNIS }}</h3>
+                                        <p>Anda Telah Memilih Siswa</p>
+                                        <p class="mb-0 pb-1" style="font-weight: bold; font-size: 13px">
+                                            Nama : {{ $this->studentName }}</p>
+                                        <p style="font-weight: 600; font-size: 12px">NIS : {{ $this->studentNIS }}</p>
                                         <button wire:click="cancelStudent" type="button"
                                             class="btn btn-sm bg-danger mt-1">Batal</button>
                                     </div>
