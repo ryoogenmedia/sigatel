@@ -11,7 +11,6 @@
                             <img alt="avtar" class="b-r-50 h-35 w-35 bg-dark"
                                 src="{{ auth()->user()->avatarUrl() }}">
                         </a>
-
                     </span>
                 </div>
                 <div class="text-center mt-2">
@@ -19,7 +18,6 @@
                         <img alt="instagram-check-mark" class="w-20 h-20"
                             src="{{ asset('mobile/assets/images/profile-app/01.png') }}">
                     </h6>
-
                     <p class="f-s-12 mb-0 text-secondary">{{ strtolower(auth()->user()->email) }}</p>
                 </div>
             </li>
