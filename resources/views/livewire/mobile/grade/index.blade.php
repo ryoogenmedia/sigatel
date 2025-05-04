@@ -65,7 +65,7 @@
             <div class="content-wrapper mt-3">
                 <div class="tabs-content active" id="tab-1">
                     <div class="mail-table">
-                        @foreach ($this->students as $student)
+                        @forelse ($this->students as $student)
                             <div class="mail-box">
                                 <input class="form-check-input" id="inlineCheckbox1" type="checkbox" value="option1">
 
@@ -108,7 +108,9 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <x-mobile.empty-data />
+                        @endforelse
                     </div>
                 </div>
             </div>

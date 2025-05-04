@@ -33,6 +33,15 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
             ->middleware('roles:teacher,parent');
 
         /**
+         * grade assignment / penugasan kelas
+         */
+        Route::prefix('penugasan-kelas')->name('grand-assignment.')->namespace('GrandAssignment')->group(function () {
+            Route::get('/', Index::class)->name('index');
+            Route::get('/tambah', Create::class)->name('create');
+            Route::get('/sunting/{id}', Edit::class)->name('edit');
+        });
+
+        /**
         * grade / kelas
         */
         Route::prefix('kelas')->name('grade.')->middleware('roles:teacher')->namespace('Grade')->group(function () {

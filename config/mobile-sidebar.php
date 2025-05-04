@@ -18,6 +18,14 @@ return [
         'roles' => ['teacher'],
     ],
     [
+        'title' => 'Bikin Tugas Kelas',
+        'icon' => 'book',
+        'route-name' => 'mobile.grand-assignment.index',
+        'is-active' => 'mobile.grand-assignment*',
+        'description' => 'Untuk membuat tugas kelas.',
+        'roles' => ['teacher'],
+    ],
+    [
         'title' => 'Setting',
         'icon' => 'settings',
         'route-name' => 'mobile.setting.account.index',

@@ -41,7 +41,7 @@
     @livewireStyles
 
     <!-- Component Style -->
-    @yield('styles')
+    @stack('styles')
 
     <title>Smart Piket | {{ $title }}</title>
 
@@ -111,7 +111,7 @@
     <!-- App js-->
     <script src="{{ asset('mobile/assets/js/script.js') }}"></script>
 
-    @yield('scripts')
+    @stack('scripts')
 </body>
 
 </html>
