@@ -18,7 +18,7 @@
                 @if (in_array(auth()->user()->roles, $item['roles']))
                     @if (!isset($item['sub-menus']))
                         <li
-                            class="mb-2 no-sub {{ Route::is($item['route-name']) || Route::is($item['is-active']) ? 'active bg-primary-300 mx-2 rounded-4' : '' }}">
+                            class="mb-2 no-sub {{ Route::is($item['route-name']) || Route::is($item['is-active']) ? 'active bg-primary-300 mx-2 rounded-4 px-0' : '' }}">
                             <a class="{{ Route::is($item['route-name']) || Route::is($item['is-active']) ? 'text-primary-dark fw-bold' : '' }}"
                                 href="{{ route($item['route-name']) }}">
                                 <i class="iconoir-{{ $item['icon'] }}"></i> {{ $item['title'] }}

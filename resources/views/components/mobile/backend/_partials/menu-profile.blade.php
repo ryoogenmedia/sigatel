@@ -25,13 +25,13 @@
             </li>
 
             <li>
-                <a class="f-w-500" href="{{ route('mobile.setting.profile.index') }}" target="_blank">
+                <a class="f-w-500" href="{{ route('mobile.setting.profile.index') }}">
                     <i class="iconoir-user-love pe-1 f-s-20"></i> Profil
                 </a>
             </li>
 
             <li>
-                <a class="f-w-500" href="{{ route('mobile.setting.account.index') }}" target="_blank">
+                <a class="f-w-500" href="{{ route('mobile.setting.account.index') }}">
                     <i class="iconoir-lock pe-1 f-s-20"></i> Akun
                 </a>
             </li>

@@ -26,6 +26,14 @@ return [
         'roles' => ['teacher'],
     ],
     [
+        'title' => 'Tugas Piket Anda',
+        'icon' => 'calendar',
+        'route-name' => 'mobile.duty.index',
+        'is-active' => 'mobile.duty.index',
+        'description' => 'Untuk melihat piket anda.',
+        'roles' => ['teacher'],
+    ],
+    [
         'title' => 'Setting',
         'icon' => 'settings',
         'route-name' => 'mobile.setting.account.index',
