@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <x-mobile.title-page title="Penugasan Kelas" subtitle="Tambah Tugas Kelas." />
+    <x-mobile.title-page title="Bikin Tugas Kelas" subtitle="Tambah Tugas Kelas." />
 
     <x-mobile.alert />
 
