@@ -7,10 +7,12 @@ use App\Livewire\Traits\DataTable\WithCachedRows;
 use App\Livewire\Traits\DataTable\WithPerPagePagination;
 use App\Livewire\Traits\DataTable\WithSorting;
 use App\Models\GradeAssignment;
+use Illuminate\Support\Facades\File;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Index extends Component
 {
@@ -18,6 +20,7 @@ class Index extends Component
     use WithPerPagePagination;
     use WithCachedRows;
     use WithSorting;
+    use WithFileUploads;
 
     #[Title('Pemberian Tugas Kelas')]
     #[Layout('layouts.mobile-base')]
@@ -27,6 +30,8 @@ class Index extends Component
     public $penjelasanTugas;
     public $tanggalPemberian;
     public $tanggalKumpul;
+    public $fileDokumentasi;
+    public $dokumentasi;
 
     public $filters = [
         'search' => '',
@@ -38,6 +43,7 @@ class Index extends Component
         $this->penjelasanTugas = $gradeAssignment->description;
         $this->tanggalPemberian = $gradeAssignment->schedule;
         $this->tanggalKumpul = $gradeAssignment->finish;
+        $this->fileDokumentasi = $gradeAssignment->photoDocumentationUrl();
         $this->gradeAssignmentId = $id;
 
         $this->dispatch('pushData', [
@@ -45,7 +51,32 @@ class Index extends Component
             'penjelasanTugas' => $this->penjelasanTugas,
             'tanggalPemberian' => $this->tanggalPemberian,
             'tanggalKumpul' => $this->tanggalKumpul,
+            'dokumentasi' => $this->fileDokumentasi,
         ]);
+    }
+
+    public function addDokumentasi(){
+        $this->validate([
+            'dokumentasi' => ['required','image'],
+        ]);
+
+        $gradeAssignment = GradeAssignment::findOrFail($this->gradeAssignmentId);
+
+        if($gradeAssignment->documentation_image){
+            File::delete(public_path('storage/' . $gradeAssignment->documentation_image));
+        }
+        
+        $gradeAssignment->update([
+            'documentation_image' => $this->dokumentasi->store('foto-dokumentasi','public'),
+        ]);
+
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'Berhasil.',
+            'detail' => "Foto dokumentasi berhasil disunting.",
+        ]);
+
+        return redirect()->route('mobile.assignment.index');
     }
 
     public function cancelData(){

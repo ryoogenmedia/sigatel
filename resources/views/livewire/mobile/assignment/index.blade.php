@@ -25,6 +25,28 @@
                 <span id="tanggalKumpul"></span>
             </div>
         </div>
+
+        <div class="my-3">
+            <form wire:submit="addDokumentasi" class="row">
+                <div class="col-12 d-flex">
+                    <div class="mx-auto mt-3 mb-4">
+                        @if ($dokumentasi)
+                            <img src="{{ $dokumentasi->temporaryUrl() }}" alt="Dokumentasi" class="img-fluid rounded">
+                        @else
+                            <img id="gambarDokumentasi" src="{{ asset('ryoogenmedia/no-image.png') }}"
+                                alt="No Image Available" class="img-fluid rounded">
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <x-form.input wire:model.lazy="dokumentasi" name="dokumentasi" type="file" label="Dokumentasi" />
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success">Tambahkan Dokumentasi</button>
+                </div>
+            </form>
+        </div>
     </x-mobile.modal>
 
     <div class="card">
@@ -132,6 +154,7 @@
                 document.getElementById('tanggalPemberian').innerText = data[0].tanggalPemberian ?? '';
                 document.getElementById('tanggalKumpul').innerText = data[0].tanggalKumpul ?? '';
                 document.getElementById('penjelasanTugas').innerHTML = data[0].penjelasanTugas ?? '';
+                document.getElementById('gambarDokumentasi').src = data[0].dokumentasi ?? '';
                 console.log('Data diterima:', data);
             });
         });
