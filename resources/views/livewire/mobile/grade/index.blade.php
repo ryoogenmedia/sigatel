@@ -83,30 +83,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div>
-                                    <div class="btn-group dropdown-icon-none">
-                                        <button aria-expanded="false"
-                                            class="btn border-0 icon-btn b-r-4 dropdown-toggle"
-                                            data-bs-auto-close="true" data-bs-toggle="dropdown" type="button">
-                                            <i class="ti ti-dots-vertical"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#"><i class="ti ti-archive"></i>
-                                                    Archive
-                                                </a></li>
-                                            <li><a class="dropdown-item" href="#"><i class="ti ti-trash"></i>
-                                                    Delete
-                                                </a>
-                                            </li>
-                                            <li><a class="dropdown-item" href="#"><i
-                                                        class="ti ti-mail-opened"></i>
-                                                    Read
-                                                    Mali </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         @empty
                             <x-mobile.empty-data />
