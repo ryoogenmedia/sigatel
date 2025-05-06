@@ -61,7 +61,7 @@ class Index extends Component
                 });
             })->latest();
 
-        return $this->applyPagination($query);
+        return $query->get();
     }
 
     public function updatedFilters()

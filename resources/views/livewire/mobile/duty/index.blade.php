@@ -90,9 +90,6 @@
                 </table>
             </div>
         </div>
-        <div class="card-footer">
-            {{ $this->rows->links() }}
-        </div>
     </div>
 
 </div>

@@ -116,7 +116,7 @@ class Create extends Component
 
             if($this->fileTugas){
                 $gradeAssignment->update([
-                    'file_assignment' => $this->fileTugas,
+                    'file_assignment' => $this->fileTugas->store('file-tugas', 'public'),
                 ]);
             }
 

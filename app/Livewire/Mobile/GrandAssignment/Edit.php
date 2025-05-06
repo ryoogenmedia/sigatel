@@ -113,7 +113,7 @@ class Edit extends Component
                 }
 
                 $gradeAssignment->update([
-                    'file_assignment' => $this->fileTugas,
+                    'file_assignment' => $this->fileTugas->store('file-tugas', 'public'),
                 ]);
             }
 
