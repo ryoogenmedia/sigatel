@@ -35,12 +35,20 @@
             </li>
 
             <li>
-                <p style="font-size: 14px" class="text-primary-dark">Status Piket</p>
-                <div>
-                    <span class="badge bg-light-primary text-primary">
-                        {{ check_duty_status() ? 'Anda Piket' : 'Anda Tidak Piket' }}</span>
-                    </span>
-                </div>
+                @if (auth()->user()->roles == 'teacher')
+                    <p style="font-size: 14px" class="text-primary-dark">Status Piket</p>
+                    <div>
+                        @if (auth()->user()->teacher->duty_status)
+                            <span class="badge bg-success text-white">
+                                Anda Sedang Piket
+                            </span>
+                        @else
+                            <span class="badge bg-light-danger text-danger">
+                                Anda Sedang Tidak Piket
+                            </span>
+                        @endif
+                    </div>
+                @endif
             </li>
 
             <li>

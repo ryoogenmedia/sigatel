@@ -10,7 +10,7 @@
 
             <h4 class="text-center my-2">Selamat Datang, {{ auth()->user()->teacher->name ?? '' }}</h4>
 
-            @if (check_duty_status())
+            @if (auth()->user()->teacher->duty_status)
                 <p class="badge bg-success py-2">Anda Sekarang Piket</p>
             @else
                 <p class="badge bg-light-danger py-2">Anda Sekarang Tidak Piket</p>

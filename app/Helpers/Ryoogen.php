@@ -43,7 +43,7 @@ if(!function_exists('check_duty_status')){
     {
         $teacher = auth()->user()->teacher;
 
-        if($teacher->duty_status == 'aktif'){
+        if($teacher->duty_status){
             return true;
         }
 
