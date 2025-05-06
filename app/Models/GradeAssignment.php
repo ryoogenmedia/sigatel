@@ -47,6 +47,12 @@ class GradeAssignment extends Model
         return $this->finish_time ? Carbon::parse($this->finish_time)->format('d/m/Y H:i:s') : null;
     }
 
+    public function fileAssignment(){
+        return $this->file_assignment
+            ? asset('storage/' . $this->file_assignment)
+            : null;
+    }
+
     public function photoDocumentationUrl(){
         return $this->documentation_image
             ? asset('storage/'.$this->documentation_image)

@@ -82,20 +82,11 @@
     <!-- Simple bar js-->
     <script src="{{ asset('mobile/assets/vendor/simplebar/simplebar.js') }}"></script>
 
-    <!-- apexcharts -->
-    <script src="{{ asset('mobile/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('mobile/assets/vendor/apexcharts/column/dayjs.min.js') }}"></script>
-    <script src="{{ asset('mobile/assets/vendor/apexcharts/column/quarterOfYear.min.js') }}"></script>
-    <script src="{{ asset('mobile/assets/vendor/apexcharts/timelinechart/moment.min.js') }}"></script>
-
-    <!-- Customizer js-->
-    <script src="{{ asset('mobile/assets/js/customizer.js') }}"></script>
-
     <!-- phosphor js -->
     <script src="{{ asset('mobile/assets/vendor/phosphor/phosphor.js') }}"></script>
 
     <!-- slick-file -->
-    <script src="{{ asset('mobile/assets/vendor/slick/slick.min.js') }}"></script>
+    {{-- <script src="{{ asset('mobile/assets/vendor/slick/slick.min.js') }}"></script> --}}
 
     <!-- filepond -->
     <script src="{{ asset('mobile/assets/vendor/filepond/file-encode.min.js') }}"></script>
@@ -106,7 +97,7 @@
     <script src="{{ asset('mobile/assets/vendor/filepond/filepond.min.js') }}"></script>
 
     <!-- Project Dashboard js-->
-    <script src="{{ asset('mobile/assets/js/project_dashboard.js') }}"></script>
+    {{-- <script src="{{ asset('mobile/assets/js/project_dashboard.js') }}"></script> --}}
 
     <!-- App js-->
     <script src="{{ asset('mobile/assets/js/script.js') }}"></script>

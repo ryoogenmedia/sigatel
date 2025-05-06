@@ -32,6 +32,13 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         Route::get('beranda', Home\Index::class)->name('home')
             ->middleware('roles:teacher,parent');
 
+         /**
+         *  assignment / penugasan
+         */
+        Route::prefix('pemberian-tugas-kelas')->namespace('Assignment')->name('assignment.')->group(function(){
+            Route::get('/', Index::class)->name('index');
+        });
+
         /**
          * duty / piket
          */
@@ -77,6 +84,7 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
                 Route::get('/', Account\Index::class)->name('index');
             });
         });
+
     });
 
 

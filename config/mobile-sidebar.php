@@ -26,6 +26,14 @@ return [
         'roles' => ['teacher'],
     ],
     [
+        'title' => 'Pemberian Tugas Kelas',
+        'icon' => 'hourglass',
+        'route-name' => 'mobile.assignment.index',
+        'is-active' => 'mobile.assignment*',
+        'description' => 'Pemberian tugas kelas.',
+        'roles' => ['teacher'],
+    ],
+    [
         'title' => 'Tugas Piket Anda',
         'icon' => 'calendar',
         'route-name' => 'mobile.duty.index',
