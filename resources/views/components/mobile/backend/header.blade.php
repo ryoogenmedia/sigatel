@@ -18,7 +18,7 @@
                         </div>
                     </li>
 
-                    <li class="header-notification">
+                    {{-- <li class="header-notification">
                         <a aria-controls="notificationcanvasRight" class="d-block head-icon position-relative"
                             data-bs-target="#notificationcanvasRight" data-bs-toggle="offcanvas" href="#"
                             role="button">
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li> --}}
 
                     <li class="header-profile">
                         <x-mobile.backend._partials.img-profile />
