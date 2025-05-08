@@ -60,6 +60,10 @@ class User extends Authenticatable
         return $this->hasOne(Teacher::class, 'user_id', 'id')->withDefault();
     }
 
+    public function parent(){
+        return $this->hasOne(StudentParent::class,'user_id','id')->withDefault();
+    }
+
     public function student_parent()
     {
         return $this->hasOne(StudentParent::class, 'user_id', 'id')->withDefault();
