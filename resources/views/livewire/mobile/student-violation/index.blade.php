@@ -3,6 +3,14 @@
 
     <div class="row">
         <div class="col-12">
+            <x-form.select wire:model.live="filters.timeline" name="filters.timeline" label="Waktu Pelanggaran">
+                <option value="">Semua Data</option>
+                <option value="today">Hari Ini</option>
+                <option value="this_week">Minggu Ini</option>
+                <option value="this_month">Bulan Ini</option>
+                <option value="this_year">Tahun Ini</option>
+            </x-form.select>
+
             <div class="card">
                 @if (count($this->rows) >= 1)
                     <div class="card-header">
@@ -25,7 +33,7 @@
                                         <p class="text-success f-s-16 mb-0">Dari Guru : {{ $row->teacher->name ?? '-' }}
                                     </div>
                                     <p class="">
-                                        Tanggal / Waktu : {{ $row->time_violation ?? '' }}
+                                        {{ $row->time_violation ?? '' }}
                                     </p>
                                     <div class="timeline-border-box me-2 ms-0 mt-3">
                                         <h6 class="mb-0">{{ ucwords($row->violation_type) ?? '-' }}
