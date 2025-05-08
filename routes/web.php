@@ -32,7 +32,14 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         Route::get('beranda', Home\Index::class)->name('home')
             ->middleware('roles:teacher,parent');
 
-         /**
+        /**
+         * bio data siswa
+         */
+        Route::prefix('biodata-siswa')->namespace('BiodataStudent')->name('biodata-student.')->group(function(){
+            Route::get('/', Index::class)->name('index');
+        });
+
+        /**
          *  assignment / penugasan
          */
         Route::prefix('pemberian-tugas-kelas')->namespace('Assignment')->name('assignment.')->group(function(){

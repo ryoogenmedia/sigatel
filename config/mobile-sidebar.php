@@ -9,6 +9,18 @@ return [
         'description' => 'Untuk melihat ringkasan aplikasi anda.',
         'roles' => ['teacher','parent'],
     ],
+
+    // STUDENT PARENT
+    [
+        'title' => 'Bio Data Anak',
+        'icon' => 'face-id',
+        'route-name' => 'mobile.biodata-student.index',
+        'is-active' => 'mobile.biodata-student*',
+        'description' => 'Untuk melihat biodata anak anda.',
+        'roles' => ['parent'],
+    ],
+
+    // TEACHER / TEACHER DUTY
     [
         'title' => 'Daftar Siswa Kelas',
         'icon' => 'weight',
