@@ -49,7 +49,7 @@
                     <div class="row">
                         <div class="col-12 p-0">
                             <div class="login-form-container">
-                                <div class="d-lg-none d-block position-fixed top-0 mt-5">
+                                <div class="d-lg-none d-block position-fixed top-0 mt-5 pt-3">
                                     <a class="logo d-inline-block" href="{{ route('mobile.login') }}">
                                         <img alt="logo-smart-piket" src="{{ asset('ryoogenmedia/logo-dark.png') }}"
                                             width="250">
