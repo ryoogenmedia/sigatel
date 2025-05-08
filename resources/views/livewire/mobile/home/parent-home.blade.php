@@ -15,7 +15,8 @@
                 </p>
 
                 <div class="d-flex justify-content-center">
-                    <button class="btn btn-outline-success btn-xs">Bio Data Anak</button>
+                    <a href="{{ route('mobile.biodata-student.index') }}" class="btn btn-outline-success btn-xs">Bio
+                        Data Anak</a>
                 </div>
             </div>
         </div>
