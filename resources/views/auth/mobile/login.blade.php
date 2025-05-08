@@ -12,7 +12,8 @@
 
         <div class="mb-3">
             <label class="form-label">Alamat Surel (Email)</label>
-            <input class="form-control" type="email" name="email" placeholder="example@gmail.com">
+            <input class="form-control" type="email" name="email" placeholder="example@gmail.com"
+                value="{{ old('email') }}">
             <div class="form-text text">Kami tidak akan pernah membagikan email Anda kepada orang lain.
             </div>
         </div>
