@@ -49,14 +49,21 @@
                     <div class="row">
                         <div class="col-12 p-0">
                             <div class="login-form-container">
-                                <div class="mb-4">
+                                <div class="d-lg-none d-block position-fixed top-0 mt-5">
                                     <a class="logo d-inline-block" href="{{ route('mobile.login') }}">
                                         <img alt="logo-smart-piket" src="{{ asset('ryoogenmedia/logo-dark.png') }}"
                                             width="250">
                                     </a>
                                 </div>
 
-                                <div class="form_container">
+                                <div class="d-lg-block d-none">
+                                    <a class="logo d-inline-block" href="{{ route('mobile.login') }}">
+                                        <img alt="logo-smart-piket" src="{{ asset('ryoogenmedia/logo-dark.png') }}"
+                                            width="250">
+                                    </a>
+                                </div>
+
+                                <div class="form_container" style="width: 340px">
                                     @if ($errors->any())
                                         <div class="mx-3 mb-1 mt-4">
                                             <div class="alert alert-border-warning" role="alert">
