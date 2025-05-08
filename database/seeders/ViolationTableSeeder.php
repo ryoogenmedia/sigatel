@@ -25,13 +25,15 @@ class ViolationTableSeeder extends Seeder
 
         $violationTypes = ViolationType::pluck('name')->toArray();
 
-        foreach(range(1,50) as $i){
-            Violation::create([
-                'student_id'     => $faker->randomElement($studentIds),
-                'teacher_id'     => $faker->randomElement($teacherIds),
-                'violation_type' => $faker->randomElement($violationTypes),
-                'description'    => $faker->sentence(),
-            ]);
+        foreach(range(1,20) as $i){
+            foreach($studentIds as $studentId){
+                Violation::create([
+                    'student_id'     => $studentId,
+                    'teacher_id'     => $faker->randomElement($teacherIds),
+                    'violation_type' => $faker->randomElement($violationTypes),
+                    'description'    => $faker->text(450),
+                ]);
+            }
         }
     }
 }

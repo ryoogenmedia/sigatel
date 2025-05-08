@@ -20,6 +20,15 @@ return [
         'roles' => ['parent'],
     ],
 
+    [
+        'title' => 'Pelanggaran Anak',
+        'icon' => 'okrs',
+        'route-name' => 'mobile.student-violation.index',
+        'is-active' => 'mobile.student-violation*',
+        'description' => 'Untuk melihat daftar pelanggaran anak anda.',
+        'roles' => ['parent'],
+    ],
+
     // TEACHER / TEACHER DUTY
     [
         'title' => 'Daftar Siswa Kelas',

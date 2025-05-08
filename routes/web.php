@@ -40,6 +40,13 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         });
 
         /**
+         * violation student / pelanggaran anak
+         */
+        Route::prefix('pelanggaran-anak')->namespace('StudentViolation')->name('student-violation.')->group(function(){
+            Route::get('/', Index::class)->name('index');
+        });
+
+        /**
          *  assignment / penugasan
          */
         Route::prefix('pemberian-tugas-kelas')->namespace('Assignment')->name('assignment.')->group(function(){

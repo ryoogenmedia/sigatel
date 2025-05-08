@@ -23,6 +23,17 @@ class Violation extends Model
         return $this->belongsTo(Student::class, 'student_id', 'id')->withDefault();
     }
 
+    public function getTimeViolationAttribute()
+    {
+        $violationTime = $this->created_at;
+
+        if ($violationTime->isToday()) {
+            return $violationTime->format('H:i');
+        }
+
+        return $violationTime->format('Y-m-d H:i');
+    }
+
     public function teacher()
     {
         return $this->belongsTo(Teacher::class, 'teacher_id', 'id')->withDefault();
