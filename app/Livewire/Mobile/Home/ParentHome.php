@@ -9,36 +9,51 @@ class ParentHome extends Component
 {
     public $filterTime = '';
     public $jmlPelanggaran;
+    public $violationsPercent;
 
     public function updatedFilterTime(){
         $this->getDataCounter();
     }
 
     public function getDataCounter(){
-        $query = Violation::query()
+        $violation = Violation::query()
             ->where('student_id', auth()->user()->parent->student->id);
 
         if($this->filterTime){
             switch($this->filterTime){
                 case 'today':
-                    $query->whereDate('created_at', now()->toDateString());
+                    $violation->whereDate('created_at', now()->toDateString());
                     break;
                 case 'this_week':
-                    $query->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
+                    $violation->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
                     break;
                 case 'this_month':
-                    $query->whereMonth('created_at', now()->month)
+                    $violation->whereMonth('created_at', now()->month)
                         ->whereYear('created_at', now()->year);
                     break;
                 case 'this_year':
-                    $query->whereYear('created_at', now()->year);
+                    $violation->whereYear('created_at', now()->year);
                     break;
                 default:
                     break;
             }
         }
 
-        $this->jmlPelanggaran = $query->count() ?? 0;
+        $this->jmlPelanggaran = $violation->count() ?? 0;
+
+        $totalViolations = Violation::where('student_id', auth()->user()->parent->student->id)->count();
+
+        $this->violationsPercent = $totalViolations > 0
+            ? round(($this->jmlPelanggaran / (365)) * 100, 0)
+            : 0;
+
+        if ($this->jmlPelanggaran === 0) {
+            $this->violationsPercent = 0;
+        }
+
+        $this->dispatch('updatedPercent', [
+            'percent' => $this->violationsPercent,
+        ]);
     }
 
     public function mount(){

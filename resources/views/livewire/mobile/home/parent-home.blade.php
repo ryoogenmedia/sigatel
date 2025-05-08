@@ -33,7 +33,7 @@
             <div class="d-flex">
                 <div class="d-flex-center text-center">
                     <span class="text-light-danger h-45 w-45 d-flex-center b-r-15">
-                        <i class="ph-duotone  ph-x-circle f-s-30"></i>
+                        <i class="ph-duotone ph-x-circle f-s-30"></i>
                     </span>
                 </div>
 
@@ -43,5 +43,79 @@
                 </div>
             </div>
         </div>
+
+        <div class="card">
+            <div class="card-header h-100 mb-3 w-100">
+                <h5 class="text-center">Persentasi Pelanggaran</h5>
+                <p class="text-center">Pelanggaran Dalam 365 Hari / 1 Tahun</p>
+                <p class="text-center">(Jumlah Pelanggaran / 365 Hari) x 100</p>
+            </div>
+            <div class="card-body py-2">
+                <div wire:ignore>
+                    <div percent="{{ $this->violationsPercent }}" id="chart-mentions" class="chart-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let chart;
+            const item = document.getElementById('chart-mentions');
+
+            function renderChart(percent) {
+                if (!item) {
+                    console.error("ELEMENT ID #chart-mentions TIDAK DITEMUKAN!");
+                    return;
+                }
+
+                if (chart) {
+                    chart.destroy();
+                }
+
+                chart = new ApexCharts(item, {
+                    chart: {
+                        type: "radialBar",
+                        height: 340,
+                        animations: {
+                            enabled: true
+                        }
+                    },
+                    series: [percent],
+                    plotOptions: {
+                        radialBar: {
+                            hollow: {
+                                size: '60%'
+                            },
+                            dataLabels: {
+                                show: true,
+                                name: {
+                                    show: false
+                                },
+                                value: {
+                                    fontSize: '24px',
+                                    fontWeight: 'bold',
+                                    formatter: function(val) {
+                                        return val + "%";
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    colors: ["#ff0047"]
+                });
+
+                chart.render();
+            }
+
+            Livewire.on('updatedPercent', (val) => {
+                renderChart(parseFloat(val[0].percent));
+            });
+
+            renderChart(parseFloat(item.getAttribute('percent')));
+        });
+    </script>
+@endpush
