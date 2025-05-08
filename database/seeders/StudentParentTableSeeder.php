@@ -29,7 +29,7 @@ class StudentParentTableSeeder extends Seeder
                 'username'          => 'Pak Fery',
                 'email'             => 'feryparent@gmail.com',
                 'email_verified_at' => now(),
-                'password'          => Hash::make('feryparent123'),
+                'password'          => Hash::make('parent123'),
                 'roles'             => 'parent',
                 'name'              => 'Pak Fery',
                 'phone_number'      => '08939834543',
