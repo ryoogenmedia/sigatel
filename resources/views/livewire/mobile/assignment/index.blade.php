@@ -148,14 +148,12 @@
 @push('scripts')
     <script>
         document.addEventListener('livewire:init', () => {
-            // console.log('lol');
             Livewire.on('pushData', (data) => {
                 document.getElementById('alasanGuru').innerText = data[0].alasanGuru ?? '';
                 document.getElementById('tanggalPemberian').innerText = data[0].tanggalPemberian ?? '';
                 document.getElementById('tanggalKumpul').innerText = data[0].tanggalKumpul ?? '';
                 document.getElementById('penjelasanTugas').innerHTML = data[0].penjelasanTugas ?? '';
                 document.getElementById('gambarDokumentasi').src = data[0].dokumentasi ?? '';
-                console.log('Data diterima:', data);
             });
         });
     </script>

@@ -5,6 +5,13 @@
 
     <x-mobile.alert />
 
+    <x-mobile.modal name="modalDetailKeterangan" size="md" title="Detail Keterangan">
+        <div class="row">
+            <div class="col-12" id="detailKeterangan">
+            </div>
+        </div>
+    </x-mobile.modal>
+
     <div class="card">
         <div class="p-2">
             <div class="alert alert-border-info mt-3 rounded-2" role="alert">
@@ -59,7 +66,11 @@
 
                                 <td>{{ $row->violation_type ?? '-' }}</td>
 
-                                <td>{!! $row->description ?? '-' !!}</td>
+                                <td>
+                                    <button wire:click="getDataId({{ $row->id }})"
+                                        data-bs-target="#modalDetailKeterangan" data-bs-toggle="modal" type="button"
+                                        class="btn btn-sm btn-primary-dark">Detail</button>
+                                </td>
 
                                 <td class="d-flex">
                                     <div class="dropdown folder-dropdown">
@@ -91,5 +102,15 @@
             </div>
         </div>
     </div>
-
 </div>
+
+
+@push('scripts')
+    <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('pushData', (data) => {
+                document.getElementById('detailKeterangan').innerHTML = data[0].keterangan ?? '';
+            });
+        });
+    </script>
+@endpush

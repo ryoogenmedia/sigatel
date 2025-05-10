@@ -23,13 +23,27 @@ class Index extends Component
     #[Layout('layouts.mobile-base')]
 
     public $violationId;
+    public $keterangan;
 
     public $filters = [
         'search' => '',
     ];
 
     public function getDataId($id){
-        $this->violationId = $id;
+        $violation = Violation::findOrFail($id);
+        $this->violationId = $violation->id;
+        $this->keterangan  = $violation->description;
+
+        $this->dispatch('pushData', [
+            'keterangan' => $this->keterangan,
+        ]);
+    }
+
+    public function cancelData(){
+        $this->reset([
+            'keterangan',
+            'violationId',
+        ]);
     }
 
     public function deleteData(){
