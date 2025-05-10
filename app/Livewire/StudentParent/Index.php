@@ -2,15 +2,20 @@
 
 namespace App\Livewire\StudentParent;
 
+use App\Imports\StudentParentImport;
 use App\Livewire\Traits\DataTable\WithBulkActions;
 use App\Livewire\Traits\DataTable\WithCachedRows;
 use App\Livewire\Traits\DataTable\WithPerPagePagination;
 use App\Livewire\Traits\DataTable\WithSorting;
 use App\Models\StudentParent;
+use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component
 {
@@ -18,12 +23,62 @@ class Index extends Component
     use WithPerPagePagination;
     use WithCachedRows;
     use WithSorting;
+    use WithFileUploads;
 
     public $filters = [
         'search' => '',
         'nomorPonsel' => '',
         'status' => '',
     ];
+
+    public $show = false;
+    public $fileExcel;
+
+    public function showModal(){
+        $this->show = true;
+    }
+
+    public function closeModal(){
+        $this->show = false;
+    }
+
+    public function importExcel(){
+
+        try{
+            DB::beginTransaction();
+
+            Excel::import(new StudentParentImport, $this->fileExcel);
+
+            DB::commit();
+        }catch(Exception $e){
+            DB::rollBack();
+
+            logger()->error(
+                '[import excel data orang tua siswa] ' .
+                    auth()->user()->username .
+                    ' gagal import data orang tua siswa',
+                [$e->getMessage()]
+            );
+
+            session()->flash('alert', [
+                'type' => 'danger',
+                'message' => 'Gagal.',
+                'detail' => "import data orang tua siswa gagal dilakukan.",
+            ]);
+
+            $this->closeModal();
+            return redirect()->back();
+        }
+
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'Berhasil.',
+            'detail' => "import data orang tua siswa berhasil dilakukan.",
+        ]);
+
+        $this->closeModal();
+        return redirect()->back();
+    }
 
     public function deleteSelected()
     {
