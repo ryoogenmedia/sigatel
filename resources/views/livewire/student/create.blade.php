@@ -65,7 +65,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-lg-6">
-                    <x-form.select wire:model="kelas" name="kelas" label="Kelas">
+                    <x-form.select wire:model="kelas" name="kelas" label="Kelas" required>
                         <option value="">- pilih kelas -</option>
                         @foreach ($this->grades as $grade)
                             <option wire:key="{{ $grade->id }}" value="{{ $grade->id }}">{{ $grade->name }}

@@ -2,12 +2,14 @@
 
 namespace App\Livewire\Student;
 
+use App\Models\Grade;
 use App\Models\Student;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -32,6 +34,12 @@ class Edit extends Component
     public $studentId;
     public $kelas;
     public $avatarUrl;
+
+    #[Computed()]
+    public function grades()
+    {
+        return Grade::all(['id', 'name']);
+    }
 
     public function rules()
     {

@@ -19,8 +19,17 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-lg-6">
-                    <x-form.input wire:model="namaSiswa" name="namaSiswa" label="Nama Siswa" type="text"
-                        placeholder="Masukkan nama siswa" required autofocus />
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <x-form.input wire:model="namaSiswa" name="namaSiswa" label="Nama Siswa" type="text"
+                                placeholder="Masukkan nama siswa" required autofocus />
+                        </div>
+
+                        <div class="col-12 col-lg-6">
+                            <x-form.input wire:model="nis" name="nis" label="NIS" type="text"
+                                placeholder="Masukkan Nomor Induk Siswa (NIS)" required />
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-12 col-lg-6">
@@ -29,8 +38,14 @@
                         </div>
 
                         <div class="col-12 col-lg-6">
-                            <x-form.input wire:model="nis" name="nis" label="NIS" type="text"
-                                placeholder="Masukkan Nomor Induk Siswa (NIS)" required />
+                            <x-form.select wire:model="kelas" name="kelas" label="Kelas" required>
+                                <option value="">- pilih kelas -</option>
+                                @foreach ($this->grades as $grade)
+                                    <option wire:key="{{ $grade->id }}" value="{{ $grade->id }}">
+                                        {{ $grade->name }}
+                                    </option>
+                                @endforeach
+                            </x-form.select>
                         </div>
                     </div>
 

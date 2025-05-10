@@ -16,7 +16,7 @@
     <x-modal :show="$show" size="md">
         <form wire:submit.prevent="importExcel" autocomplete="off">
             <div class="modal-header">
-                <h5 class="modal-title">Import File Excel</h5>
+                <h5 class="modal-title">Import File Excel Guru</h5>
                 <button wire:click='closeModal' type="button" class="btn-close" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
@@ -25,7 +25,7 @@
                 <x-form.input wire:model.lazy="fileExcel" name="fileExcel" label="File Excel" type="file"
                     placeholder="Masukkan file excel" />
 
-                <p>unduh template excel <a href="/template/file-excel-guru.xlsx">disini</a></p>
+                <p>unduh template import excel guru <a href="/template/file-excel-guru.xlsx">disini</a></p>
             </div>
 
             <div class="modal-footer">
