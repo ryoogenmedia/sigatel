@@ -19,7 +19,8 @@
 
             <div class="modal-body">
                 <x-form.input wire:model.lazy="fileExcel" name="fileExcel" label="File Excel" type="file"
-                    placeholder="Masukkan file excel" />
+                    placeholder="Masukkan file excel"
+                    accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" />
 
                 <p>unduh template import excel kelas <a href="/template/file-excel-kelas.xlsx">disini</a></p>
             </div>
