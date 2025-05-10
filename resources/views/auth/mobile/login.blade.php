@@ -25,7 +25,8 @@
 
         <div class="mb-3 form-check">
             <input class="form-check-input" id="formCheck1" type="checkbox">
-            <label class="form-check-label" for="formCheck1">Ingat Saya</label>
+            <label class="form-check-label" for="formCheck1" :checked="true" :value="true">Ingat
+                Saya</label>
         </div>
 
         <div>
