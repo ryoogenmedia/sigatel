@@ -39,7 +39,16 @@ class Index extends Component
     }
 
     public function closeModal(){
-        $this->show = false;
+        $this->reset([
+            'fileExcel',
+            'show',
+        ]);
+    }
+
+    public function resetForm(){
+        $this->reset([
+            'fileExcel',
+        ]);
     }
 
     public function importExcel(){

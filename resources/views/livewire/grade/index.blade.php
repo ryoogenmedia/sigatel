@@ -9,6 +9,31 @@
 
     <x-modal.delete-confirmation />
 
+    <x-modal :show="$show" size="md">
+        <form wire:submit.prevent="importExcel" autocomplete="off">
+            <div class="modal-header">
+                <h5 class="modal-title">Import File Excel Kelas</h5>
+                <button wire:click='closeModal' type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <x-form.input wire:model.lazy="fileExcel" name="fileExcel" label="File Excel" type="file"
+                    placeholder="Masukkan file excel" />
+
+                <p>unduh template import excel kelas <a href="/template/file-excel-kelas.xlsx">disini</a></p>
+            </div>
+
+            <div class="modal-footer">
+                <div class="btn-list justify-content-end">
+                    <button wire:click="resetForm" type="reset" class="btn">Reset</button>
+
+                    <x-datatable.button.save target="importExcel" name="Import Excel" class="btn-green" />
+                </div>
+            </div>
+        </form>
+    </x-modal>
+
     <div class="row mb-3 align-items-center justify-content-between">
         <div class="col-12 col-lg-8 d-flex align-self-center">
             <x-datatable.search placeholder="Cari nama kelas / wali kelas..." />
@@ -24,6 +49,12 @@
                         <i class="las la-trash me-3"></i>
 
                         <span>Hapus</span>
+                    </button>
+
+                    <button class="dropdown-item" type="button" wire:click="showModal">
+                        <i class="las la-file-excel me-3"></i>
+
+                        <span>Import Excel</span>
                     </button>
                 </div>
             </x-datatable.bulk.dropdown>
@@ -145,7 +176,8 @@
                                         <td>
                                             <div class="d-flex">
                                                 <div class="ms-auto">
-                                                    <button class="btn btn-sm" wire:click="getGrade({{ $row->id }})">
+                                                    <button class="btn btn-sm"
+                                                        wire:click="getGrade({{ $row->id }})">
                                                         Sunting
                                                     </button>
                                                 </div>

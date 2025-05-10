@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Grade;
 
+use App\Imports\GradeImport;
 use App\Livewire\Traits\DataTable\WithBulkActions;
 use App\Livewire\Traits\DataTable\WithCachedRows;
 use App\Livewire\Traits\DataTable\WithPerPagePagination;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component
 {
@@ -20,6 +23,7 @@ class Index extends Component
     use WithPerPagePagination;
     use WithCachedRows;
     use WithSorting;
+    use WithFileUploads;
 
     public $filters = [
         'search' => '',
@@ -30,6 +34,64 @@ class Index extends Component
     public $waliKelas;
 
     public $gradeId;
+
+    public $show = false;
+    public $fileExcel;
+
+    public function showModal(){
+        $this->show = true;
+    }
+
+    public function closeModal(){
+        $this->reset([
+            'fileExcel',
+            'show',
+        ]);
+    }
+
+    public function resetForm(){
+        $this->reset([
+            'fileExcel',
+        ]);
+    }
+
+    public function importExcel(){
+
+        try{
+            DB::beginTransaction();
+
+            Excel::import(new GradeImport, $this->fileExcel);
+
+            DB::commit();
+        }catch(Exception $e){
+            DB::rollBack();
+
+            logger()->error(
+                '[import excel data kelas] ' .
+                    auth()->user()->username .
+                    ' gagal import data kelas',
+                [$e->getMessage()]
+            );
+
+            session()->flash('alert', [
+                'type' => 'danger',
+                'message' => 'Gagal.',
+                'detail' => "import data kelas gagal dilakukan.",
+            ]);
+
+            $this->closeModal();
+            return redirect()->back();
+        }
+
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'Berhasil.',
+            'detail' => "import data kelas berhasil dilakukan.",
+        ]);
+
+        $this->closeModal();
+        return redirect()->back();
+    }
 
     public function getGrade($id)
     {
