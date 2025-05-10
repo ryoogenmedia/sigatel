@@ -107,7 +107,9 @@
                                 <td>
                                     @if ($row->fileAssignment())
                                         <a class="text-white btn btn-primary-dark btn-sm"
-                                            href="{{ $row->fileAssignment() }}">file</a>
+                                            href="https://docs.google.com/gview?url={{ $row->fileAssignment() }}&embedded=true"
+                                            target="_blank"
+                                            onclick="openPdfInNewWindow('{{ $row->fileAssignment() }}'); return false;">file</a>
                                     @else
                                         <small>tanpa file</small>
                                     @endif
@@ -146,6 +148,18 @@
 </div>
 
 @push('scripts')
+    <script>
+        function openPdfInNewWindow(url) {
+            let width = screen.width * 0.8;
+            let height = screen.height * 0.8;
+            let left = (screen.width - width) / 2;
+            let top = (screen.height - height) / 2;
+
+            window.open(url, '_blank',
+                `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`);
+        }
+    </script>
+
     <script>
         document.addEventListener('livewire:init', () => {
             Livewire.on('pushData', (data) => {
