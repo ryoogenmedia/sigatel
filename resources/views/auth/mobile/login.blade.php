@@ -13,20 +13,19 @@
         <div class="mb-3">
             <label class="form-label">Alamat Surel (Email)</label>
             <input class="form-control" type="email" name="email" placeholder="example@gmail.com"
-                value="{{ old('email') }}">
+                value="{{ old('email') }}" required autofocus>
             <div class="form-text text">Kami tidak akan pernah membagikan email Anda kepada orang lain.
             </div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Kata Sandi</label>
-            <input class="form-control" type="password" name="password" placeholder="********">
+            <input class="form-control" type="password" name="password" placeholder="********" required>
         </div>
 
         <div class="mb-3 form-check">
-            <input class="form-check-input" id="formCheck1" type="checkbox">
-            <label class="form-check-label" for="formCheck1" :checked="true" :value="true">Ingat
-                Saya</label>
+            <input type="checkbox" name="remember" class="form-check-input" id="remember">
+            <label class="form-check-label" for="remember">Ingat Saya</label>
         </div>
 
         <div>
