@@ -170,7 +170,7 @@
 
                         <div class="card-footer">
                             <div class="col-12">
-                                <button wire:click="save" type="submit" class="btn btn-primary-dark w-100">Berikan
+                                <button type="submit" class="btn btn-primary-dark w-100">Berikan
                                     Tugas</button>
                             </div>
                         </div>

@@ -114,9 +114,19 @@ class Create extends Component
                 'finish_time'       => $this->waktuSelesai,
             ]);
 
-            if($this->fileTugas){
+            if ($this->fileTugas) {
+                $grade = Grade::find($this->gradeId);
+                $teacher = auth()->user()->teacher;
+                $kelas = $grade ? preg_replace('/[^A-Za-z0-9\-]/', '', $grade->name) : 'kelas';
+                $guru = $teacher ? preg_replace('/[^A-Za-z0-9\-]/', '', $teacher->name) : 'guru';
+                $timestamp = now()->format('d-m-Y_H-i-s');
+                $extension = $this->fileTugas->getClientOriginalExtension();
+                $filename = "tugas-{$kelas}-{$guru}-{$timestamp}.{$extension}";
+
+                $path = $this->fileTugas->storeAs('file-tugas', $filename, 'public');
+
                 $gradeAssignment->update([
-                    'file_assignment' => $this->fileTugas->store('file-tugas', 'public'),
+                    'file_assignment' => $path,
                 ]);
             }
 
