@@ -2,15 +2,20 @@
 
 namespace App\Livewire\Teacher;
 
+use App\Imports\TeacherImport;
 use App\Livewire\Traits\DataTable\WithBulkActions;
 use App\Livewire\Traits\DataTable\WithCachedRows;
 use App\Livewire\Traits\DataTable\WithPerPagePagination;
 use App\Livewire\Traits\DataTable\WithSorting;
 use App\Models\Teacher;
+use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component
 {
@@ -18,6 +23,7 @@ class Index extends Component
     use WithPerPagePagination;
     use WithCachedRows;
     use WithSorting;
+    use WithFileUploads;
 
     public $filters = [
         'search' => '',
@@ -25,6 +31,55 @@ class Index extends Component
         'nomorPonsel' => '',
         'status' => '',
     ];
+
+    public $show = false;
+    public $fileExcel;
+
+    public function showModal(){
+        $this->show = true;
+    }
+
+    public function closeModal(){
+        $this->show = false;
+    }
+
+    public function importExcel(){
+
+        try{
+            DB::beginTransaction();
+
+            Excel::import(new TeacherImport, $this->fileExcel);
+
+            DB::commit();
+        }catch(Exception $e){
+            DB::rollBack();
+
+            logger()->error(
+                '[import excel data guru] ' .
+                    auth()->user()->username .
+                    ' gagal import data guru',
+                [$e->getMessage()]
+            );
+
+            session()->flash('alert', [
+                'type' => 'danger',
+                'message' => 'Gagal.',
+                'detail' => "import data guru gagal dilakukan.",
+            ]);
+
+            $this->closeModal();
+            return redirect()->back();
+        }
+
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'Berhasil.',
+            'detail' => "import data guru berhasil dilakukan.",
+        ]);
+
+        $this->closeModal();
+        return redirect()->back();
+    }
 
     public function deleteSelected()
     {
